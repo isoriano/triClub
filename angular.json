@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "projects": {
+    "tri-club-portal": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/tri-club-portal",
+      "sourceRoot": "apps/tri-club-portal/src",
+      "prefix": "tri-club-suite",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/tri-club-portal",
+            "index": "apps/tri-club-portal/src/index.html",
+            "main": "apps/tri-club-portal/src/main.ts",
+            "polyfills": "apps/tri-club-portal/src/polyfills.ts",
+            "tsConfig": "apps/tri-club-portal/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/tri-club-portal/src/favicon.ico",
+              "apps/tri-club-portal/src/assets"
+            ],
+            "styles": ["apps/tri-club-portal/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/tri-club-portal/src/environments/environment.ts",
+                  "with": "apps/tri-club-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tri-club-portal:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tri-club-portal:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tri-club-portal:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/tri-club-portal/tsconfig.app.json",
+              "apps/tri-club-portal/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/tri-club-portal/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/tri-club-portal/jest.config.js",
+            "tsConfig": "apps/tri-club-portal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/tri-club-portal/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "tri-club-portal-e2e": {
+      "root": "apps/tri-club-portal-e2e",
+      "sourceRoot": "apps/tri-club-portal-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/tri-club-portal-e2e/cypress.json",
+            "tsConfig": "apps/tri-club-portal-e2e/tsconfig.e2e.json",
+            "devServerTarget": "tri-club-portal:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tri-club-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/tri-club-portal-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/tri-club-portal-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "tri-club-portal"
+}
