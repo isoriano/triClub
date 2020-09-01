@@ -15,7 +15,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@tri-club-suite/authentication": ["libs/authentication/src/index.ts"],
+      "@tri-club-suite/users": ["libs/users/src/index.ts"],
+      "@tri-club-suite/analytics": ["libs/analytics/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

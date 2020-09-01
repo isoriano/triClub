@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+
+@mixin apply-theme($config-or-theme) {
+  // Extract the color configuration in case a theme has been passed.
+  // This allows consumers to either pass a theme object or a color configuration.
+  $config: mat-get-color-config($config-or-theme);
+
+  // Extract the palettes you need from the theme definition.
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+
+  // Define any styles affected by the theme.
+  .mat-form-field {
+    color: mat-contrast($primary, 500);
+  }
+  .tsc-sidenav-btn-container {
+    border-color: mat-contrast($primary, 500);
+  }
+
+  .mat-toolbar {
+    background-color: mat-color($primary);
+  }
+
+  .tsc-section {
+    border-color: mat-color($primary, 200);
+  }
+
+  .tsc-error {
+    color: mat-color($warn);
+  }
+}

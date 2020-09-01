@@ -1,0 +1,16 @@
+:host {
+  position: relative;
+  top: 30px;
+  max-width: 600px;
+  margin: auto;
+  flex-flow: row;
+  display: flex;
+  justify-content: space-around;
+  .tsc-section {
+    width: 100%;
+  }
+  form {
+    display: flex;
+    flex-flow: column;
+  }
+}

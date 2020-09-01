@@ -28,6 +28,15 @@
     "tri-club-portal-e2e": {
       "tags": [],
       "implicitDependencies": ["tri-club-portal"]
+    },
+    "authentication": {
+      "tags": []
+    },
+    "users": {
+      "tags": []
+    },
+    "analytics": {
+      "tags": []
     }
   }
 }

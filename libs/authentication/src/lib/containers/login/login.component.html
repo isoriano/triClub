@@ -1,0 +1,25 @@
+<div class="tsc-section">
+  <form [formGroup]="loginForm" (submit)="register()">
+    <p class="tsc-error" *ngIf="errorMessage$ | async as errorMessage">
+      {{ errorMessage }}
+    </p>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" type="email">
+      <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+        <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
+        <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid.</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password">
+      <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+        <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Sign In!</button>
+    <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
+    <a mat-button color="accent" routerLink='/user/register'>Create an Account</a>
+  </form>
+</div>

@@ -10,7 +10,7 @@
       },
       "root": "apps/tri-club-portal",
       "sourceRoot": "apps/tri-club-portal/src",
-      "prefix": "tri-club-suite",
+      "prefix": "tcs",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -25,7 +25,10 @@
               "apps/tri-club-portal/src/favicon.ico",
               "apps/tri-club-portal/src/assets"
             ],
-            "styles": ["apps/tri-club-portal/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "apps/tri-club-portal/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -121,6 +124,102 @@
             "tsConfig": ["apps/tri-club-portal-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/tri-club-portal-e2e/**/*"]
           }
+        }
+      }
+    },
+    "authentication": {
+      "projectType": "library",
+      "root": "libs/authentication",
+      "sourceRoot": "libs/authentication/src",
+      "prefix": "tcs",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/authentication/tsconfig.lib.json",
+              "libs/authentication/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/authentication/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/authentication/jest.config.js",
+            "tsConfig": "libs/authentication/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/authentication/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "users": {
+      "projectType": "library",
+      "root": "libs/users",
+      "sourceRoot": "libs/users/src",
+      "prefix": "tcs",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/users/tsconfig.lib.json",
+              "libs/users/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/users/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/users/jest.config.js",
+            "tsConfig": "libs/users/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/users/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "analytics": {
+      "projectType": "library",
+      "root": "libs/analytics",
+      "sourceRoot": "libs/analytics/src",
+      "prefix": "tri-club-suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/analytics/tsconfig.lib.json",
+              "libs/analytics/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/analytics/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/analytics/jest.config.js",
+            "tsConfig": "libs/analytics/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/analytics/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }
