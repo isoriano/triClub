@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../../services/authentication.service';
-import { User } from '../../models/user.interface';
+import { AuthUser } from '../../models/auth-user.interface';
 
 @Component({
   selector: 'tcs-login',
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   register() {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
-      this.authService.signIn(this.loginForm.value).then((user: User) => {
+      this.authService.signIn(this.loginForm.value).then((user: AuthUser) => {
         if(!user){
           return;
         } else {

@@ -7,15 +7,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { AuthenticationModule } from '@tri-club-suite/authentication';
+
+import { AuthenticationModule, LoginComponent } from '@tri-club-suite/authentication';
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('@tri-club-suite/authentication').then(m => m.AuthenticationModule)
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'user',
@@ -38,6 +40,7 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
+    MatSnackBarModule,
     AuthenticationModule
   ],
   providers: [],

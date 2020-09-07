@@ -11,22 +11,47 @@
   $warn: map-get($config, warn);
 
   // Define any styles affected by the theme.
-  .mat-form-field {
+  .mat-form-field,
+  .mat-checkbox-label,
+  .mat-label {
     color: mat-contrast($primary, 500);
   }
   .tsc-sidenav-btn-container {
     border-color: mat-contrast($primary, 500);
+    .mat-button-focus-overlay {
+      background: mat-color($accent);
+    }
+    .tsc-nav-active {
+      border-color: mat-color($accent) !important;
+      .mat-button-focus-overlay {
+        opacity: 0.1;
+      }
+    }
   }
 
   .mat-toolbar {
     background-color: mat-color($primary);
   }
 
-  .tsc-section {
+  .tcs-section {
+    .mat-h2 {
+      color: mat-contrast($primary, 500);
+    }
     border-color: mat-color($primary, 200);
   }
 
   .tsc-error {
     color: mat-color($warn);
+  }
+
+  .mat-snack-bar-container {
+    background: mat-color($accent);
+    color: mat-contrast($primary, 500);
+    .mat-simple-snackbar-action {
+      .mat-button {
+        color: mat-contrast($primary, 500);
+        background-color: mat-color($primary);
+      }
+    }
   }
 }

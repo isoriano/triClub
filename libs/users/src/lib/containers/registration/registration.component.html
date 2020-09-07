@@ -1,9 +1,10 @@
-<div class="tsc-section">
+<div class="tcs-section dark">
+  <h2 class="mat-h2">Join TriClub today, it's Free!</h2>
   <form [formGroup]="registrationForm" (submit)="register()">
     <p class="tsc-error" *ngIf="errorMessage$ | async as errorMessage">
       {{ errorMessage }}
     </p>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="form-field" appearance="outline">
       <mat-label>E-mail</mat-label>
       <input matInput formControlName="email" type="email">
       <mat-error *ngIf="registrationForm.controls.email.touched && registrationForm.controls.email.invalid">
@@ -18,6 +19,33 @@
         <span *ngIf="registrationForm.controls.password.errors.required">This field is mandatory.</span>
       </mat-error>
     </mat-form-field>
+    <tcs-password-strength-bar *ngIf="!!registrationForm.controls.password.value" [passwordToCheck]="registrationForm.controls.password.value"></tcs-password-strength-bar>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="fullName" type="text">
+      <mat-error *ngIf="registrationForm.controls.fullName.touched && registrationForm.controls.fullName.invalid">
+        <span *ngIf="registrationForm.controls.fullName.errors.required">This field is mandatory.</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="dateOfBirth" formControlName="dateOfBirth">
+      <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+      <mat-datepicker #dateOfBirth></mat-datepicker>
+      <mat-error *ngIf="registrationForm.controls.dateOfBirth.touched && registrationForm.controls.dateOfBirth.invalid">
+        <span *ngIf="registrationForm.controls.dateOfBirth.errors.required">This field is mandatory.</span>
+      </mat-error>
+    </mat-form-field>
+    <div class="tsc-sports-options">
+      <label class="mat-label">Which of these do you practice:</label>
+      <ul>
+        <li *ngFor="let sport of sports">
+          <mat-checkbox (change)="sportSelected(sport)" color="primary">
+            {{sport.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
     <button mat-raised-button color="accent" type="submit">Sign Up!</button>
     <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
     <a mat-button color="primary" routerLink='/login'>Sign In</a>

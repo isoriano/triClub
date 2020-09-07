@@ -6,8 +6,11 @@
   flex-flow: row;
   display: flex;
   justify-content: space-around;
-  .tsc-section {
+  .tcs-section {
     width: 100%;
+    .tsc-sports-options {
+      padding: .75rem .15rem;
+    }
   }
   form {
     display: flex;

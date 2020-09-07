@@ -7,10 +7,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 import { AuthenticationModule, AuthGuard } from '@tri-club-suite/authentication';
 import { RegistrationComponent } from './containers/registration/registration.component';
 import { ProfileComponent } from './containers/profile/profile.component';
+import { PasswordStrengthBarComponent } from './components/password-strength-bar/password-strength-bar.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 const routes: Routes = [
   {
@@ -27,7 +33,11 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     RegistrationComponent,
-    ProfileComponent
+    ProfileComponent,
+    PasswordStrengthBarComponent
+  ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
   ],
   imports: [
     CommonModule,
@@ -39,6 +49,10 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
     AuthenticationModule
   ]
 })

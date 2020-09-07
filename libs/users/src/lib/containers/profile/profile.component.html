@@ -1,1 +1,8 @@
-<strong>Profile</strong>
+<div *ngIf="user$ | async as user; else loading">
+  {{user | json}}
+</div>
+<ng-template #loading>
+  <div class="tcs-center-loading">
+    <mat-spinner color="primary"></mat-spinner>
+  </div>
+</ng-template>

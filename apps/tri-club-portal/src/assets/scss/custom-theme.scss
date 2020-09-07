@@ -38,7 +38,7 @@ $mat-dark-custom: (
 );
 
 $tsc-dark-primary: mat-palette($mat-dark-custom);
-$tsc-dark-accent: mat-palette($mat-deep-orange, A200, A100, A400);
+$tsc-dark-accent: mat-palette($mat-purple, A200, A100, A400);
 $tsc-dark-warn: mat-palette($mat-red);
 $tsc-dark-theme: mat-dark-theme(
   (
@@ -84,7 +84,7 @@ $mat-light-custom: (
 );
 
 $tsc-light-primary: mat-palette($mat-light-custom);
-$tsc-light-accent: mat-palette($mat-deep-purple, A200, A100, A400);
+$tsc-light-accent: mat-palette($mat-pink, A200, A100, A400);
 $tsc-light-warn: mat-palette($mat-red);
 $tsc-light-theme: mat-light-theme(
   (
@@ -95,13 +95,19 @@ $tsc-light-theme: mat-light-theme(
     ),
   )
 );
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+
+$light: #fff;
+$dark-background: #303030;
+$light-background: #f7f7fa;
+
 .dark {
   @include angular-material-theme($tsc-dark-theme);
   @include apply-theme($tsc-dark-theme);
-  background-color: #303030;
+  background-color: $dark-background;
   .mat-drawer {
     background-color: #262626;
     .mat-drawer-inner-container {
@@ -113,11 +119,27 @@ $tsc-light-theme: mat-light-theme(
 .light {
   @include angular-material-theme($tsc-light-theme);
   @include apply-theme($tsc-light-theme);
-  background-color: #fff;
+  background-color: $light-background;
   .mat-drawer {
     background-color: #e5e5e5;
     .mat-drawer-inner-container {
       background-image: url('/assets/images/logo.png');
+    }
+  }
+}
+
+// Global themed classes
+
+.tcs-section {
+  &.dark {
+    background-color: rgba(48, 48, 48, 0.75);
+    .mat-form-field,
+    .mat-checkbox-label,
+    .mat-label,
+    .mat-h2,
+    .mat-form-field-outline,
+    .mat-form-field-label {
+      color: $light!important;
     }
   }
 }

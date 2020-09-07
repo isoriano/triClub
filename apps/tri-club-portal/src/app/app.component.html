@@ -2,7 +2,7 @@
   <mat-sidenav #sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0">
     <div class="tsc-sidenav">
       <div class="tsc-sidenav-btn-container inline">
-        <button mat-button aria-label="Club Dashboard">
+        <button mat-button routerLink="/analytics/club-dashboard" routerLinkActive="tsc-nav-active" aria-label="Club Dashboard">
           <mat-icon>dashboard</mat-icon>
           Club Dashboard
         </button>
@@ -13,7 +13,7 @@
       <div class="tsc-sidenav-btn-container">
         <h3>Athlete</h3>
         <div class="list">
-          <button mat-button aria-label="Athlete Dashboard">
+          <button mat-button routerLink="/analytics/dashboard" routerLinkActive="tsc-nav-active" aria-label="Athlete Dashboard">
             <mat-icon>dashboard</mat-icon>
             Dashboard
           </button>
@@ -21,11 +21,11 @@
             <mat-icon>directions_run</mat-icon>
             Races
           </button>
-          <button mat-button aria-label="User Races">
+          <button mat-button aria-label="User Gear">
             <mat-icon>bike_scooter</mat-icon>
             Gear
           </button>
-          <button mat-button aria-label="User Profile">
+          <button mat-button routerLink="/user/profile" routerLinkActive="tsc-nav-active" aria-label="User Profile">
             <mat-icon>person</mat-icon>
             Profile
           </button>
@@ -36,11 +36,11 @@
 </mat-sidenav-container>
 <main [class.logged-container]="isLoggedIn$ | async">
   <mat-toolbar role="heading" [class.tsc-public-logo]="!(isLoggedIn$ | async)">
-    <span class=" spacer"></span>
+    <span class="spacer"></span>
     <button mat-icon-button (click)="switchTheme()" aria-label="Login button">
       <mat-icon>format_color_fill</mat-icon>
     </button>
-    <button *isAuthorized="false" mat-icon-button routerLink='auth/login' routerLinkActive="active"
+    <button *isAuthorized="false" mat-icon-button routerLink='login' routerLinkActive="active"
       aria-label="Login button">
       <mat-icon>power_settings_new</mat-icon>
     </button>
@@ -48,7 +48,7 @@
       <mat-icon>login</mat-icon>
     </button>
   </mat-toolbar>
-  <div class="tsc-main-container">
+  <div class="tsc-main-container"  [class.public]="!(isLoggedIn$ | async)">
     <router-outlet></router-outlet>
   </div>
 </main>

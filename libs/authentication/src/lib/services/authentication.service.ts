@@ -3,7 +3,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { User } from '../models/user.interface';
+import { AuthUser } from '../models/auth-user.interface';
 
 export class SignUpRequest {
   email: string;
@@ -17,7 +17,7 @@ export class AuthenticationService {
 
   isLoading$ = new BehaviorSubject<boolean>(false);
   authErrorMessage$ = new Subject<string>();
-  user$ = new Subject<User>();
+  user$ = new Subject<AuthUser>();
 
   get authenticated(): boolean {
     return this.authState !== null;

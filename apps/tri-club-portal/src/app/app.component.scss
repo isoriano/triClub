@@ -10,14 +10,11 @@
       flex-flow: column;
       position: relative;
       top: 53px;
-      .tsc-sidenav-btn-container:first-child {
-        border-top-width: 1px;
-      }
       .tsc-sidenav-btn-container {
         display: flex;
         flex-flow: column;
         border: 0;
-        border-bottom-width: 1px;
+        border-top-width: 1px;
         border-style: solid;
         &.inline {
           flex-flow: row;
@@ -32,6 +29,11 @@
         }
         button {
           padding: 10px;
+          border-radius: 0;
+        }
+        .tsc-nav-active {
+          border-right: 2px;
+          border-right-style: solid;
         }
         .list {
           display: flex;
@@ -39,6 +41,9 @@
           padding: 0 10px;
           button {
             text-align: start;
+            width: calc(100% + 20px);
+            left: -10px;
+            padding: 10px 25px;
           }
         }
       }
@@ -46,12 +51,22 @@
   }
   main {
     position: relative;
+    height: 100%;
+    overflow: hidden;
     &.logged-container {
       left: 250px;
       width: calc(100% - 250px);
+      overflow: auto;
     }
     .tsc-main-container {
       padding: 2rem 1rem;
+      height: 100%;
+      &.public {
+        background-image: url('/assets/images/public-background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+      }
     }
   }
   .mat-toolbar {
@@ -70,5 +85,8 @@
     .spacer {
       flex: 1 1 auto;
     }
+  }
+  .cdk-overlay-pane {
+    margin-top: 50px;
   }
 }
