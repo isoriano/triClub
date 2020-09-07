@@ -1,1 +1,1 @@
-export const getSectionsHeadings = () => cy.get('h1');
+export const getSectionsHeadings = () => cy.get('h2');

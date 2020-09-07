@@ -37,10 +37,10 @@
 <main [class.logged-container]="isLoggedIn$ | async">
   <mat-toolbar role="heading" [class.tsc-public-logo]="!(isLoggedIn$ | async)">
     <span class="spacer"></span>
-    <button mat-icon-button (click)="switchTheme()" aria-label="Login button">
+    <button mat-icon-button (click)="switchTheme()" aria-label="Theme shwitch button">
       <mat-icon>format_color_fill</mat-icon>
     </button>
-    <button *isAuthorized="false" mat-icon-button routerLink='login' routerLinkActive="active"
+    <button id="tcsLoginBtn" *isAuthorized="false" mat-icon-button routerLink='login' routerLinkActive="active"
       aria-label="Login button">
       <mat-icon>power_settings_new</mat-icon>
     </button>
