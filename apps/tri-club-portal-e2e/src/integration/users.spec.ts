@@ -1,12 +1,9 @@
-import { toASCII } from 'punycode';
-import { getSectionsHeadings } from '../support/app.po';
-
 describe('tri-club-portal', () => {
   describe('User Registration', () => {
     beforeEach(() => cy.visit('user/register'));
 
     it('should display welcome message', () => {
-      getSectionsHeadings().contains(`Join TriClub today, it's Free!`);
+      cy.get('h2').contains(`Join TriClub today, it's Free!`);
     });
 
     it('should redirect to Sign In when button clicked', () => {
