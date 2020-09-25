@@ -103,6 +103,7 @@ $tsc-light-theme: mat-light-theme(
 $light: #fff;
 $dark-background: #303030;
 $light-background: #f7f7fa;
+$success: #4bb543;
 
 .dark {
   @include angular-material-theme($tsc-dark-theme);
@@ -139,7 +140,25 @@ $light-background: #f7f7fa;
     .mat-h2,
     .mat-form-field-outline,
     .mat-form-field-label {
-      color: $light!important;
+      color: $light !important;
+    }
+  }
+}
+
+.tsc-success {
+  color: $success;
+}
+
+.dark {
+  .tsc-sport-img {
+    &.tsc-sport-run.selected {
+      background-image: url('/assets/images/user/running-selected-dark.svg')!important;
+    }
+    &.tsc-sport-swim.selected {
+      background-image: url('/assets/images/user/swimmer-selected-dark.svg')!important;
+    }
+    &.tsc-sport-bike.selected {
+      background-image: url('/assets/images/user/bicycle-selected-dark.svg')!important;
     }
   }
 }

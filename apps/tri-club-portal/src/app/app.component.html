@@ -2,32 +2,35 @@
   <mat-sidenav #sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0">
     <div class="tsc-sidenav">
       <div class="tsc-sidenav-btn-container inline">
-        <button mat-button routerLink="/analytics/club-dashboard" routerLinkActive="tsc-nav-active" aria-label="Club Dashboard">
+        <button mat-button routerLink="/analytics/club-dashboard" routerLinkActive="tsc-nav-active"
+          [attr.aria-label]="'sidenav.clubDashboard' | translate">
           <mat-icon>dashboard</mat-icon>
-          Club Dashboard
+          {{ 'sidenav.clubDashboard' | translate }}
         </button>
-        <button mat-button aria-label="Club Management">
+        <button mat-button [attr.aria-label]="'sidenav.settings' | translate">
           <mat-icon>settings</mat-icon>
         </button>
       </div>
       <div class="tsc-sidenav-btn-container">
-        <h3>Athlete</h3>
+        <h3>{{ 'sidenav.userSection.title' | translate }}</h3>
         <div class="list">
-          <button mat-button routerLink="/analytics/dashboard" routerLinkActive="tsc-nav-active" aria-label="Athlete Dashboard">
+          <button mat-button routerLink="/analytics/dashboard" routerLinkActive="tsc-nav-active"
+            [attr.aria-label]="'sidenav.userSection.dashboard' | translate">
             <mat-icon>dashboard</mat-icon>
-            Dashboard
+            {{ 'sidenav.userSection.dashboard' | translate }}
           </button>
-          <button mat-button aria-label="User Races">
+          <button mat-button [attr.aria-label]="'sidenav.userSection.races' | translate">
             <mat-icon>directions_run</mat-icon>
-            Races
+            {{ 'sidenav.userSection.races' | translate }}
           </button>
-          <button mat-button aria-label="User Gear">
+          <button mat-button [attr.aria-label]="'sidenav.userSection.gear' | translate">
             <mat-icon>bike_scooter</mat-icon>
-            Gear
+            {{ 'sidenav.userSection.gear' | translate }}
           </button>
-          <button mat-button routerLink="/user/profile" routerLinkActive="tsc-nav-active" aria-label="User Profile">
+          <button mat-button routerLink="/user/profile" routerLinkActive="tsc-nav-active"
+            [attr.aria-label]="'sidenav.userSection.profile' | translate">
             <mat-icon>person</mat-icon>
-            Profile
+            {{ 'sidenav.userSection.profile' | translate }}
           </button>
         </div>
       </div>
@@ -37,18 +40,37 @@
 <main [class.logged-container]="isLoggedIn$ | async">
   <mat-toolbar role="heading" [class.tsc-public-logo]="!(isLoggedIn$ | async)">
     <span class="spacer"></span>
-    <button mat-icon-button (click)="switchTheme()" aria-label="Theme shwitch button">
+    <button mat-icon-button (click)="switchTheme()" [attr.aria-label]="'header.switchBntAriaLabel' | translate">
       <mat-icon>format_color_fill</mat-icon>
     </button>
+
+    <mat-form-field class="tsc-lang-selector">
+      <mat-select [formControl]="langSelected">
+        <mat-select-trigger>
+          <div class="flag" [class]="langSelected.value"></div>
+        </mat-select-trigger>
+        <mat-option *ngFor="let lang of languages" class="tsc-lang-option" [attr.aria-label]="lang.name"
+          [value]="lang.code">
+          <div class="flag" [class]="lang.code"></div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <button id="tcsLoginBtn" *isAuthorized="false" mat-icon-button routerLink='login' routerLinkActive="active"
       aria-label="Login button">
       <mat-icon>power_settings_new</mat-icon>
     </button>
-    <button *isAuthorized="true" id="tcsLogoutBtn" mat-icon-button (click)="logout()" aria-label="Logout button">
+    <button id="tcsLogoutBtn" *isAuthorized="true" mat-icon-button (click)="logout()" aria-label="Logout button">
       <mat-icon>login</mat-icon>
     </button>
   </mat-toolbar>
-  <div class="tsc-main-container"  [class.public]="!(isLoggedIn$ | async)">
+  <div class="tsc-main-container" [class.public]="!(isLoggedIn$ | async)">
     <router-outlet></router-outlet>
   </div>
 </main>
+
+<footer>
+  <span>Resources:</span>
+  <span>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+      href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></span>
+</footer>

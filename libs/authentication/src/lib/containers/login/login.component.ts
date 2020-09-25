@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         }
       })
     } else {
-      this.errorMessage$.next('Please enter correct information');
+      this.errorMessage$.next('validator.pleaseEnterCorrectInformation');
     }
   }
 

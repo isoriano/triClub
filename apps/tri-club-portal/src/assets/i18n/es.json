@@ -1,0 +1,61 @@
+{
+  "header": {
+    "switchBntAriaLabel": "Boton cambio color"
+  },
+  "sidenav": {
+    "clubDashboard": "Estadísticas del Club",
+    "settings": "Configuración",
+    "userSection": {
+      "title": "Atleta",
+      "dashboard": "Mis Estadísticas",
+      "races": "Actividades",
+      "gear": "Equipamiento",
+      "profile": "Perfil"
+    }
+  },
+  "login": {
+    "title": "Identificate",
+    "email": "E-mail",
+    "password": "Contrasenya",
+    "signIn": "Identificate!",
+    "createAccount": "Registrate"
+  },
+  "register": {
+    "title": "Unete al TriClub, es Gratis!",
+    "email": "E-mail",
+    "password": "Contrasenya",
+    "fullName": "Nombre",
+    "dateOfBirth": "Fecha de nacimiento",
+    "sports": "Que deporte/s practicas:",
+    "sportsOptions": {
+      "run": "Carrera",
+      "swim": "Natación",
+      "bike": "Ciclismo"
+    },
+    "signUp": "Registrate!",
+    "signIn": "Identificate"
+  },
+  "profile": {
+    "title": "Perfil",
+    "fullName": "Nombre",
+    "dateOfBirth": "Fecha de nacimiento",
+    "sports": "Que deporte/s practicas:",
+    "sportsOptions": {
+      "run": "Carrera",
+      "swim": "Natación",
+      "bike": "Ciclismo"
+    },
+    "save": "Guardar",
+    "reset": "Deshacer",
+    "credentials": "Credenciales",
+    "passwordUpdated": "Contrasenya Actalizada",
+    "oldPassword": "Contrasenya actual",
+    "newPassword": "Nueva Contrasenya",
+    "updatePassword": "Cambiar Contrasenya"
+  },
+  "validator": {
+    "pleaseEnterCorrectInformation": "Porfavor introduce la información correcta",
+    "required": "Este campo es obligatorio",
+    "invalid": "Valor no valido para este campo"
+  }
+}

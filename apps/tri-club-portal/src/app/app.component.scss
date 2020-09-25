@@ -4,7 +4,7 @@
   height: 100%;
   .mat-sidenav {
     width: 250px;
-
+    height: calc(100% - 40px);
     .tsc-sidenav {
       display: flex;
       flex-flow: column;
@@ -51,7 +51,7 @@
   }
   main {
     position: relative;
-    height: 100%;
+    height: calc(100% - 40px);
     overflow: hidden;
     &.logged-container {
       left: 250px;
@@ -60,7 +60,7 @@
     }
     .tsc-main-container {
       padding: 2rem 1rem;
-      height: 100%;
+      height: calc(100% - 6rem - 40px);
       &.public {
         background-image: url('/assets/images/public-background.jpg');
         background-repeat: no-repeat;
@@ -85,8 +85,54 @@
     .spacer {
       flex: 1 1 auto;
     }
+    .tsc-lang-selector {
+      width: 40px;
+      mat-select-trigger {
+        width: 65px;
+        height: 35px;
+        .flag {
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: right;
+          height: 20px;
+          width: 20px;
+          &.en {
+            background-image: url('/assets/images/header/united-kingdom.png') !important;
+          }
+          &.es {
+            background-image: url('/assets/images/header/spain.png') !important;
+          }
+        }
+      }
+    }
   }
   .cdk-overlay-pane {
     margin-top: 50px;
+  }
+  footer {
+    height: 40px;
+    display: flex;
+    flex-flow: column;
+    padding: 0px 5px;
+    color: #fff;
+    font-size: 0.7rem;
+  }
+}
+
+.mat-option.tsc-lang-option {
+  width: 65px;
+  height: 35px;
+  .flag {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    height: 20px;
+    width: 20px;
+    &.en {
+      background-image: url('/assets/images/header/united-kingdom.png') !important;
+    }
+    &.es {
+      background-image: url('/assets/images/header/spain.png') !important;
+    }
   }
 }

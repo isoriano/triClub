@@ -1,26 +1,26 @@
 <div class="tcs-section dark">
-  <h2 class="mat-h2">Sign In!</h2>
+  <h2 class="mat-h2 center">{{'login.title' | translate}}</h2>
   <form [formGroup]="loginForm" (submit)="register()">
     <p class="tsc-error" *ngIf="errorMessage$ | async as errorMessage">
-      {{ errorMessage }}
+      {{ errorMessage | translate }}
     </p>
     <mat-form-field appearance="outline">
-      <mat-label>E-mail</mat-label>
+      <mat-label>{{'login.email' | translate}}</mat-label>
       <input matInput formControlName="email" type="email">
       <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
-        <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
-        <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid.</span>
+        <span *ngIf="loginForm.controls.email.errors.required">{{'validator.required' | translate}}</span>
+        <span *ngIf="loginForm.controls.email.errors.pattern">{{'validator.invalid' | translate}}</span>
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Password</mat-label>
+      <mat-label>{{'login.password' | translate}}</mat-label>
       <input matInput formControlName="password" type="password">
       <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
-        <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
+        <span *ngIf="loginForm.controls.password.errors.required">{{'validator.required' | translate}}</span>
       </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Sign In!</button>
+    <button mat-raised-button color="primary" type="submit">{{'login.signIn' | translate}}</button>
     <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
-    <a mat-button color="accent" routerLink='/user/register'>Create an Account</a>
+    <a mat-button color="accent" routerLink='/user/register'>{{'login.createAccount' | translate}}</a>
   </form>
 </div>

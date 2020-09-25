@@ -1,53 +1,53 @@
 <div class="tcs-section dark">
-  <h2 class="mat-h2">Join TriClub today, it's Free!</h2>
+  <h2 class="mat-h2 center">{{'register.title' | translate}}</h2>
   <form [formGroup]="registrationForm" (submit)="register()">
     <p class="tsc-error" *ngIf="errorMessage$ | async as errorMessage">
-      {{ errorMessage }}
+      {{ errorMessage | translate }}
     </p>
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label>E-mail</mat-label>
+      <mat-label>{{'register.email' | translate}}</mat-label>
       <input matInput formControlName="email" type="email">
       <mat-error *ngIf="registrationForm.controls.email.touched && registrationForm.controls.email.invalid">
-        <span *ngIf="registrationForm.controls.email.errors.required">This field is mandatory.</span>
-        <span *ngIf="registrationForm.controls.email.errors.pattern">This field is invalid.</span>
+        <span *ngIf="registrationForm.controls.email.errors.required">{{'validator.required' | translate}}</span>
+        <span *ngIf="registrationForm.controls.email.errors.pattern">{{'validator.invalid' | translate}}</span>
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Password</mat-label>
+      <mat-label>{{'register.password' | translate}}</mat-label>
       <input matInput formControlName="password" type="password">
       <mat-error *ngIf="registrationForm.controls.password.touched && registrationForm.controls.password.invalid">
-        <span *ngIf="registrationForm.controls.password.errors.required">This field is mandatory.</span>
+        <span *ngIf="registrationForm.controls.password.errors.required">{{'validator.required' | translate}}</span>
       </mat-error>
     </mat-form-field>
     <tcs-password-strength-bar *ngIf="!!registrationForm.controls.password.value" [passwordToCheck]="registrationForm.controls.password.value"></tcs-password-strength-bar>
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Full Name</mat-label>
+      <mat-label>{{'register.fullName' | translate}}</mat-label>
       <input matInput formControlName="fullName" type="text">
       <mat-error *ngIf="registrationForm.controls.fullName.touched && registrationForm.controls.fullName.invalid">
-        <span *ngIf="registrationForm.controls.fullName.errors.required">This field is mandatory.</span>
+        <span *ngIf="registrationForm.controls.fullName.errors.required">{{'validator.required' | translate}}</span>
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Date of Birth</mat-label>
+      <mat-label>{{'register.dateOfBirth' | translate}}</mat-label>
       <input matInput [matDatepicker]="dateOfBirth" formControlName="dateOfBirth">
       <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
       <mat-datepicker #dateOfBirth></mat-datepicker>
       <mat-error *ngIf="registrationForm.controls.dateOfBirth.touched && registrationForm.controls.dateOfBirth.invalid">
-        <span *ngIf="registrationForm.controls.dateOfBirth.errors.required">This field is mandatory.</span>
+        <span *ngIf="registrationForm.controls.dateOfBirth.errors.required">{{'validator.required' | translate}}</span>
       </mat-error>
     </mat-form-field>
     <div class="tsc-sports-options">
-      <label class="mat-label">Which of these do you practice:</label>
+      <label class="mat-label">{{'register.sports' | translate}}</label>
       <ul>
         <li *ngFor="let sport of sports">
           <mat-checkbox (change)="sportSelected(sport)" color="primary">
-            {{sport.name}}
+            {{sport.name | translate}}
           </mat-checkbox>
         </li>
       </ul>
     </div>
-    <button mat-raised-button color="accent" type="submit">Sign Up!</button>
+    <button mat-raised-button color="accent" type="submit">{{'register.signUp' | translate}}</button>
     <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
-    <a mat-button color="primary" routerLink='/login'>Sign In</a>
+    <a mat-button color="primary" routerLink='/login'>{{'register.signIn' | translate}}</a>
   </form>
 </div>

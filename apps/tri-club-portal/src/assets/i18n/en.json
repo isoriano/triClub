@@ -1,0 +1,61 @@
+{
+  "header": {
+    "switchBntAriaLabel": "Theme switch button"
+  },
+  "sidenav": {
+    "clubDashboard": "Club Dashboard",
+    "settings": "Settings",
+    "userSection": {
+      "title": "Athlete",
+      "dashboard": "Dashboard",
+      "races": "Races",
+      "gear": "Gear",
+      "profile": "Profile"
+    }
+  },
+  "login": {
+    "title": "Sign In!",
+    "email": "E-mail",
+    "password": "Password",
+    "signIn": "Sign In!",
+    "createAccount": "Create an Account"
+  },
+  "register": {
+    "title": "Join TriClub today, it's Free!",
+    "email": "E-mail",
+    "password": "Password",
+    "fullName": " Full Name",
+    "dateOfBirth": "Date of Birth",
+    "sports": "Which of these do you practice:",
+    "sportsOptions": {
+      "run": "Running",
+      "swim": "Swimming",
+      "bike": "Bike"
+    },
+    "signUp": "Sign Up!",
+    "signIn": "Sign In"
+  },
+  "profile": {
+    "title": "Profile",
+    "fullName": " Full Name",
+    "dateOfBirth": "Date of Birth",
+    "sports": "Which of these do you practice:",
+    "sportsOptions": {
+      "run": "Running",
+      "swim": "Swimming",
+      "bike": "Bike"
+    },
+    "save": "Save",
+    "reset": "Reset",
+    "credentials": "Credentials",
+    "passwordUpdated": "Password Updated",
+    "oldPassword": "Current Password",
+    "newPassword": "New Password",
+    "updatePassword": "Update Password"
+  },
+  "validator": {
+    "pleaseEnterCorrectInformation": "Please enter correct information",
+    "required": "This field is mandatory",
+    "invalid": "This field is invalid"
+  }
+}

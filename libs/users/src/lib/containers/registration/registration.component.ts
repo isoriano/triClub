@@ -16,11 +16,10 @@ export class RegistrationComponent implements OnInit {
   errorMessage$ = this.authService.authErrorMessage$;
 
   registrationForm: FormGroup;
-  selectedAll: boolean;
   sports = [
-    { name: 'Running', selected: false },
-    { name: 'Swimming', selected: false },
-    { name: 'Bike', selected: false }
+    { name: 'register.sportsOptions.run', selected: false },
+    { name: 'register.sportsOptions.swim', selected: false },
+    { name: 'register.sportsOptions.bike', selected: false }
   ];
 
   private defaultRedirect = 'user/profile';
@@ -47,9 +46,9 @@ export class RegistrationComponent implements OnInit {
           this.usersService.createUser({ uid: user.uid, ...this.registrationForm.value });
           this.router.navigate([this.defaultRedirect]);
         }
-      })
+      });
     } else {
-      this.errorMessage$.next('Please enter correct information');
+      this.errorMessage$.next('validator.pleaseEnterCorrectInformation');
     }
   }
 

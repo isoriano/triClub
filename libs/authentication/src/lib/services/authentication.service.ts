@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
+import * as firebase from 'firebase';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -43,6 +44,23 @@ export class AuthenticationService {
   signUp(request: SignUpRequest) {
     this.isLoading$.next(true);
     return this.handleResult(() => this.afAuth.createUserWithEmailAndPassword(request.email, request.password));
+  }
+
+  resetPassword(request: { oldPassword: string, newPassword: string }) {
+
+    const credential = firebase.auth.EmailAuthProvider.credential(
+      firebase.auth().currentUser.email,
+      request.oldPassword
+    );
+
+    return firebase.auth().currentUser.reauthenticateWithCredential(credential)
+      .then(() => {
+        return firebase.auth().currentUser.updatePassword(request.newPassword).then(() => { this.authErrorMessage$.next(); return true });
+      })
+      .catch(e => {
+        this.authErrorMessage$.next(e.message);
+        return false;
+      });
   }
 
   logout() {

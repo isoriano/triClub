@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 
 import { AuthenticationService } from '@tri-club-suite/authentication';
 import { DOCUMENT } from '@angular/common';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'tcs-root',
@@ -14,7 +16,11 @@ import { DOCUMENT } from '@angular/common';
 export class AppComponent implements OnInit {
 
   isLoggedIn$ = this.authService.currentUser.pipe(map(user => !!user));
-
+  langSelected: FormControl;
+  languages = [
+    { name: 'English', code: 'en' },
+    { name: 'Spanish', code: 'es' }
+  ];
   private theme = 'dark';
 
   constructor(
@@ -22,10 +28,13 @@ export class AppComponent implements OnInit {
     private renderer: Renderer2,
     private authService: AuthenticationService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
+    this.langSelected = new FormControl('en');
+    this.langSelected.valueChanges.subscribe((value) => this.translate.use(value));
     this.setTheme();
     this.openDisclaimer();
   }
@@ -53,7 +62,7 @@ export class AppComponent implements OnInit {
       panelClass: 'tcs-disclaimer-bar'
     });
     disclaimerBar.onAction().subscribe(() => {
-      this.document.location.href ='https://github.com/isoriano/triClub';
+      this.document.location.href = 'https://github.com/isoriano/triClub';
     });
   }
 }
