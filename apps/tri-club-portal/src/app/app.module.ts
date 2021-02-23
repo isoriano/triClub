@@ -47,7 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     TranslateModule.forRoot({
       defaultLanguage: 'en',
