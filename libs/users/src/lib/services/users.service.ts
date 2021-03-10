@@ -12,7 +12,7 @@ export class UsersService {
 
   get user() {
     return this.authService.currentUser.pipe(
-      concatMap(user => this.usersCollection.doc<User>(user.uid).valueChanges())
+      concatMap(user => this.usersCollection.doc<User>(user?.uid).valueChanges())
     );
   }
 
@@ -25,14 +25,14 @@ export class UsersService {
     this.usersCollection = db.collection<User>('users');
   }
 
-  createUser({ uid, fullName, dateOfBirth, sports }) {
-    const user: User = {
-      uid,
-      fullName,
-      dateOfBirth: dateOfBirth,
-      sports,
+  async createUser(user: User) {
+    const userToCreate: User = {
+      uid: user.uid,
+      fullName: user.fullName,
+      dateOfBirth: user.dateOfBirth,
+      sports: user.sports,
       isAdministrator: false
     };
-    return this.usersCollection.doc<User>(user.uid).set(user).then(e => true);
+    return this.usersCollection.doc<User>(userToCreate.uid).set(userToCreate).then();
   }
 }

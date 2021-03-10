@@ -42,7 +42,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -195,7 +194,7 @@
       "projectType": "library",
       "root": "libs/analytics",
       "sourceRoot": "libs/analytics/src",
-      "prefix": "tri-club-suite",
+      "prefix": "tcs",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",

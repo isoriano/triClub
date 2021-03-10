@@ -1,3 +1,4 @@
+import { InvokeFunctionExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '@tri-club-suite/authentication';
@@ -16,7 +17,7 @@ export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   updatePasswordForm: FormGroup;
-  sports = [];
+  sports: any[] = [];
   errorMessage$ = new Subject<string>();
   userUpdating$ = new Subject<boolean>();
   passwordUpdated$ = new Subject<boolean>();
@@ -32,9 +33,17 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.initUpdatePasswordForm();
-    this.usersService.user.pipe(
-      map(user => this.initProfileForm(user))
-    ).subscribe();
+    this.usersService.user.subscribe({
+      next: (result: any) => {
+        console.log(result);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('complete');
+      }
+    });
   }
 
   sportSelected(changedSport: { name: string, selected: boolean }) {
@@ -44,7 +53,7 @@ export class ProfileComponent implements OnInit {
   }
 
   dateChange(value: any) {
-    this.profileForm.get('dateOfBirth').setValue(value.toDate());
+    this.profileForm.get('dateOfBirth')?.setValue(value.toDate());
   }
 
   reset() {
@@ -62,18 +71,23 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  save() {
+  async save() {
     this.profileForm.markAllAsTouched();
-    this.profileForm.get('sports').setValue(JSON.stringify(this.sports));
+    this.profileForm.get('sports')?.setValue(JSON.stringify(this.sports));
     if (this.profileForm.valid) {
       this.userUpdating$.next(true)
-      this.usersService.createUser({ uid: this.user.uid, ...this.profileForm.value }).then(() => this.userUpdating$.next(false));
+      await this.usersService.createUser({ uid: this.user.uid, ...this.profileForm.value });
+      this.userUpdating$.next(false);
     } else {
       this.errorMessage$.next('validator.pleaseEnterCorrectInformation');
     }
   }
 
-  private initProfileForm(user: User) {
+  private initProfileForm(user: User | undefined) {
+    if (user === undefined) {
+      return;
+    }
+
     this.user = user;
     this.sports = JSON.parse(user.sports);
     this.profileForm = this.fb.group({

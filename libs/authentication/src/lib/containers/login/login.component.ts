@@ -33,9 +33,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
       this.authService.signIn(this.loginForm.value).then((user: AuthUser) => {
-        if(!user){
-          return;
-        } else {
+        if(user.uid){
           this.router.navigate([this.defaultRedirect]);
         }
       })
