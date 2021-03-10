@@ -1,4 +1,4 @@
-import { Directive, ViewContainerRef, TemplateRef, ChangeDetectorRef, OnInit, Input } from '@angular/core';
+import { Directive, ViewContainerRef, TemplateRef, ChangeDetectorRef, Input } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Directive({

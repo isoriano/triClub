@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { map } from 'rxjs/operators';
-
-import { AuthenticationService } from '@tri-club-suite/authentication';
 import { DOCUMENT } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs/operators';
+
+import { AuthenticationService } from '@tri-club-suite/authentication';
 
 @Component({
   selector: 'tcs-root',
@@ -30,10 +30,11 @@ export class AppComponent implements OnInit {
     private router: Router,
     private _snackBar: MatSnackBar,
     private translate: TranslateService
-  ) { }
+  ) {
+    this.langSelected = new FormControl('en');
+  }
 
   ngOnInit() {
-    this.langSelected = new FormControl('en');
     this.langSelected.valueChanges.subscribe((value) => this.translate.use(value));
     this.setTheme();
     this.openDisclaimer();

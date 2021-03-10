@@ -37,7 +37,8 @@ export class RegistrationComponent implements OnInit {
 
   register() {
     this.registrationForm.markAllAsTouched();
-    this.registrationForm.get('sports').setValue(JSON.stringify(this.sports));
+    this.registrationForm.get('sports')?.setValue(JSON.stringify(this.sports));
+
     if (this.registrationForm.valid) {
       this.authService.signUp(this.registrationForm.value).then((user: AuthUser) => {
         if (!user) {

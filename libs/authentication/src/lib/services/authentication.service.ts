@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { AuthUser } from '../models/auth-user.interface';
 
-export class SignUpRequest {
+export interface SignUpRequest {
   email: string;
   password: string;
 }
@@ -24,14 +24,14 @@ export class AuthenticationService {
     return this.authState !== null;
   }
 
-  get currentUser(): Observable<firebase.User> {
+  get currentUser(): Observable<firebase.default.User | null> {
     return this.afAuth.authState;
   }
 
-  private authState = null;
+  private authState: AuthUser | null = null;
 
   constructor(private afAuth: AngularFireAuth) {
-    this.isLoggedIn().subscribe(user => {
+    this.isLoggedIn().subscribe((user) => {
       this.authState = user;
     });
   }
@@ -46,16 +46,24 @@ export class AuthenticationService {
     return this.handleResult(() => this.afAuth.createUserWithEmailAndPassword(request.email, request.password));
   }
 
-  resetPassword(request: { oldPassword: string, newPassword: string }) {
+  resetPassword(request: { oldPassword: string, newPassword: string }): Promise<boolean> {
 
-    const credential = firebase.auth.EmailAuthProvider.credential(
-      firebase.auth().currentUser.email,
+    const currentUser = firebase.default.auth().currentUser;
+    if (currentUser == null || currentUser.email == null) {
+      return new Promise<boolean>(() => false);
+    }
+
+    const credential = firebase.default.auth.EmailAuthProvider.credential(
+      currentUser.email,
       request.oldPassword
     );
 
-    return firebase.auth().currentUser.reauthenticateWithCredential(credential)
+    return currentUser.reauthenticateWithCredential(credential)
       .then(() => {
-        return firebase.auth().currentUser.updatePassword(request.newPassword).then(() => { this.authErrorMessage$.next(); return true });
+        return currentUser.updatePassword(request.newPassword).then(() => {
+          this.authErrorMessage$.next();
+          return true;
+        });
       })
       .catch(e => {
         this.authErrorMessage$.next(e.message);
@@ -64,22 +72,25 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.user$.next(null);
+    this.user$.next(undefined);
     this.isLoading$.next(false);
     this.afAuth.signOut();
   }
 
-  private handleResult(callback: () => Promise<firebase.auth.UserCredential>) {
+  private handleResult(callback: () => Promise<firebase.default.auth.UserCredential>) {
     return callback()
       .then(userCredentials => this.authenticateUser(userCredentials))
-      .catch(e => this.handleError(e));
+      .catch(e => {
+        this.handleError(e);
+        return {} as AuthUser;
+      });
   }
 
   private isLoggedIn() {
     return this.afAuth.authState.pipe(
       map(user => {
-        if (!user) {
-          return null;
+        if (!user || !user.email) {
+          return {} as AuthUser;
         }
 
         const { email, uid } = user;
@@ -90,7 +101,13 @@ export class AuthenticationService {
     );
   }
 
-  private authenticateUser(userCredentials: firebase.auth.UserCredential) {
+  private authenticateUser(userCredentials: firebase.default.auth.UserCredential) {
+
+    if (userCredentials.user == null || userCredentials.user.email == null) {
+      this.handleError({ code: '', message: 'Issue authenticated the user' });
+      return {} as AuthUser;
+    }
+
     const user = {
       email: userCredentials.user.email,
       uid: userCredentials.user.uid

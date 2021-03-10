@@ -35,7 +35,7 @@ export class PasswordStrengthBarComponent implements OnChanges {
 
     // award every unique letter until 5 repetitions
 
-    let letters = {};
+    const letters: any = {};
 
     for (let i = 0; i < pass.length; i++) {
       letters[pass[i]] = (letters[pass[i]] || 0) + 1;
@@ -43,7 +43,7 @@ export class PasswordStrengthBarComponent implements OnChanges {
     }
 
     // bonus points for mixing it up
-    let variations = {
+    const variations: any = {
       digits: /\d/.test(pass),
       lower: /[a-z]/.test(pass),
       upper: /[A-Z]/.test(pass),
@@ -81,9 +81,10 @@ export class PasswordStrengthBarComponent implements OnChanges {
     };
   }
 
-  private setBarColors(count, col) {
+  private setBarColors(count: number, col: string) {
+    const that = this as any;
     for (let _n = 0; _n < count; _n++) {
-      this['bar' + _n] = col;
+      that['bar' + _n] = col;
     }
   }
 }

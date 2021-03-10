@@ -29,6 +29,7 @@
     "deploy": "ng build --prod && firebase deploy"
   },
   "private": true,
+  "resolutions": {"webpack": "^5.0.0"},
   "dependencies": {
     "@angular/animations": "^11.2.2",
     "@angular/cdk": "^11.2.1",
