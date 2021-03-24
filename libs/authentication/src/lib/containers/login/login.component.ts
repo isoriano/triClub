@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthUser } from '../../models/auth-user.interface';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+
+const googleLogoURL = "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
+const appleLogoUrl = "../../assets/images/buttons/appleLogo.svg";
 
 @Component({
   selector: 'tcs-login',
@@ -22,8 +27,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
+    this.matIconRegistry.addSvgIcon("googleLogo", this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL));
+    this.matIconRegistry.addSvgIcon("appleLogo",  this.domSanitizer.bypassSecurityTrustResourceUrl(appleLogoUrl))
+  }
 
   ngOnInit() {
     this.initloginForm();
@@ -33,7 +43,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
       this.authService.signIn(this.loginForm.value).then((user: AuthUser) => {
-        if(user.uid){
+        if (user.uid) {
           this.router.navigate([this.defaultRedirect]);
         }
       })

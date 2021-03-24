@@ -29,7 +29,9 @@
     "deploy": "ng build --prod && firebase deploy"
   },
   "private": true,
-  "resolutions": {"webpack": "^5.0.0"},
+  "resolutions": {
+    "webpack": "^5.0.0"
+  },
   "dependencies": {
     "@angular/animations": "^11.2.2",
     "@angular/cdk": "^11.2.1",
@@ -49,7 +51,8 @@
     "firebase": "8.2.9",
     "rxjs": "6.6.3",
     "zone.js": "^0.10.2",
-    "moment": "2.29.1"
+    "moment": "2.29.1",
+    "bootstrap": "4.6.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1102.1",

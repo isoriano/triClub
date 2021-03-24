@@ -21,7 +21,7 @@ export class AuthenticationService {
   user$ = new Subject<AuthUser>();
 
   get authenticated(): boolean {
-    return this.authState !== null;
+    return this.authState?.uid !== undefined;
   }
 
   get currentUser(): Observable<firebase.default.User | null> {

@@ -1,6 +1,8 @@
 {
   "header": {
-    "switchBntAriaLabel": "Boton cambio color"
+    "switchBntAriaLabel": "Boton cambio color",
+    "register": "Subscribirse",
+    "signIn": "Iniciar Sesión"
   },
   "sidenav": {
     "clubDashboard": "Estadísticas del Club",
@@ -14,26 +16,26 @@
     }
   },
   "login": {
-    "title": "Identificate",
+    "title": "Iniciar Sesión",
+    "useEmailPassword": "O inicia sesión con tu correo electrónico",
     "email": "E-mail",
-    "password": "Contrasenya",
-    "signIn": "Identificate!",
-    "createAccount": "Registrate"
+    "password": "Contraseña",
+    "signIn": "Iniciar Sesión",
+    "createAccount": "Registrate",
+    "accessFacebook": "Inicia sesíon con Facebook",
+    "accessGoogle": "Inicia sesíon con Google",
+    "accessApple": "Inicia sesíon con Apple"
   },
   "register": {
     "title": "Unete al TriClub, es Gratis!",
+    "useEmailPassword": "o suscríbete con tu dirección de correo electrónico",
     "email": "E-mail",
-    "password": "Contrasenya",
+    "password": "Contraseña",
     "fullName": "Nombre",
-    "dateOfBirth": "Fecha de nacimiento",
-    "sports": "Que deporte/s practicas:",
-    "sportsOptions": {
-      "run": "Carrera",
-      "swim": "Natación",
-      "bike": "Ciclismo"
-    },
     "signUp": "Registrate!",
-    "signIn": "Identificate"
+    "accessFacebook": "Subscribirse con Facebook",
+    "accessGoogle": "Subscribirse con Google",
+    "accessApple": "Subscribirse con Apple"
   },
   "profile": {
     "title": "Perfil",

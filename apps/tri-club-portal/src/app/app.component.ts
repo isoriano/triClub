@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DOCUMENT } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { AuthenticationService } from '@tri-club-suite/authentication';
 
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     { name: 'English', code: 'en' },
     { name: 'Spanish', code: 'es' }
   ];
-  private theme = 'dark';
+  private theme = 'light';
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.langSelected.valueChanges.subscribe((value) => this.translate.use(value));
+    this.langSelected.valueChanges.pipe(tap((value) => this.translate.use(value))).subscribe();
     this.setTheme();
     this.openDisclaimer();
   }
@@ -49,6 +49,10 @@ export class AppComponent implements OnInit {
     this.renderer.removeClass(document.body, this.theme);
     this.theme = this.theme === 'dark' ? 'light' : 'dark';
     this.setTheme();
+  }
+
+  hasRoute(route: string) {
+    return this.router.url.includes(route);
   }
 
   private setTheme() {

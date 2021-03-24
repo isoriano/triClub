@@ -26,13 +26,11 @@ export class UsersService {
   }
 
   async createUser(user: User) {
-    const userToCreate: User = {
+    const userToCreate: Partial<User> = {
       uid: user.uid,
       fullName: user.fullName,
-      dateOfBirth: user.dateOfBirth,
-      sports: user.sports,
       isAdministrator: false
     };
-    return this.usersCollection.doc<User>(userToCreate.uid).set(userToCreate).then();
+    return this.usersCollection.doc<User>(userToCreate.uid).set(userToCreate as User).then();
   }
 }

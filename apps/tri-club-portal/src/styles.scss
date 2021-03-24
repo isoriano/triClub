@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import './assets/scss/custom-theme.scss';
+@import "./assets/scss/custom-theme.scss";
+// Bootstrap and its default variables
+@import "../../../node_modules/bootstrap/scss/bootstrap-reboot";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 html,
 body {
@@ -7,12 +10,12 @@ body {
 }
 
 body {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
   box-sizing: border-box !important;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
@@ -33,14 +36,18 @@ ul{
   border-width: 1px;
   border-style: solid;
   padding: 1rem;
-  .mat-h2.center {
-    text-align: center;
-  }
+}
+
+.center {
+  text-align: center;
 }
 
 .mat-drawer-container {
   .mat-drawer {
     overflow: hidden;
+    &.mat-drawer-side {
+      border: 0 !important;
+    }
     .mat-drawer-inner-container {
       background-repeat: no-repeat;
       background-size: 120px;

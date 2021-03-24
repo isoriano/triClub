@@ -1,3 +1,38 @@
+<mat-toolbar role="heading" [class.tsc-public-logo]="!(isLoggedIn$ | async)">
+  <span class="spacer"></span>
+  <div>
+    <button mat-icon-button (click)="switchTheme()" [attr.aria-label]="'header.switchBntAriaLabel' | translate">
+      <mat-icon>format_color_fill</mat-icon>
+    </button>
+    <mat-form-field class="tsc-lang-selector mx-4">
+      <mat-select [formControl]="langSelected">
+        <mat-select-trigger>
+          <div class="flag" [class]="langSelected.value"></div>
+        </mat-select-trigger>
+        <mat-option *ngFor="let lang of languages" class="tsc-lang-option" [attr.aria-label]="lang.name"
+          [value]="lang.code">
+          <div class="flag" [class]="lang.code"></div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <ng-container *isAuthorized="false">
+      <button *ngIf="!hasRoute('login'); else registerBtn" id="tcsLoginBtn" mat-raised-button color="accent" class="mx-4"
+        routerLink='login' aria-label="Login button">
+        {{'header.signIn' | translate}}
+      </button>
+      <ng-template #registerBtn>
+        <button id="tcsLoginBtn" mat-raised-button color="accent" class="mx-4" routerLink='user/register'
+          aria-label="Login button">
+          {{'header.register' | translate}}
+        </button>
+      </ng-template>
+    </ng-container>
+    <button id="tcsLogoutBtn" class="mx-4" *isAuthorized="true" mat-icon-button (click)="logout()"
+      aria-label="Logout button">
+      <mat-icon>login</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
 <mat-sidenav-container *isAuthorized="true">
   <mat-sidenav #sidenav mode="side" opened [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0">
     <div class="tsc-sidenav">
@@ -38,39 +73,13 @@
   </mat-sidenav>
 </mat-sidenav-container>
 <main [class.logged-container]="isLoggedIn$ | async">
-  <mat-toolbar role="heading" [class.tsc-public-logo]="!(isLoggedIn$ | async)">
-    <span class="spacer"></span>
-    <button mat-icon-button (click)="switchTheme()" [attr.aria-label]="'header.switchBntAriaLabel' | translate">
-      <mat-icon>format_color_fill</mat-icon>
-    </button>
-
-    <mat-form-field class="tsc-lang-selector">
-      <mat-select [formControl]="langSelected">
-        <mat-select-trigger>
-          <div class="flag" [class]="langSelected.value"></div>
-        </mat-select-trigger>
-        <mat-option *ngFor="let lang of languages" class="tsc-lang-option" [attr.aria-label]="lang.name"
-          [value]="lang.code">
-          <div class="flag" [class]="lang.code"></div>
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <button id="tcsLoginBtn" *isAuthorized="false" mat-icon-button routerLink='login' routerLinkActive="active"
-      aria-label="Login button">
-      <mat-icon>power_settings_new</mat-icon>
-    </button>
-    <button id="tcsLogoutBtn" *isAuthorized="true" mat-icon-button (click)="logout()" aria-label="Logout button">
-      <mat-icon>login</mat-icon>
-    </button>
-  </mat-toolbar>
   <div class="tsc-main-container" [class.public]="!(isLoggedIn$ | async)">
     <router-outlet></router-outlet>
   </div>
 </main>
 
-<footer>
+<footer *ngIf="!hasRoute('login') && !hasRoute('register')">
   <span>Resources:</span>
-  <span>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
-      href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></span>
+  <span>Background Photo by <a href="https://unsplash.com/@stribby?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">scott tribby</a> on <a href="/s/photos/triathlon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </span>
 </footer>

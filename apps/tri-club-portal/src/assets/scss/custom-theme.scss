@@ -1,6 +1,6 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
-@import './custom-mixins.scss';
+@import "./custom-mixins.scss";
 
 @include mat-core();
 
@@ -110,10 +110,16 @@ $success: #4bb543;
   @include apply-theme($tsc-dark-theme);
   background-color: $dark-background;
   .mat-drawer {
-    background-color: #262626;
+    background-color: $dark-background;
     .mat-drawer-inner-container {
-      background-image: url('/assets/images/logo-light.png');
+      background-image: url("/assets/images/logo-light.png");
     }
+  }
+  .mat-toolbar {
+    background-color: $dark-background;
+  }
+  .tcs-section {
+    background-color: $dark-background; // Find way to improve this
   }
 }
 
@@ -122,10 +128,16 @@ $success: #4bb543;
   @include apply-theme($tsc-light-theme);
   background-color: $light-background;
   .mat-drawer {
-    background-color: #e5e5e5;
+    background-color: $light-background;
     .mat-drawer-inner-container {
-      background-image: url('/assets/images/logo.png');
+      background-image: url("/assets/images/logo.png");
     }
+  }
+  .mat-toolbar {
+    background-color: $light-background;
+  }
+  .tcs-section {
+    background-color: $light-background;
   }
 }
 
@@ -137,6 +149,7 @@ $success: #4bb543;
     .mat-form-field,
     .mat-checkbox-label,
     .mat-label,
+    .mat-h1,
     .mat-h2,
     .mat-form-field-outline,
     .mat-form-field-label {
@@ -152,13 +165,13 @@ $success: #4bb543;
 .dark {
   .tsc-sport-img {
     &.tsc-sport-run.selected {
-      background-image: url('/assets/images/user/running-selected-dark.svg')!important;
+      background-image: url("/assets/images/user/running-selected-dark.svg") !important;
     }
     &.tsc-sport-swim.selected {
-      background-image: url('/assets/images/user/swimmer-selected-dark.svg')!important;
+      background-image: url("/assets/images/user/swimmer-selected-dark.svg") !important;
     }
     &.tsc-sport-bike.selected {
-      background-image: url('/assets/images/user/bicycle-selected-dark.svg')!important;
+      background-image: url("/assets/images/user/bicycle-selected-dark.svg") !important;
     }
   }
 }

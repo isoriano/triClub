@@ -1,7 +1,7 @@
 :host {
   position: relative;
   top: 30px;
-  max-width: 600px;
+  max-width: 400px;
   margin: auto;
   flex-flow: row;
   display: flex;
@@ -10,6 +10,27 @@
     width: 100%;
     .tsc-sports-options {
       padding: .75rem .15rem;
+    }
+    .access-buttons-container {
+      padding: 1rem;
+      button {
+        width: 100%;
+        padding: 0.35rem;
+        margin-top: 10px;
+        &.btn-facebook {
+          color: #fff;
+          background-color: #3b5998;
+          .mat-icon {
+            top: 10px;
+          }
+        }
+        .mat-icon {
+          position: absolute;
+          left: 5px;
+          width: 50px;
+          height: 25px;
+        }
+      }
     }
   }
   form {

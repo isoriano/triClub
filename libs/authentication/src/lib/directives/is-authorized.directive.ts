@@ -26,7 +26,6 @@ export class IsAuthorizedDirective {
   }
 
   private check() {
-
     const removeElement = (!this.authService.authenticated && this.logged) || (this.authService.authenticated && !this.logged);
     if (removeElement) {
       this.viewContainer.clear();

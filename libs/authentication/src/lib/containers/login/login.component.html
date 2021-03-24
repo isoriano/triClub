@@ -1,5 +1,20 @@
 <div class="tcs-section dark">
-  <h2 class="mat-h2 center">{{'login.title' | translate}}</h2>
+  <h1 class="mat-h1 center">{{'login.title' | translate}}</h1>
+  <div class="access-buttons-container">
+    <button mat-raised-button class="btn-facebook">
+      <mat-icon>facebook</mat-icon>
+      {{'login.accessFacebook' | translate}}
+    </button>
+    <button mat-raised-button>
+      <mat-icon svgIcon="googleLogo"></mat-icon>
+      {{'login.accessGoogle' | translate}}
+    </button>
+    <button mat-raised-button>
+      <mat-icon svgIcon="appleLogo"></mat-icon>
+      {{'login.accessApple' | translate}}
+    </button>
+  </div>
+  <h2 class="mat-h2 center p-3 mt-2 m-0">{{'login.useEmailPassword' | translate}}</h2>
   <form [formGroup]="loginForm" (submit)="register()">
     <p class="tsc-error" *ngIf="errorMessage$ | async as errorMessage">
       {{ errorMessage | translate }}
@@ -19,8 +34,7 @@
         <span *ngIf="loginForm.controls.password.errors.required">{{'validator.required' | translate}}</span>
       </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">{{'login.signIn' | translate}}</button>
+    <button mat-raised-button color="accent" type="submit">{{'login.signIn' | translate}}</button>
     <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
-    <a mat-button color="accent" routerLink='/user/register'>{{'login.createAccount' | translate}}</a>
   </form>
 </div>

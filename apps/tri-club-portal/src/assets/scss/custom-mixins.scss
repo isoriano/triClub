@@ -29,19 +29,11 @@
     }
   }
 
-  .mat-toolbar {
-    background-color: mat-color($primary);
-  }
-
-  .tcs-section {
-    .mat-h2 {
-      color: mat-contrast($primary, 500);
-    }
-    border-color: mat-color($primary, 200);
-  }
-
   .tsc-error {
-    color: mat-color($warn);
+    background-color: mat-color($warn);
+    color: #fff;
+    padding: .5rem;
+    border-radius: 5px;
   }
 
   .mat-snack-bar-container {
