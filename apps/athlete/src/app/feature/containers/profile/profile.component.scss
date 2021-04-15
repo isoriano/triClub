@@ -1,0 +1,50 @@
+:host {
+  section {
+    .tsc-sports-options {
+      padding: 0.75rem 0.15rem;
+      .tsc-sport-img-container {
+        display: flex;
+        flex-flow: row;
+        justify-content: initial;
+        padding: 1rem 0;
+        .tsc-sport-img {
+          cursor: pointer;
+          width: 100px;
+          height: 100px;
+          border: 2px double;
+          margin-left: 1rem;
+          border-radius: 5px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: right;
+          &.tsc-sport-run {
+            background-image: url("/assets/images/user/running.svg");
+            &.selected {
+              background-image: url("/assets/images/user/running-selected.svg");
+            }
+          }
+          &.tsc-sport-swim {
+            background-image: url("/assets/images/user/swimmer.svg");
+            &.selected {
+              background-image: url("/assets/images/user/swimmer-selected.svg");
+            }
+          }
+          &.tsc-sport-bike {
+            background-image: url("/assets/images/user/bicycle.svg");
+            &.selected {
+              background-image: url("/assets/images/user/bicycle-selected.svg");
+            }
+          }
+        }
+      }
+    }
+  }
+  form {
+    display: flex;
+    flex-flow: column;
+
+    button {
+      margin-bottom: 1rem;
+    }
+  }
+}

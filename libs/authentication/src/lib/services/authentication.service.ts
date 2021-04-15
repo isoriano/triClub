@@ -36,6 +36,10 @@ export class AuthenticationService {
     });
   }
 
+  signInGoogle() {
+    return this.handleResult(() => this.afAuth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider()));
+  }
+
   signIn(request: SignUpRequest) {
     this.isLoading$.next(true);
     return this.handleResult(() => this.afAuth.signInWithEmailAndPassword(request.email, request.password));

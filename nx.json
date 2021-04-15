@@ -1,42 +1,26 @@
 {
-  "npmScope": "tri-club-suite",
-  "affected": {
-    "defaultBase": "master"
-  },
   "implicitDependencies": {
-    "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    "tsconfig.base.json": "*",
-    "tslint.json": "*",
-    "nx.json": "*"
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    ".eslintrc.json": "*"
   },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "tri-club",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
   "projects": {
-    "tri-club-portal": {
-      "tags": []
-    },
-    "tri-club-portal-e2e": {
+    "portal-shell": { "tags": [] },
+    "portal-shell-e2e": {
       "tags": [],
-      "implicitDependencies": ["tri-club-portal"]
+      "implicitDependencies": ["portal-shell"]
     },
-    "authentication": {
-      "tags": []
-    },
-    "users": {
-      "tags": []
-    },
-    "analytics": {
-      "tags": []
-    }
+    "dashboard": { "tags": [] },
+    "dashboard-e2e": { "tags": [], "implicitDependencies": ["dashboard"] },
+    "authentication": { "tags": [] },
+    "athlete": { "tags": [] },
+    "athlete-e2e": { "tags": [], "implicitDependencies": ["athlete"] }
   }
 }

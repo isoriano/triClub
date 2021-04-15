@@ -1,42 +1,69 @@
 {
   "version": 1,
-  "projects": {
-    "tri-club-portal": {
-      "projectType": "application",
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "yarn"
+  },
+  "defaultProject": "portal-shell",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
       },
-      "root": "apps/tri-club-portal",
-      "sourceRoot": "apps/tri-club-portal/src",
-      "prefix": "tcs",
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "portal-shell": {
+      "projectType": "application",
+      "root": "apps/portal-shell",
+      "sourceRoot": "apps/portal-shell/src",
+      "prefix": "tri-club",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/apps/tri-club-portal",
-            "index": "apps/tri-club-portal/src/index.html",
-            "main": "apps/tri-club-portal/src/main.ts",
-            "polyfills": "apps/tri-club-portal/src/polyfills.ts",
-            "tsConfig": "apps/tri-club-portal/tsconfig.app.json",
+            "outputPath": "dist/apps/portal-shell",
+            "index": "apps/portal-shell/src/index.html",
+            "main": "apps/portal-shell/src/main.ts",
+            "polyfills": "apps/portal-shell/src/polyfills.ts",
+            "tsConfig": "apps/portal-shell/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/tri-club-portal/src/favicon.ico",
-              "apps/tri-club-portal/src/assets"
+              "apps/portal-shell/src/favicon.ico",
+              "apps/portal-shell/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "apps/tri-club-portal/src/styles.scss"
+              "apps/portal-shell/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "apps/portal-shell/webpack.config.js"
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/tri-club-portal/src/environments/environment.ts",
-                  "with": "apps/tri-club-portal/src/environments/environment.prod.ts"
+                  "replace": "apps/portal-shell/src/environments/environment.ts",
+                  "with": "apps/portal-shell/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -57,71 +84,203 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "extraWebpackConfig": "apps/portal-shell/webpack.prod.config.js"
             }
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "tri-club-portal:build"
+            "browserTarget": "portal-shell:build",
+            "extraWebpackConfig": "apps/portal-shell/webpack.config.js",
+            "port": 5000
           },
           "configurations": {
             "production": {
-              "browserTarget": "tri-club-portal:build:production"
+              "browserTarget": "portal-shell:build:production",
+              "extraWebpackConfig": "apps/portal-shell/webpack.prod.config.js"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tri-club-portal:build"
+            "browserTarget": "portal-shell:build"
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/tri-club-portal/tsconfig.app.json",
-              "apps/tri-club-portal/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/tri-club-portal/**/*"]
+            "lintFilePatterns": [
+              "apps/portal-shell/src/**/*.ts",
+              "apps/portal-shell/src/**/*.html"
+            ]
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "ngx-build-plus:karma",
+          "outputs": [
+            "coverage/apps/portal-shell"
+          ],
           "options": {
-            "jestConfig": "apps/tri-club-portal/jest.config.js",
-            "tsConfig": "apps/tri-club-portal/tsconfig.spec.json",
+            "jestConfig": "apps/portal-shell/jest.config.js",
             "passWithNoTests": true,
-            "setupFile": "apps/tri-club-portal/src/test-setup.ts"
+            "extraWebpackConfig": "apps/portal-shell/webpack.config.js"
           }
         }
       }
     },
-    "tri-club-portal-e2e": {
-      "root": "apps/tri-club-portal-e2e",
-      "sourceRoot": "apps/tri-club-portal-e2e/src",
+    "portal-shell-e2e": {
+      "root": "apps/portal-shell-e2e",
+      "sourceRoot": "apps/portal-shell-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/tri-club-portal-e2e/cypress.json",
-            "tsConfig": "apps/tri-club-portal-e2e/tsconfig.e2e.json",
-            "devServerTarget": "tri-club-portal:serve"
+            "cypressConfig": "apps/portal-shell-e2e/cypress.json",
+            "tsConfig": "apps/portal-shell-e2e/tsconfig.e2e.json",
+            "devServerTarget": "portal-shell:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "tri-club-portal:serve:production"
+              "devServerTarget": "portal-shell:serve:production"
             }
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": ["apps/tri-club-portal-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/tri-club-portal-e2e/**/*"]
+            "lintFilePatterns": [
+              "apps/portal-shell-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "dashboard": {
+      "projectType": "application",
+      "root": "apps/dashboard",
+      "sourceRoot": "apps/dashboard/src",
+      "prefix": "tri-club",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/apps/dashboard",
+            "index": "apps/dashboard/src/index.html",
+            "main": "apps/dashboard/src/main.ts",
+            "polyfills": "apps/dashboard/src/polyfills.ts",
+            "tsConfig": "apps/dashboard/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/dashboard/src/favicon.ico",
+              "apps/dashboard/src/assets"
+            ],
+            "styles": [
+              "apps/dashboard/src/styles.scss"
+            ],
+            "scripts": [],
+            "extraWebpackConfig": "apps/dashboard/webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dashboard/src/environments/environment.ts",
+                  "with": "apps/dashboard/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "extraWebpackConfig": "apps/dashboard/webpack.prod.config.js"
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "dashboard:build",
+            "extraWebpackConfig": "apps/dashboard/webpack.config.js",
+            "port": 3000
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dashboard:build:production",
+              "extraWebpackConfig": "apps/dashboard/webpack.prod.config.js"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dashboard:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/dashboard/src/**/*.ts",
+              "apps/dashboard/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": [
+            "coverage/apps/dashboard"
+          ],
+          "options": {
+            "jestConfig": "apps/dashboard/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/dashboard/webpack.config.js"
+          }
+        }
+      }
+    },
+    "dashboard-e2e": {
+      "root": "apps/dashboard-e2e",
+      "sourceRoot": "apps/dashboard-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/dashboard-e2e/cypress.json",
+            "tsConfig": "apps/dashboard-e2e/tsconfig.e2e.json",
+            "devServerTarget": "dashboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dashboard:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/dashboard-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -130,144 +289,154 @@
       "projectType": "library",
       "root": "libs/authentication",
       "sourceRoot": "libs/authentication/src",
-      "prefix": "tcs",
+      "prefix": "tri-club",
       "architect": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/authentication/tsconfig.lib.json",
-              "libs/authentication/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/authentication/**/*"]
+            "lintFilePatterns": [
+              "libs/authentication/src/**/*.ts",
+              "libs/authentication/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/authentication"
+          ],
           "options": {
             "jestConfig": "libs/authentication/jest.config.js",
-            "tsConfig": "libs/authentication/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/authentication/src/test-setup.ts"
+            "passWithNoTests": true
           }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
         }
       }
     },
-    "users": {
-      "projectType": "library",
-      "root": "libs/users",
-      "sourceRoot": "libs/users/src",
-      "prefix": "tcs",
+    "athlete": {
+      "projectType": "application",
+      "root": "apps/athlete",
+      "sourceRoot": "apps/athlete/src",
+      "prefix": "tri-club",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "build": {
+          "builder": "ngx-build-plus:browser",
           "options": {
-            "tsConfig": [
-              "libs/users/tsconfig.lib.json",
-              "libs/users/tsconfig.spec.json"
+            "outputPath": "dist/apps/athlete",
+            "index": "apps/athlete/src/index.html",
+            "main": "apps/athlete/src/main.ts",
+            "polyfills": "apps/athlete/src/polyfills.ts",
+            "tsConfig": "apps/athlete/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/athlete/src/favicon.ico",
+              "apps/athlete/src/assets"
             ],
-            "exclude": ["**/node_modules/**", "!libs/users/**/*"]
+            "styles": [
+              "apps/athlete/src/styles.scss"
+            ],
+            "scripts": [],
+            "extraWebpackConfig": "apps/athlete/webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/athlete/src/environments/environment.ts",
+                  "with": "apps/athlete/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "athlete:build",
+            "extraWebpackConfig": "apps/athlete/webpack.config.js",
+            "port": 3001
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "athlete:build:production",
+              "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "athlete:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/athlete/src/**/*.ts",
+              "apps/athlete/src/**/*.html"
+            ]
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "ngx-build-plus:karma",
+          "outputs": [
+            "coverage/apps/athlete"
+          ],
           "options": {
-            "jestConfig": "libs/users/jest.config.js",
-            "tsConfig": "libs/users/tsconfig.spec.json",
+            "jestConfig": "apps/athlete/jest.config.js",
             "passWithNoTests": true,
-            "setupFile": "libs/users/src/test-setup.ts"
+            "extraWebpackConfig": "apps/athlete/webpack.config.js"
           }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
         }
       }
     },
-    "analytics": {
-      "projectType": "library",
-      "root": "libs/analytics",
-      "sourceRoot": "libs/analytics/src",
-      "prefix": "tcs",
+    "athlete-e2e": {
+      "root": "apps/athlete-e2e",
+      "sourceRoot": "apps/athlete-e2e/src",
+      "projectType": "application",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
           "options": {
-            "tsConfig": [
-              "libs/analytics/tsconfig.lib.json",
-              "libs/analytics/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/analytics/**/*"]
+            "cypressConfig": "apps/athlete-e2e/cypress.json",
+            "tsConfig": "apps/athlete-e2e/tsconfig.e2e.json",
+            "devServerTarget": "athlete:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "athlete:serve:production"
+            }
           }
         },
-        "test": {
-          "builder": "@nrwl/jest:jest",
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "jestConfig": "libs/analytics/jest.config.js",
-            "tsConfig": "libs/analytics/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/analytics/src/test-setup.ts"
+            "lintFilePatterns": [
+              "apps/athlete-e2e/**/*.{js,ts}"
+            ]
           }
         }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "schematics": {
-    "@nrwl/workspace": {
-      "library": {
-        "linter": "tslint"
-      }
-    },
-    "@nrwl/cypress": {
-      "cypress-project": {
-        "linter": "tslint"
-      }
-    },
-    "@nrwl/node": {
-      "application": {
-        "linter": "tslint"
-      },
-      "library": {
-        "linter": "tslint"
-      }
-    },
-    "@nrwl/nest": {
-      "application": {
-        "linter": "tslint"
-      },
-      "library": {
-        "linter": "tslint"
-      }
-    },
-    "@nrwl/express": {
-      "application": {
-        "linter": "tslint"
-      },
-      "library": {
-        "linter": "tslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    }
-  },
-  "defaultProject": "tri-club-portal"
+  }
 }
