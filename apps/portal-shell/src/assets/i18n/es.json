@@ -1,0 +1,64 @@
+{
+  "header": {
+    "switchBntAriaLabel": "Boton cambio color",
+    "register": "Subscribirse",
+    "signIn": "Iniciar Sesión",
+    "signOut": "Cerrar Sesión"
+  },
+  "sidenav": {
+    "clubDashboard": "Estadísticas del Club",
+    "settings": "Configuración",
+    "userSection": {
+      "title": "Atleta",
+      "dashboard": "Mis Estadísticas",
+      "races": "Actividades",
+      "gear": "Equipamiento",
+      "profile": "Perfil"
+    }
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "useEmailPassword": "O inicia sesión con tu correo electrónico",
+    "email": "E-mail",
+    "password": "Contraseña",
+    "signIn": "Iniciar Sesión",
+    "createAccount": "Registrate",
+    "accessFacebook": "Inicia sesíon con Facebook",
+    "accessGoogle": "Inicia sesíon con Google",
+    "accessApple": "Inicia sesíon con Apple"
+  },
+  "register": {
+    "title": "Unete al TriClub, es Gratis!",
+    "useEmailPassword": "o suscríbete con tu dirección de correo electrónico",
+    "email": "E-mail",
+    "password": "Contraseña",
+    "fullName": "Nombre",
+    "signUp": "Registrate!",
+    "accessFacebook": "Subscribirse con Facebook",
+    "accessGoogle": "Subscribirse con Google",
+    "accessApple": "Subscribirse con Apple"
+  },
+  "profile": {
+    "title": "Perfil",
+    "fullName": "Nombre",
+    "dateOfBirth": "Fecha de nacimiento",
+    "sports": "Que deporte/s practicas:",
+    "sportsOptions": {
+      "run": "Carrera",
+      "swim": "Natación",
+      "bike": "Ciclismo"
+    },
+    "save": "Guardar",
+    "reset": "Deshacer",
+    "credentials": "Credenciales",
+    "passwordUpdated": "Contrasenya Actalizada",
+    "oldPassword": "Contrasenya actual",
+    "newPassword": "Nueva Contrasenya",
+    "updatePassword": "Cambiar Contrasenya"
+  },
+  "validator": {
+    "pleaseEnterCorrectInformation": "Porfavor introduce la información correcta",
+    "required": "Este campo es obligatorio",
+    "invalid": "Valor no valido para este campo"
+  }
+}

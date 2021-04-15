@@ -1,0 +1,13 @@
+<tsc-header></tsc-header>
+
+<main [class.public]="!(isLoggedIn$ | async)">
+  <router-outlet></router-outlet>
+</main>
+
+<tsc-screen-settings (switchTheme)="switchTheme()"></tsc-screen-settings>
+
+<!-- <footer *ngIf="!hasRoute('login') && !hasRoute('register')">
+  <span>Resources:</span>
+  <span>Background Photo by <a href="https://unsplash.com/@stribby?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">scott tribby</a> on <a href="/s/photos/triathlon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </span>
+</footer> -->

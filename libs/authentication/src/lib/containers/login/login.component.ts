@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  private defaultRedirect = 'analytics/dashboard';
+  private defaultRedirect = 'dashboard';
 
   constructor(
     private fb: FormBuilder,
@@ -39,17 +39,17 @@ export class LoginComponent implements OnInit {
     this.initloginForm();
   }
 
-  register() {
+  signIn() {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
-      this.authService.signIn(this.loginForm.value).then((user: AuthUser) => {
-        if (user.uid) {
-          this.router.navigate([this.defaultRedirect]);
-        }
-      })
+      this.handleSignIn(() => this.authService.signIn(this.loginForm.value));
     } else {
       this.errorMessage$.next('validator.pleaseEnterCorrectInformation');
     }
+  }
+
+  signInGoogle() {
+    this.handleSignIn(() => this.authService.signInGoogle());
   }
 
   private initloginForm() {
@@ -57,5 +57,18 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
+  }
+
+  private handleSignIn(callback: () => Promise<AuthUser>) {
+    return callback()
+      .then((user: AuthUser) => {
+        if (user.uid) {
+          this.router.navigate([this.defaultRedirect]);
+        }
+      });
+      // .catch(e => {
+      //   this.handleError(e);
+      //   return {} as AuthUser;
+      // });
   }
 }

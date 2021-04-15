@@ -1,21 +1,21 @@
-<div class="tcs-section dark">
-  <h1 class="mat-h1 center">{{'login.title' | translate}}</h1>
+<section class="dark">
+  <h1 class="mat-h1 text-center">{{'login.title' | translate}}</h1>
   <div class="access-buttons-container">
-    <button mat-raised-button class="btn-facebook">
+    <!-- <button mat-raised-button class="btn-facebook">
       <mat-icon>facebook</mat-icon>
       {{'login.accessFacebook' | translate}}
-    </button>
-    <button mat-raised-button>
+    </button> -->
+    <button mat-raised-button (click)="signInGoogle()">
       <mat-icon svgIcon="googleLogo"></mat-icon>
       {{'login.accessGoogle' | translate}}
     </button>
-    <button mat-raised-button>
+    <!-- <button mat-raised-button>
       <mat-icon svgIcon="appleLogo"></mat-icon>
       {{'login.accessApple' | translate}}
-    </button>
+    </button> -->
   </div>
-  <h2 class="mat-h2 center p-3 mt-2 m-0">{{'login.useEmailPassword' | translate}}</h2>
-  <form [formGroup]="loginForm" (submit)="register()">
+  <h2 class="mat-h2 text-center p-3 mt-2 m-0">{{'login.useEmailPassword' | translate}}</h2>
+  <form [formGroup]="loginForm" (submit)="signIn()">
     <p class="tsc-error" *ngIf="errorMessage$ | async as errorMessage">
       {{ errorMessage | translate }}
     </p>
@@ -37,4 +37,4 @@
     <button mat-raised-button color="accent" type="submit">{{'login.signIn' | translate}}</button>
     <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
   </form>
-</div>
+</section>
