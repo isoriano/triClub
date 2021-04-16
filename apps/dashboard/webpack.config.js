@@ -8,6 +8,7 @@ sharedMappings.register(
   [/* mapped paths to share */]);
 
 module.exports = {
+  mode: 'development',
   output: {
     uniqueName: "dashboard"
   },

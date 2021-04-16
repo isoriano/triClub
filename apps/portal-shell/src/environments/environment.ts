@@ -4,6 +4,11 @@
 
 export const environment = {
   production: false,
+  url: 'http:localhost:',
+  sites: {
+    dashboard: 3000,
+    athlete: 3001
+  },
   firebaseConfig: {
     apiKey: "AIzaSyAtQDylxmyjfuMJbiP5PfHOYH9SNpuk50A",
     authDomain: "triclubmanagement.firebaseapp.com",

@@ -1,5 +1,10 @@
 export const environment = {
   production: true,
+  url: 'https://triclubmanagement.web.app/',
+  sites: {
+    dashboard: 'dashboard',
+    athlete: 'athlete'
+  },
   firebaseConfig: {
     apiKey: "AIzaSyAtQDylxmyjfuMJbiP5PfHOYH9SNpuk50A",
     authDomain: "triclubmanagement.firebaseapp.com",
