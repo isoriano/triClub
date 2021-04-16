@@ -28,7 +28,7 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       loadRemoteModule({
-        remoteEntry: 'http://localhost:3000/remoteEntry.js',
+        remoteEntry: `${environment.url}${environment.sites.dashboard}/remoteEntry.js`,
         remoteName: 'dashboard',
         exposedModule: './Module'
       }).then(m => m.DashboardModule)
@@ -41,7 +41,7 @@ const routes: Routes = [
     path: 'athlete',
     loadChildren: () =>
       loadRemoteModule({
-        remoteEntry: 'http://localhost:3001/remoteEntry.js',
+        remoteEntry: `${environment.url}${environment.sites.athlete}/remoteEntry.js`,
         remoteName: 'athlete',
         exposedModule: './Module'
       }).then(m => m.AthleteModule)
