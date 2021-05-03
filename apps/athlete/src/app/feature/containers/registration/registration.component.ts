@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 
-import { AuthenticationService, AuthUser } from '@tri-club/authentication';
-import { UsersService } from '../../services/users.service';
+import { IUser, userActions, userSelectors } from '@tri-club/authentication';
+import { Observable, Subject } from 'rxjs';
 
 const googleLogoURL = "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
 const appleLogoUrl = "../../assets/images/buttons/appleLogo.svg";
@@ -17,18 +18,17 @@ const appleLogoUrl = "../../assets/images/buttons/appleLogo.svg";
 })
 export class RegistrationComponent implements OnInit {
 
-  isLoading$ = this.authService.isLoading$;
-  errorMessage$ = this.authService.authErrorMessage$;
+  isLoading$: Observable<boolean>;
+  errorMessage$: Subject<string> = new Subject();
 
   registrationForm: FormGroup;
 
   private defaultRedirect = 'athlete/profile';
 
   constructor(
+    private store: Store<IUser>,
     private fb: FormBuilder,
-    private authService: AuthenticationService,
     private router: Router,
-    private usersService: UsersService,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
   ) {
@@ -37,6 +37,16 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading$ = this.store.pipe(select(userSelectors.getUserLoading));
+    this.store.pipe(select(userSelectors.getUserError)).subscribe(this.errorMessage$);
+
+    this.store.pipe(select(userSelectors.getUid)).subscribe(uid => {
+      if (uid) {
+        // this.usersService.createUser({ uid: uid, ...this.registrationForm.value });
+        this.router.navigate([this.defaultRedirect]);
+      }
+    });
+
     this.initRegistrationForm();
   }
 
@@ -44,14 +54,14 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.markAllAsTouched();
 
     if (this.registrationForm.valid) {
-      this.handleRegister(() => this.authService.signUp(this.registrationForm.value));
+      // this.handleRegister(() => this.authService.signUp(this.registrationForm.value));
     } else {
-      this.errorMessage$.next('validator.pleaseEnterCorrectInformation');
+      // this.errorMessage$.next('validator.pleaseEnterCorrectInformation');
     }
   }
 
   registerGoogle() {
-    this.handleRegister(() => this.authService.signInGoogle());
+    this.store.dispatch(new userActions.GoogleLogIn());
   }
 
   private initRegistrationForm() {
@@ -62,14 +72,14 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  private handleRegister(callback: () => Promise<AuthUser>) {
-    return callback().then((user: AuthUser) => {
-      if (!user.uid) {
-        return;
-      } else {
-        this.usersService.createUser({ uid: user.uid, ...this.registrationForm.value });
-        this.router.navigate([this.defaultRedirect]);
-      }
-    });
-  }
+  // private handleRegister(callback: () => Promise<AuthUser>) {
+  //   return callback().then((user: AuthUser) => {
+  //     if (!user.uid) {
+  //       return;
+  //     } else {
+  //       this.usersService.createUser({ uid: user.uid, ...this.registrationForm.value });
+  //       this.router.navigate([this.defaultRedirect]);
+  //     }
+  //   });
+  // }
 }

@@ -5,8 +5,10 @@ import { DOCUMENT } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
 
-import { AuthenticationService } from '@tri-club/authentication';
+import { IUser, userSelectors } from '@tri-club/authentication';
 
 @Component({
   selector: 'tcs-root',
@@ -15,19 +17,19 @@ import { AuthenticationService } from '@tri-club/authentication';
 })
 export class AppComponent implements OnInit {
 
-  isLoggedIn$ = this.authService.currentUser.pipe(map(user => !!user));
+  isLoggedIn$ = this.store.pipe(select(userSelectors.getUid), map(uid => !!uid));
 
   private theme = 'light';
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    private store: Store<IUser>,
     private renderer: Renderer2,
-    private authService: AuthenticationService,
-    private router: Router,
     private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
+
     this.setTheme();
     this.openDisclaimer();
   }

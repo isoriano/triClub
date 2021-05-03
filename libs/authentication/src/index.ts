@@ -1,6 +1,7 @@
+export { AuthenticationModule } from './lib/authentication.module';
 export { LoginComponent } from './lib/containers/login/login.component';
-export { AuthenticationService } from './lib/services/authentication.service';
-export { AuthUser } from './lib/models/auth-user.interface';
-export { AuthGuard } from './lib/guards/auth.guard';
 export { IsAuthorizedDirective } from './lib/directives/is-authorized.directive';
-export * from './lib/authentication.module';
+export { AuthGuard } from './lib/guards/auth.guard';
+export * from './lib/store';
+export { IUser } from './lib/models/user.interface';
+
