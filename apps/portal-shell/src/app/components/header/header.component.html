@@ -22,10 +22,9 @@
         </button>
       </ng-template>
     </ng-container>
-    <button id="tcsLogoutBtn" mat-raised-button class="mx-4" *isAuthorized="true" (click)="logout()"
-      aria-label="Logout button">
-      {{'header.signOut' | translate}}
-    </button>
+
+    <tcs-logout *isAuthorized="true"></tcs-logout>
+
   </mat-toolbar-row>
 
   <!-- <mat-toolbar-row>

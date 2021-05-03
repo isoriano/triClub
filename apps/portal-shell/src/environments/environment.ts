@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http:localhost:',
+  url: 'http://localhost:',
   sites: {
     dashboard: 3000,
     athlete: 3001

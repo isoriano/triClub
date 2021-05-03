@@ -15,20 +15,21 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { AngularFireModule } from '@angular/fire';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 import * as fromComponents from './components';
 
-import { AuthenticationModule, LoginComponent } from '@tri-club/authentication';
+import { AuthenticationModule, AuthGuard, LoginComponent } from '@tri-club/authentication';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
       loadRemoteModule({
-        remoteEntry: `${environment.url}${environment.sites.dashboard}/remoteEntry.js`,
+        // remoteEntry: `${environment.url}${environment.sites.dashboard}/remoteEntry.js`,
         remoteName: 'dashboard',
         exposedModule: './Module'
       }).then(m => m.DashboardModule)
@@ -39,9 +40,10 @@ const routes: Routes = [
   },
   {
     path: 'athlete',
+    // canActivate: [AuthGuard],
     loadChildren: () =>
       loadRemoteModule({
-        remoteEntry: `${environment.url}${environment.sites.athlete}/remoteEntry.js`,
+        // remoteEntry: `${environment.url}${environment.sites.athlete}/remoteEntry.js`,
         remoteName: 'athlete',
         exposedModule: './Module'
       }).then(m => m.AthleteModule)
@@ -79,6 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSnackBarModule,
     MatSelectModule,
     MatFormFieldModule,
+    StoreModule.forRoot({}),
     AuthenticationModule
   ],
   providers: [],

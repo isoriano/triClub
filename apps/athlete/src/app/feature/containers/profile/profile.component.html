@@ -7,9 +7,9 @@
       </p>
       <mat-form-field appearance="outline">
         <mat-label>{{'profile.fullName' | translate}}</mat-label>
-        <input matInput formControlName="fullName" type="text">
-        <mat-error *ngIf="profileForm.controls.fullName.touched && profileForm.controls.fullName.invalid">
-          <span *ngIf="profileForm.controls.fullName.errors.required">{{'validator.required' | translate}}</span>
+        <input matInput formControlName="displayName" type="text">
+        <mat-error *ngIf="profileForm.controls.displayName.touched && profileForm.controls.displayName.invalid">
+          <span *ngIf="profileForm.controls.displayName.errors.required">{{'validator.required' | translate}}</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -41,9 +41,9 @@
       <p class="tsc-success" *ngIf="passwordUpdated$ | async as passwordUpdated">
         {{'profile.passwordUpdated' | translate}}
       </p>
-      <p class="tsc-error" *ngIf="authErrorMessage$ | async as authErrorMessage">
+      <!-- <p class="tsc-error" *ngIf="authErrorMessage$ | async as authErrorMessage">
         {{ authErrorMessage | translate }}
-      </p>
+      </p> -->
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>{{'profile.oldPassword' | translate}}</mat-label>
         <input matInput formControlName="oldPassword" type="password">

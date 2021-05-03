@@ -24,6 +24,7 @@ module.exports = {
         "@angular/router": { singleton: true, strictVersion: true },
         "@angular/fire": { singleton: true, strictVersion: true },
         "@ngx-translate/core": { singleton: true, strictVersion: true },
+        "@ngrx/store": { singleton: true, strictVersion: true },
         ...sharedMappings.getDescriptors()
       }
 

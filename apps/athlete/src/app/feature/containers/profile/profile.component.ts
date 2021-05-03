@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
 
-import { AuthenticationService } from '@tri-club/authentication';
-
-import { User } from '../../models/user.model';
-import { UsersService } from '../../services/users.service';
+import { userActions, userSelectors, userReducers } from '@tri-club/authentication';
+import { User } from 'libs/authentication/src/lib/models/user.interface';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'tcs-user-profile',
@@ -20,23 +19,26 @@ export class ProfileComponent implements OnInit {
   updatePasswordForm: FormGroup;
   sports: any[] = [];
   errorMessage$ = new Subject<string>();
-  userUpdating$ = new Subject<boolean>();
+  userUpdating$: Observable<boolean>;
   passwordUpdated$ = new Subject<boolean>();
   passwordUpdating$ = new Subject<boolean>();
-  authErrorMessage$ = this.authService.authErrorMessage$;
   private user: User;
 
   constructor(
-    private fb: FormBuilder,
-    private usersService: UsersService,
-    private authService: AuthenticationService
+    private store: Store<userReducers.UserState>,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.userUpdating$ = this.store.pipe(select(userSelectors.getUserSaving));
+    this.store.pipe(
+      select(userSelectors.getUser),
+      filter(user => !!user.uid)
+    ).subscribe(user => {
+      this.initProfileForm(user)
+    });
+
     this.initUpdatePasswordForm();
-    this.usersService.user.pipe(
-      map(user => this.initProfileForm(user))
-    ).subscribe();
   }
 
   sportSelected(changedSport: { name: string, selected: boolean }) {
@@ -57,20 +59,18 @@ export class ProfileComponent implements OnInit {
     this.updatePasswordForm.markAllAsTouched();
     if (this.updatePasswordForm.valid) {
       this.passwordUpdating$.next(true);
-      this.authService.resetPassword(this.updatePasswordForm.value).then(r => {
-        this.passwordUpdating$.next(false);
-        this.passwordUpdated$.next(r);
-      });
+      // this.authService.resetPassword(this.updatePasswordForm.value).then(r => {
+      //   this.passwordUpdating$.next(false);
+      //   this.passwordUpdated$.next(r);
+      // });
     }
   }
 
   async save() {
     this.profileForm.markAllAsTouched();
-    this.profileForm.get('sports')?.setValue(this.sports);
+    this.profileForm.get('sports')?.setValue(JSON.stringify(this.sports));
     if (this.profileForm.valid) {
-      this.userUpdating$.next(true)
-      await this.usersService.createUser({ uid: this.user.uid, ...this.profileForm.value }, true);
-      this.userUpdating$.next(false);
+      this.store.dispatch(new userActions.SetUser({ uid: this.user.uid, ...this.profileForm.value }));
     } else {
       this.errorMessage$.next('validator.pleaseEnterCorrectInformation');
     }
@@ -84,8 +84,8 @@ export class ProfileComponent implements OnInit {
     this.user = user;
     this.sports = JSON.parse(user.sports);
     this.profileForm = this.fb.group({
-      fullName: [user.fullName, [Validators.required]],
-      dateOfBirth: [user.dateOfBirth ? new Date(user.dateOfBirth.toDate()) : '', [Validators.required]],
+      displayName: [user.displayName, [Validators.required]],
+      dateOfBirth: [user.dateOfBirth ? user.dateOfBirth.toDate() : '', [Validators.required]],
       sports: ['']
     });
   }
