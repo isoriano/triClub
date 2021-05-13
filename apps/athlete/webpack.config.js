@@ -9,11 +9,16 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: "athlete"
+    uniqueName: "athlete",
+    publicPath: "auto"
   },
   optimization: {
-    // Only needed to bypass a temporary bug
     runtimeChunk: false
+  },
+  resolve: {
+    alias: {
+      ...sharedMappings.getAliases(),
+    }
   },
   plugins: [
     new ModuleFederationPlugin({
@@ -24,18 +29,10 @@ module.exports = {
       exposes: {
         './Module': './apps/athlete/src/app/feature/athlete.module.ts',
       },
-
-      // For hosts (please adjust)
-      // remotes: {
-      //     "portal-shell": "portal-shell@http://localhost:5000/remoteEntry.js",
-      //     "dashboard": "dashboard@http://localhost:3000/remoteEntry.js",
-
-      // },
-
       shared: {
-        "@angular/core": { singleton: true, strictVersion: true },
-        "@angular/common": { singleton: true, strictVersion: true },
-        "@angular/router": { singleton: true, strictVersion: true },
+        "@angular/core": { singleton: true, strictVersion: false },
+        "@angular/common": { singleton: true, strictVersion: false },
+        "@angular/router": { singleton: true, strictVersion: false },
         "@angular/fire": { singleton: true, strictVersion: true },
         "@ngx-translate/core": { singleton: true, strictVersion: true },
         "@ngrx/store": { singleton: true, strictVersion: true },

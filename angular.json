@@ -50,7 +50,8 @@
             "aot": true,
             "assets": [
               "apps/portal-shell/src/favicon.ico",
-              "apps/portal-shell/src/assets"
+              "apps/portal-shell/src/assets/images",
+              "apps/portal-shell/src/assets/i18n"
             ],
             "styles": [
               "apps/portal-shell/src/styles.scss"
