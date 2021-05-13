@@ -10,32 +10,29 @@ sharedMappings.register(
 module.exports = {
   mode: 'development',
   output: {
-    uniqueName: "dashboard"
+    uniqueName: "dashboard",
+    publicPath: "auto"
   },
   optimization: {
-    // Only needed to bypass a temporary bug
     runtimeChunk: false
+  },
+  resolve: {
+    alias: {
+      ...sharedMappings.getAliases(),
+    }
   },
   plugins: [
     new ModuleFederationPlugin({
 
-        // For remotes (please adjust)
         name: "dashboard",
         filename: "remoteEntry.js",
         exposes: {
             './Module': './apps/dashboard/src/app/feature/dashboard.module.ts',
         },
-
-        // For hosts (please adjust)
-        // remotes: {
-        //     "portal-shell": "portal-shell@http://localhost:4200/remoteEntry.js",
-
-        // },
-
         shared: {
-          "@angular/core": { singleton: true, strictVersion: true },
-          "@angular/common": { singleton: true, strictVersion: true },
-          "@angular/router": { singleton: true, strictVersion: true },
+          "@angular/core": { singleton: true, strictVersion: false },
+          "@angular/common": { singleton: true, strictVersion: false },
+          "@angular/router": { singleton: true, strictVersion: false },
           "@angular/fire": { singleton: true, strictVersion: true },
           "@ngx-translate/core": { singleton: true, strictVersion: true },
 

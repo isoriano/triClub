@@ -9,19 +9,25 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: "portal-shell"
+    uniqueName: "portal-shell",
+    publicPath: "auto"
   },
   optimization: {
-    // Only needed to bypass a temporary bug
     runtimeChunk: false
+  },
+  resolve: {
+    alias: {
+      ...sharedMappings.getAliases(),
+    }
   },
   plugins: [
     new ModuleFederationPlugin({
       remotes: {},
       shared: {
-        "@angular/core": { singleton: true, strictVersion: true },
-        "@angular/common": { singleton: true, strictVersion: true },
-        "@angular/router": { singleton: true, strictVersion: true },
+        // Keep strictVersion as false until firebase is updated to angular v12
+        "@angular/core": { singleton: true, strictVersion: false },
+        "@angular/common": { singleton: true, strictVersion: false },
+        "@angular/router": { singleton: true, strictVersion: false },
         "@angular/fire": { singleton: true, strictVersion: true },
         "@ngx-translate/core": { singleton: true, strictVersion: true },
         "@ngrx/store": { singleton: true, strictVersion: true },
