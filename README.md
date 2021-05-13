@@ -4,7 +4,7 @@
 
 This project is implemented using:
 
-- [Angular 11](https://angular.io)
+- [Angular 12](https://angular.io)
 - [Nx](https://nx.dev).
 - [Firebase](https://firebase.google.com/)
 - [Module Federation](https://github.com/angular-architects/module-federation-plugin/blob/main/packages/mf/tutorial/tutorial.md)
