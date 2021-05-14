@@ -85,6 +85,14 @@
                 }
               ],
               "extraWebpackConfig": "apps/portal-shell/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -99,8 +107,12 @@
             "production": {
               "browserTarget": "portal-shell:build:production",
               "extraWebpackConfig": "apps/portal-shell/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "portal-shell:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -205,6 +217,14 @@
                 }
               ],
               "extraWebpackConfig": "apps/dashboard/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -219,8 +239,12 @@
             "production": {
               "browserTarget": "dashboard:build:production",
               "extraWebpackConfig": "apps/dashboard/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "dashboard:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -350,6 +374,14 @@
                 }
               ],
               "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -364,8 +396,12 @@
             "production": {
               "browserTarget": "athlete:build:production",
               "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "athlete:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
