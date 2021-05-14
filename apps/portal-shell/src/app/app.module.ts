@@ -22,7 +22,7 @@ import { environment } from '../environments/environment';
 
 import * as fromComponents from './components';
 
-import { AuthenticationModule, AuthGuard, LoginComponent } from '@tri-club/authentication';
+import { AuthenticationModule, LoginComponent } from '@tri-club/authentication';
 
 const routes: Routes = [
   {

@@ -1,9 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import * as userActions from '../../store/actions/user.actions';
-import * as userSelectors from '../../store/selectors/user.selectors';
 import { IUser } from '../../models/user.interface';
 
 @Component({

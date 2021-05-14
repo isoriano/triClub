@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'tri-club-root',
+  selector: 'tcs-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

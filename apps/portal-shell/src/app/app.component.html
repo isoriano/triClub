@@ -1,10 +1,10 @@
-<tsc-header></tsc-header>
+<tcs-header></tcs-header>
 
-<main [class.public]="!(isLoggedIn$ | async)">
+<main [class.public]="(isLoggedIn$ | async) === false">
   <router-outlet></router-outlet>
 </main>
 
-<tsc-screen-settings (switchTheme)="switchTheme()"></tsc-screen-settings>
+<tcs-screen-settings (switchTheme)="switchTheme()"></tcs-screen-settings>
 
 <!-- <footer *ngIf="!hasRoute('login') && !hasRoute('register')">
   <span>Resources:</span>

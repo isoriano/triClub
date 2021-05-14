@@ -1,11 +1,7 @@
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
-import { Route, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DOCUMENT } from '@angular/common';
-import { FormControl } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
-import { map, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 
 import { IUser, userSelectors } from '@tri-club/authentication';
