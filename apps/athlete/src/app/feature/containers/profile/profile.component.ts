@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-
-import { userActions, userSelectors, userReducers } from '@tri-club/authentication';
-import { User } from 'libs/authentication/src/lib/models/user.interface';
 import { filter } from 'rxjs/operators';
+
+import { userActions, userSelectors, userReducers, User, ISport } from '@tri-club/authentication';
 
 @Component({
   selector: 'tcs-user-profile',
@@ -17,7 +16,7 @@ export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   updatePasswordForm: FormGroup;
-  sports: any[] = [];
+  sports: ISport[] = [];
   errorMessage$ = new Subject<string>();
   userUpdating$: Observable<boolean>;
   passwordUpdated$ = new Subject<boolean>();

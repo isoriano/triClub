@@ -1,4 +1,4 @@
-import { Directive, ViewContainerRef, TemplateRef, ChangeDetectorRef, Input } from '@angular/core';
+import { Directive, ViewContainerRef, TemplateRef, ChangeDetectorRef, Input, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import { IUser } from '../models/user.interface';
@@ -7,7 +7,7 @@ import * as userSelectors from '../store/selectors/user.selectors';
 @Directive({
   selector: '[isAuthorized]'
 })
-export class IsAuthorizedDirective {
+export class IsAuthorizedDirective implements OnInit{
 
   isLoggedIn: boolean;
   isElementShown = false;
@@ -21,7 +21,7 @@ export class IsAuthorizedDirective {
 
   constructor(
     private store: Store<IUser>,
-    private templateRef: TemplateRef<any>,
+    private templateRef: TemplateRef<unknown>,
     private viewContainer: ViewContainerRef,
     private cdr: ChangeDetectorRef
   ) { }
@@ -30,7 +30,7 @@ export class IsAuthorizedDirective {
     this.store.pipe(select(userSelectors.getUid)).subscribe((uid) => this.check(!!uid));
   }
 
-  private check(isLoggedIn) {
+  private check(isLoggedIn: boolean) {
     const removeElement = (!isLoggedIn && this.logged) || (isLoggedIn && !this.logged);
     if (removeElement) {
       this.viewContainer.clear();

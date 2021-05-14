@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'tsc-screen-settings',
+  selector: 'tcs-screen-settings',
   templateUrl: 'screen-settings.component.html',
   styleUrls: ['./screen-settings.component.scss']
 })

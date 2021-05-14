@@ -37,7 +37,7 @@
       "projectType": "application",
       "root": "apps/portal-shell",
       "sourceRoot": "apps/portal-shell/src",
-      "prefix": "tri-club",
+      "prefix": "tcs",
       "architect": {
         "build": {
           "builder": "ngx-build-plus:browser",
@@ -53,9 +53,7 @@
               "apps/portal-shell/src/assets/images",
               "apps/portal-shell/src/assets/i18n"
             ],
-            "styles": [
-              "apps/portal-shell/src/styles.scss"
-            ],
+            "styles": ["apps/portal-shell/src/styles.scss"],
             "scripts": [],
             "extraWebpackConfig": "apps/portal-shell/webpack.config.js"
           },
@@ -121,9 +119,7 @@
         },
         "test": {
           "builder": "ngx-build-plus:karma",
-          "outputs": [
-            "coverage/apps/portal-shell"
-          ],
+          "outputs": ["coverage/apps/portal-shell"],
           "options": {
             "jestConfig": "apps/portal-shell/jest.config.js",
             "passWithNoTests": true,
@@ -153,9 +149,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/portal-shell-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/portal-shell-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -164,7 +158,7 @@
       "projectType": "application",
       "root": "apps/dashboard",
       "sourceRoot": "apps/dashboard/src",
-      "prefix": "tri-club",
+      "prefix": "tcs",
       "architect": {
         "build": {
           "builder": "ngx-build-plus:browser",
@@ -179,9 +173,7 @@
               "apps/dashboard/src/favicon.ico",
               "apps/dashboard/src/assets"
             ],
-            "styles": [
-              "apps/dashboard/src/styles.scss"
-            ],
+            "styles": ["apps/dashboard/src/styles.scss"],
             "scripts": [],
             "extraWebpackConfig": "apps/dashboard/webpack.config.js"
           },
@@ -247,9 +239,7 @@
         },
         "test": {
           "builder": "ngx-build-plus:karma",
-          "outputs": [
-            "coverage/apps/dashboard"
-          ],
+          "outputs": ["coverage/apps/dashboard"],
           "options": {
             "jestConfig": "apps/dashboard/jest.config.js",
             "passWithNoTests": true,
@@ -279,9 +269,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/dashboard-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/dashboard-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -290,7 +278,7 @@
       "projectType": "library",
       "root": "libs/authentication",
       "sourceRoot": "libs/authentication/src",
-      "prefix": "tri-club",
+      "prefix": "tcs",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -303,9 +291,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/authentication"
-          ],
+          "outputs": ["coverage/libs/authentication"],
           "options": {
             "jestConfig": "libs/authentication/jest.config.js",
             "passWithNoTests": true
@@ -317,7 +303,7 @@
       "projectType": "application",
       "root": "apps/athlete",
       "sourceRoot": "apps/athlete/src",
-      "prefix": "tri-club",
+      "prefix": "tcs",
       "architect": {
         "build": {
           "builder": "ngx-build-plus:browser",
@@ -332,9 +318,7 @@
               "apps/athlete/src/favicon.ico",
               "apps/athlete/src/assets"
             ],
-            "styles": [
-              "apps/athlete/src/styles.scss"
-            ],
+            "styles": ["apps/athlete/src/styles.scss"],
             "scripts": [],
             "extraWebpackConfig": "apps/athlete/webpack.config.js"
           },
@@ -400,9 +384,7 @@
         },
         "test": {
           "builder": "ngx-build-plus:karma",
-          "outputs": [
-            "coverage/apps/athlete"
-          ],
+          "outputs": ["coverage/apps/athlete"],
           "options": {
             "jestConfig": "apps/athlete/jest.config.js",
             "passWithNoTests": true,
@@ -432,9 +414,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/athlete-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/athlete-e2e/**/*.{js,ts}"]
           }
         }
       }

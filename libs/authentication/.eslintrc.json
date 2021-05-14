@@ -9,14 +9,14 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "parserOptions": {
-        "project": ["apps/dashboard/tsconfig.*?.json"]
+        "project": ["apps/portal-shell/tsconfig.*?.json"]
       },
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
           {
             "type": "attribute",
-            "prefix": "tcs",
+            "prefix": "",
             "style": "camelCase"
           }
         ],

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { filter, map, take, tap } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 
 import { IUser } from '../models/user.interface';
 import * as userSelectors from '../store/selectors/user.selectors';
@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) { }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.store.pipe(
       select(userSelectors.getUid),

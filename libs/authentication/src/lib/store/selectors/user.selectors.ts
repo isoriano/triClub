@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 
 import * as fromReducers from '../reducer';
@@ -8,7 +9,7 @@ export const getAuthState: MemoizedSelector<any, any> = createFeatureSelector<fr
 
 export const getUserState: MemoizedSelector<fromReducers.AuthState, fromUserReducers.UserState> = createSelector(getAuthState,
   (state: fromReducers.AuthState) => {
-    return !!state.user
+    return state.user
       ? state.user as fromUserReducers.UserState
       : fromUserReducers.initialState;
   });

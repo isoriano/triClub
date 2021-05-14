@@ -9,6 +9,7 @@ import { User } from '../../models/user.interface';
 import { ILogIn } from '../../models/log-in.interface';
 
 import * as userActions from '../actions/user.actions';
+import { ISport } from '../../models/sport.interface';
 export type Action = userActions.All;
 
 @Injectable()
@@ -30,7 +31,7 @@ export class UserEffects {
       ? this.usersCollection.doc<User>(authData.uid).get().pipe(map(userSnapshot => userSnapshot.data()))
       : of(null)),
     map((user: User | null) => {
-      if (!!user) {
+      if (user) {
         const storedUser = new User(user.uid, user.displayName, user.email, user.dateOfBirth, user.sports);
         return new userActions.SetUserSuccess(storedUser);
       } else {
@@ -52,7 +53,7 @@ export class UserEffects {
     ofType(userActions.LOGIN),
     map((action: userActions.LogIn) => action.payload),
     switchMap((payload: ILogIn) => from(this.afAuth.signInWithEmailAndPassword(payload.email, payload.password)).pipe(
-      map((user) => new userActions.GetUser()),
+      map(() => new userActions.GetUser()),
       catchError(err => of(new userActions.AuthError(err.message)))
     ))
   ));
@@ -62,7 +63,7 @@ export class UserEffects {
     switchMap(() => from(this.afAuth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider()))),
     switchMap(authData => this.usersCollection.doc<User>(authData.user.uid).get().pipe(
       map(userSnapshot => {
-        return !!userSnapshot.data()
+        return userSnapshot.data()
           ? new userActions.GetUser()
           : new userActions.SetUser(new User(authData.user.uid, authData.user.displayName));
       })
@@ -72,7 +73,7 @@ export class UserEffects {
   logOut$ = createEffect(() => this.actions.pipe(
     ofType(userActions.LOGOUT),
     switchMap(() => from(this.afAuth.signOut()).pipe(
-      map((user) => new userActions.NoAuthenticated()),
+      map(() => new userActions.NoAuthenticated()),
       catchError(err => of(new userActions.AuthError(err.message)))
     ))
   ));
@@ -82,13 +83,13 @@ export class UserEffects {
       { name: 'run', selected: false },
       { name: 'swim', selected: false },
       { name: 'bike', selected: false }
-    ]);
+    ] as ISport[]);
 
     const userToCreate: User = {
       uid: user.uid,
       displayName: user.displayName,
-      dateOfBirth: !!user.dateOfBirth ? user.dateOfBirth : null,
-      sports: !!user.sports ? user.sports : defaultSports,
+      dateOfBirth: user.dateOfBirth ? user.dateOfBirth : null,
+      sports: user.sports ? user.sports : defaultSports,
       updatedOn: new Date()
     };
 
