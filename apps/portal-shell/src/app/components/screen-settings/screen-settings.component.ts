@@ -6,31 +6,33 @@ import { tap } from 'rxjs/operators';
 @Component({
   selector: 'tcs-screen-settings',
   templateUrl: 'screen-settings.component.html',
-  styleUrls: ['./screen-settings.component.scss']
+  styleUrls: [
+    './screen-settings.component.scss',
+    './_screen-settings-theme.component.scss',
+  ],
 })
-
 export class ScreenSettingsComponent implements OnInit {
-
   @Output() switchTheme = new EventEmitter();
 
   langSelected: FormControl;
   get langNameSelected() {
-    return this.languages.find(lang => lang.code === this.langSelected.value)?.name;
+    return this.languages.find((lang) => lang.value === this.langSelected.value)
+      ?.name;
   }
 
   languages = [
-    { name: 'English', code: 'en' },
-    { name: 'Spanish', code: 'es' }
+    { name: 'English', value: 'en' },
+    { name: 'Spanish', value: 'es' }
   ];
 
-  constructor(
-    private translate: TranslateService
-  ) {
+  constructor(private translate: TranslateService) {
     this.langSelected = new FormControl('en');
   }
 
   ngOnInit() {
-    this.langSelected.valueChanges.pipe(tap((value) => this.translate.use(value))).subscribe();
+    this.langSelected.valueChanges
+      .pipe(tap((value) => this.translate.use(value)))
+      .subscribe();
   }
 
   onSwitchTheme() {

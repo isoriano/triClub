@@ -1,5 +1,5 @@
 <mat-toolbar role="heading">
-  <mat-toolbar-row class="tsc-public-logo">
+  <mat-toolbar-row>
     <button mat-icon-button class="d-md-none d-block">
       <mat-icon>menu</mat-icon>
     </button>
@@ -11,43 +11,23 @@
     </div>
     <span class="spacer"></span>
     <ng-container *isAuthorized="false">
-      <button *ngIf="!hasRoute('login'); else registerBtn" id="tcsLoginBtn" mat-raised-button color="accent"
-        class="mx-4" routerLink='login' aria-label="Login button">
-        {{'header.signIn' | translate}}
-      </button>
+      <tcs-button
+        *ngIf="!hasRoute('login'); else registerBtn"
+        class="mx-4"
+        [variant]="'raised'"
+        [label]="'header.signIn' | translate"
+        (clicked)="onGoTo('login')"
+      ></tcs-button>
       <ng-template #registerBtn>
-        <button id="tcsLoginBtn" mat-raised-button color="accent" class="mx-4" routerLink='athlete/register'
-          aria-label="Login button">
-          {{'header.register' | translate}}
-        </button>
+        <tcs-button
+          class="mx-4"
+          [variant]="'raised'"
+          [label]="'header.register' | translate"
+          (clicked)="onGoTo('athlete/register')"
+        ></tcs-button>
       </ng-template>
     </ng-container>
 
     <tcs-logout *isAuthorized="true"></tcs-logout>
-
   </mat-toolbar-row>
-
-  <!-- <mat-toolbar-row>
-      <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
-    </mat-toolbar-row> -->
-
-  <!-- <span class="spacer"></span>
-  <div>
-    <ng-container *isAuthorized="false">
-      <button *ngIf="!hasRoute('login'); else registerBtn" id="tcsLoginBtn" mat-raised-button color="accent"
-        class="mx-4" routerLink='login' aria-label="Login button">
-        {{'header.signIn' | translate}}
-      </button>
-      <ng-template #registerBtn>
-        <button id="tcsLoginBtn" mat-raised-button color="accent" class="mx-4" routerLink='athlete/register'
-          aria-label="Login button">
-          {{'header.register' | translate}}
-        </button>
-      </ng-template>
-    </ng-container>
-    <button id="tcsLogoutBtn" mat-raised-button class="mx-4" *isAuthorized="true" (click)="logout()"
-      aria-label="Logout button">
-      {{'header.signOut' | translate}}
-    </button>
-  </div> -->
 </mat-toolbar>

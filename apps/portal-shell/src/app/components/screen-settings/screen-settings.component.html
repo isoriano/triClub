@@ -1,23 +1,12 @@
-<div class="tsc-screen-settings-container">
-  <button mat-icon-button (click)="onSwitchTheme()" [attr.aria-label]="'header.switchBntAriaLabel' | translate">
-    <mat-icon>format_color_fill</mat-icon>
-  </button>
-  <mat-form-field class="tsc-lang-selector mx-4">
-    <mat-select [formControl]="langSelected">
-      <mat-select-trigger>
-        <div class="tsc-lang-option-content">
-          <div class="flag mx-2" [class]="langSelected.value"></div>
-          <span>{{langNameSelected}}</span>
-        </div>
-        <div class="flag" [class]="langSelected.value"></div>
-      </mat-select-trigger>
-      <mat-option *ngFor="let lang of languages" class="tsc-lang-option" [attr.aria-label]="lang.name"
-        [value]="lang.code">
-        <div class="tsc-lang-option-content">
-          <div class="flag mx-2" [class]="lang.code"></div>
-          <span>{{lang.name}}</span>
-        </div>
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="screen-settings-container">
+  <tcs-button
+    [variant]="'icon'"
+    [label]="'header.switchBntAriaLabel' | translate"
+    (clicked)="onSwitchTheme()"
+  >
+    <mat-icon slot="button-icon">format_color_fill</mat-icon>
+  </tcs-button>
+
+  <tcs-form-field-select [appearance]="'standard'" [formCtrl]="langSelected" [options]="languages">
+  </tcs-form-field-select>
 </div>

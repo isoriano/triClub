@@ -10,6 +10,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { UiModule } from '@tri-club/ui';
+
 import { LoginComponent } from './containers/login/login.component';
 import { LogoutComponent } from './containers/logout/logout.component';
 import { IsAuthorizedDirective } from './directives/is-authorized.directive';
@@ -18,11 +20,7 @@ import * as fromReducers from './store/reducer';
 import { UserEffects } from './store/effects/user.effects';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    LogoutComponent,
-    IsAuthorizedDirective
-  ],
+  declarations: [LoginComponent, LogoutComponent, IsAuthorizedDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -33,15 +31,10 @@ import { UserEffects } from './store/effects/user.effects';
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,
-    EffectsModule.forRoot([
-      UserEffects
-    ]),
-    StoreModule.forFeature(fromReducers.FEATURE_NAME, fromReducers.reducers)
+    EffectsModule.forRoot([UserEffects]),
+    StoreModule.forFeature(fromReducers.FEATURE_NAME, fromReducers.reducers),
+    UiModule,
   ],
-  exports: [
-    LoginComponent,
-    LogoutComponent,
-    IsAuthorizedDirective
-  ]
+  exports: [LoginComponent, LogoutComponent, IsAuthorizedDirective],
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {}

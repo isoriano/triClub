@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
   switchTheme() {
     this.renderer.removeClass(document.body, this.theme);
-    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    this.theme = this.theme === 'dark-theme' ? 'light-theme' : 'dark-theme';
     this.setTheme();
   }
 

@@ -53,7 +53,14 @@
               "apps/portal-shell/src/assets/images",
               "apps/portal-shell/src/assets/i18n"
             ],
-            "styles": ["apps/portal-shell/src/styles.scss"],
+            "styles": [
+              "apps/portal-shell/src/styles.scss",
+              {
+                "input": "apps/portal-shell/src/styles/themes/_dark.scss",
+                "bundleName": "dark-theme",
+                "inject": true
+              }
+            ],
             "scripts": [],
             "extraWebpackConfig": "apps/portal-shell/webpack.config.js"
           },
@@ -431,6 +438,28 @@
           "options": {
             "jestConfig": "libs/authentication/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "tcs",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui"],
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
           }
         }
       }

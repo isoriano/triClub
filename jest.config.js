@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/dashboard',
     '<rootDir>/libs/authentication',
     '<rootDir>/apps/athlete',
+    '<rootDir>/libs/ui',
   ],
 };

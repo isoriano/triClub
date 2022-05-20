@@ -1,0 +1,5 @@
+@use "./screen-settings/screen-settings-theme.component" as screen-settings;
+
+@mixin theme($theme, $typography-config, $variants) {
+  @include screen-settings.color($theme);
+}

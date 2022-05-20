@@ -42,6 +42,9 @@
     "athlete-e2e": {
       "tags": [],
       "implicitDependencies": ["athlete"]
+    },
+    "ui": {
+      "tags": []
     }
   }
 }

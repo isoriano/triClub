@@ -1,0 +1,72 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin color($theme, $mat-variants, $variants) {
+  $config: mat.get-color-config($theme);
+
+  .tsc-section {
+    $foreground: map.get($theme, foreground);
+    $background: map.get($theme, background);
+    border-color: mat.get-color-from-palette($foreground, disabled);
+    background-color: mat.get-color-from-palette($background, card);
+  }
+
+  @each $variant in $mat-variants {
+    $palette: map.get($config, $variant);
+    .tsc-section {
+      &.#{$variant} {
+        border-color: mat.get-color-from-palette($palette, 200);
+        &.op-100 {
+          background-color: mat.get-color-from-palette($palette, 100, 1);
+        }
+        &.op-75 {
+          background-color: mat.get-color-from-palette($palette, 100, 0.75);
+        }
+        &.op-50 {
+          background-color: mat.get-color-from-palette($palette, 100, 0.5);
+        }
+        &.op-25 {
+          background-color: mat.get-color-from-palette($palette, 100, 0.25);
+        }
+        &.op-0 {
+          background-color: mat.get-color-from-palette($palette, 100, 0);
+        }
+      }
+    }
+  }
+
+  @each $variant, $variant-palette in $variants {
+    .tsc-section {
+      &.#{$variant} {
+        border-color: mat.get-color-from-palette($variant-palette, 200);
+        &.op-100 {
+          background-color: mat.get-color-from-palette($variant-palette, 100, 1);
+        }
+        &.op-75 {
+          background-color: mat.get-color-from-palette(
+            $variant-palette,
+            100,
+            0.75
+          );
+        }
+        &.op-50 {
+          background-color: mat.get-color-from-palette(
+            $variant-palette,
+            100,
+            0.5
+          );
+        }
+        &.op-25 {
+          background-color: mat.get-color-from-palette(
+            $variant-palette,
+            100,
+            0.25
+          );
+        }
+        &.op-0 {
+          background-color: mat.get-color-from-palette($variant-palette, 100, 0);
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@
   flex-flow: row;
   display: flex;
   justify-content: space-around;
-  section {
+  tsc-section {
     width: 100%;
     .access-buttons-container {
       padding: 0 1rem;
@@ -14,13 +14,6 @@
         width: 100%;
         padding: 0.35rem;
         margin-top: 10px;
-        &.btn-facebook {
-          color: #fff;
-          background-color: #3b5998;
-          .mat-icon {
-            top: 10px;
-          }
-        }
         .mat-icon {
           position: absolute;
           left: 5px;

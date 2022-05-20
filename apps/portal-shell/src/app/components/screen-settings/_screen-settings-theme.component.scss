@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "sass:meta";
+@use "@angular/material" as mat;
+
+@mixin color($theme) {
+  $config: mat.get-color-config($theme);
+  $palette: map.get($config, 'primary');
+
+  .screen-settings-container {
+    background-color: mat.get-color-from-palette($palette, 100, 1);
+  }
+}

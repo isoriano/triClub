@@ -1,0 +1,83 @@
+<ng-container [ngSwitch]="variant">
+  <button
+    *ngSwitchCase="'plain'"
+    mat-button
+    [color]="color"
+    [id]="id"
+    [type]="type"
+    [attr.data-testid]="testId"
+    [class.loading]="isLoading"
+    [disabled]="isLoading || isDisabled"
+    [ngClass]="size"
+    (click)="onClick()"
+  >
+    {{ label }}
+    <ng-content select="[slot=plain-button-icon]"></ng-content>
+  </button>
+  <button
+    *ngSwitchCase="'raised'"
+    mat-raised-button
+    [color]="color"
+    [id]="id"
+    [type]="type"
+    [title]="label"
+    [attr.aria-label]="ariaLabel"
+    [attr.data-testid]="testId"
+    [class.loading]="isLoading"
+    [disabled]="isLoading || isDisabled"
+    [ngClass]="size"
+    (click)="onClick()"
+  >
+    {{ label }}
+    <ng-content select="[slot=raised-button-icon]"></ng-content>
+  </button>
+  <button
+    *ngSwitchCase="'stroked'"
+    mat-stroked-button
+    [color]="color"
+    [id]="id"
+    [type]="type"
+    [title]="label"
+    [attr.aria-label]="ariaLabel"
+    [attr.data-testid]="testId"
+    [class.loading]="isLoading"
+    [disabled]="isLoading || isDisabled"
+    [ngClass]="size"
+    (click)="onClick()"
+  >
+    {{ label }}
+    <ng-content select="[slot=stroked-button-icon]"></ng-content>
+  </button>
+  <button
+    *ngSwitchCase="'flat'"
+    mat-flat-button
+    [color]="color"
+    [id]="id"
+    [type]="type"
+    [title]="label"
+    [attr.aria-label]="ariaLabel"
+    [attr.data-testid]="testId"
+    [class.loading]="isLoading"
+    [disabled]="isLoading || isDisabled"
+    [ngClass]="size"
+    (click)="onClick()"
+  >
+    {{ label }}
+  </button>
+  <button
+    *ngSwitchCase="'icon'"
+    mat-icon-button
+    [color]="color"
+    [id]="id"
+    [type]="type"
+    [title]="label"
+    [attr.aria-label]="label"
+    [attr.data-testid]="testId"
+    [class.loading]="isLoading"
+    [disabled]="isLoading || isDisabled"
+    [ngClass]="size"
+    (click)="onClick()"
+  >
+    <ng-content select="[slot=button-icon]"></ng-content>
+  </button>
+</ng-container>

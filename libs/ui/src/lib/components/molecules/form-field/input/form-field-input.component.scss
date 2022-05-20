@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  &.field-has-hint {
+    .mat-form-field {
+      margin-bottom: 16px;
+    }
+  }
+  .mat-form-field {
+    display: block;
+    &.ng-touched.ng-invalid {
+      margin-bottom: 16px;
+    }
+  }
+  ::ng-deep {
+    .mat-form-field-prefix {
+      margin-right: 8px;
+    }
+  }
+
+  input[type='time']::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+}

@@ -1,0 +1,11 @@
+:host {
+  .mat-form-field {
+    ::ng-deep {
+      .option-image {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+    }
+  }
+}

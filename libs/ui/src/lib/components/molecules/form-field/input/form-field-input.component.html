@@ -1,0 +1,28 @@
+<mat-form-field [appearance]="appearance" [color]="color">
+  <mat-label><ng-content select="[slot=label]"></ng-content></mat-label>
+  <input
+    matInput
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="false"
+    [formControl]="formControl"
+    [id]="id"
+    [placeholder]="placeholder"
+    [readonly]="readonly"
+    [required]="required"
+    [type]="type"
+    [attr.maxLength]="maxLength"
+  />
+  <span matPrefix><ng-content select="[slot=prefix-icon]"></ng-content></span>
+  <span matSuffix><ng-content select="[slot=suffix-icon]"></ng-content></span>
+  <mat-error *ngIf="formControl.invalid">
+    {{ formControl.getError('errorMessage') }}
+  </mat-error>
+  <mat-hint align="start">
+    <ng-content select="[slot=hint-start]"></ng-content>
+  </mat-hint>
+  <mat-hint align="end">
+    <ng-content select="[slot=hint-end]"></ng-content>
+  </mat-hint>
+</mat-form-field>

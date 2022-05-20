@@ -17,12 +17,12 @@ import { loadRemoteModule } from '@angular-architects/module-federation';
 import { AngularFireModule } from '@angular/fire';
 import { StoreModule } from '@ngrx/store';
 
+import { AuthenticationModule, LoginComponent } from '@tri-club/authentication';
+import { UiModule } from '@tri-club/ui';
+
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-
 import * as fromComponents from './components';
-
-import { AuthenticationModule, LoginComponent } from '@tri-club/authentication';
 
 const routes: Routes = [
   {
@@ -31,12 +31,12 @@ const routes: Routes = [
       loadRemoteModule({
         // remoteEntry: `${environment.url}${environment.sites.dashboard}/remoteEntry.js`,
         remoteName: 'dashboard',
-        exposedModule: './Module'
-      }).then(m => m.DashboardModule)
+        exposedModule: './Module',
+      }).then((m) => m.DashboardModule),
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'athlete',
@@ -45,9 +45,9 @@ const routes: Routes = [
       loadRemoteModule({
         // remoteEntry: `${environment.url}${environment.sites.athlete}/remoteEntry.js`,
         remoteName: 'athlete',
-        exposedModule: './Module'
-      }).then(m => m.AthleteModule)
-  }
+        exposedModule: './Module',
+      }).then((m) => m.AthleteModule),
+  },
 ];
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -55,10 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ...fromComponents.components
-  ],
+  declarations: [AppComponent, ...fromComponents.components],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -71,8 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     MatToolbarModule,
     MatIconModule,
@@ -82,9 +79,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSelectModule,
     MatFormFieldModule,
     StoreModule.forRoot({}),
-    AuthenticationModule
+    AuthenticationModule,
+    UiModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

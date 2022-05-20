@@ -1,0 +1,26 @@
+<mat-form-field
+  [id]="id"
+  [appearance]="appearance"
+  [color]="color"
+  class="full-width"
+>
+  <mat-label><ng-content select="[slot=label]"></ng-content></mat-label>
+  <mat-select
+    [required]="required"
+    [formControl]="formControl"
+    (selectionChange)="onSelectChange($event)"
+  >
+    <mat-option *ngFor="let option of options" [value]="option.value">
+      {{ option.name }}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="formControl.invalid">
+    {{ formControl.getError('errorMessage') }}
+  </mat-error>
+  <mat-hint align="start">
+    <ng-content select="[slot=hint-start]"></ng-content>
+  </mat-hint>
+  <mat-hint align="end">
+    <ng-content select="[slot=hint-end]"></ng-content>
+  </mat-hint>
+</mat-form-field>
