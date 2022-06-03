@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { AbstractControl, UntypedFormControl } from '@angular/forms';
 
 import { ThemePalette } from '../../../../types/theme-palette.type';
 
@@ -10,7 +10,7 @@ import { ThemePalette } from '../../../../types/theme-palette.type';
 })
 export class FormFieldInputComponent {
   @Input() set formCtrl(ctrl: AbstractControl) {
-    this.formControl = ctrl ? (ctrl as FormControl) : new FormControl('');
+    this.formControl = ctrl ? (ctrl as UntypedFormControl) : new UntypedFormControl('');
   }
   @Input() id: string;
   @Input() placeholder: string;
@@ -21,5 +21,5 @@ export class FormFieldInputComponent {
   @Input() appearance: 'standard' | 'outline' = 'outline';
   @Input() color: ThemePalette;
 
-  formControl: FormControl;
+  formControl: UntypedFormControl;
 }

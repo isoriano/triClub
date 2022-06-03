@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -14,8 +14,8 @@ import { userActions, userSelectors, userReducers, User, ISport } from '@tri-clu
 
 export class ProfileComponent implements OnInit {
 
-  profileForm: FormGroup;
-  updatePasswordForm: FormGroup;
+  profileForm: UntypedFormGroup;
+  updatePasswordForm: UntypedFormGroup;
   sports: ISport[] = [];
   errorMessage$ = new Subject<string>();
   userUpdating$: Observable<boolean>;
@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private store: Store<userReducers.UserState>,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) { }
 
   ngOnInit() {
