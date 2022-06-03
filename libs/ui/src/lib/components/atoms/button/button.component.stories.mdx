@@ -1,0 +1,58 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { moduleMetadata } from '@storybook/angular';
+import { Meta, Props, Story, ArgsTable, Canvas } from '@storybook/addon-docs/blocks';
+
+import { UiModule } from '../../../ui.module';
+import { ButtonComponent } from './button.component';
+
+<Meta
+  title="Atoms/Button"
+  component={ButtonComponent}
+  decorators={[
+    moduleMetadata({
+      imports: [BrowserAnimationsModule, UiModule]
+    })
+  ]}
+  argTypes={{
+    color: {
+      options: ['primary', 'warn', 'accent'],
+      control: { type: 'radio' }
+    }
+  }}
+/>
+
+export const Template = (args) => ({
+  props: args,
+  template: `
+  <div class="story-container">
+    <tcs-button [label]="label" [color]="color" [isLoading]="isLoading" [isDisabled]="isDisabled" [size]="size" [variant]="variant">    
+    </tcs-button>
+  </div>`
+});
+
+# Button
+
+## Basic Use
+
+```
+<tcs-button [label]="'Default'" (clicked)="onClick()">
+</tcs-button>
+```
+
+The default look of the button is 'stroked' as shown below.
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      label: 'Default',
+      variant: 'stroked'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Variants
+
+<ArgsTable />
