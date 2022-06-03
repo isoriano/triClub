@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { loadRemoteModule } from '@angular-architects/module-federation';
-import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireModule } from '@angular/fire';
 import { StoreModule } from '@ngrx/store';
 
 import { AuthenticationModule, LoginComponent } from '@tri-club/authentication';

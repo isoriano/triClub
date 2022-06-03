@@ -1,8 +1,5 @@
-const { getJestProjects } = require('@nrwl/jest');
-
-export default {
+module.exports = {
   projects: [
-    ...getJestProjects(),
     '<rootDir>/apps/portal-shell',
     '<rootDir>/apps/dashboard',
     '<rootDir>/libs/authentication',

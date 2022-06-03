@@ -1,294 +1,38 @@
 {
   "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "yarn"
+  },
+  "defaultProject": "portal-shell",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
   "projects": {
-    "athlete": {
-      "projectType": "application",
-      "root": "apps/athlete",
-      "sourceRoot": "apps/athlete/src",
-      "prefix": "tcs",
-      "architect": {
-        "build": {
-          "builder": "ngx-build-plus:browser",
-          "options": {
-            "outputPath": "dist/athlete",
-            "index": "apps/athlete/src/index.html",
-            "main": "apps/athlete/src/main.ts",
-            "polyfills": "apps/athlete/src/polyfills.ts",
-            "tsConfig": "apps/athlete/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "apps/athlete/src/favicon.ico",
-              "apps/athlete/src/assets"
-            ],
-            "styles": ["apps/athlete/src/styles.scss"],
-            "scripts": [],
-            "extraWebpackConfig": "apps/athlete/webpack.config.js"
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "apps/athlete/src/environments/environment.ts",
-                  "with": "apps/athlete/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all",
-              "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
-              "extraWebpackConfig": "apps/athlete/webpack.config.js"
-            }
-          }
-        },
-        "serve": {
-          "builder": "ngx-build-plus:dev-server",
-          "options": {
-            "port": 3001
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "athlete:build:production",
-              "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
-            },
-            "development": {
-              "browserTarget": "athlete:build:development",
-              "extraWebpackConfig": "apps/athlete/webpack.config.js"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "athlete:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/athlete/src/**/*.ts",
-              "apps/athlete/src/**/*.html"
-            ]
-          },
-          "outputs": ["{options.outputFile}"]
-        },
-        "test": {
-          "builder": "ngx-build-plus:karma",
-          "outputs": ["coverage/apps/athlete"],
-          "options": {
-            "jestConfig": "apps/athlete/jest.config.js",
-            "passWithNoTests": true,
-            "extraWebpackConfig": "apps/athlete/webpack.config.js"
-          }
-        }
-      },
-      "tags": []
-    },
-    "athlete-e2e": {
-      "root": "apps/athlete-e2e",
-      "sourceRoot": "apps/athlete-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/athlete-e2e/cypress.json",
-            "tsConfig": "apps/athlete-e2e/tsconfig.e2e.json",
-            "devServerTarget": "athlete:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "athlete:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/athlete-e2e/**/*.{js,ts}"]
-          },
-          "outputs": ["{options.outputFile}"]
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["athlete"]
-    },
-    "authentication": {
-      "projectType": "library",
-      "root": "libs/authentication",
-      "sourceRoot": "libs/authentication/src",
-      "prefix": "tcs",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/authentication/src/**/*.ts",
-              "libs/authentication/src/**/*.html"
-            ]
-          },
-          "outputs": ["{options.outputFile}"]
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/authentication"],
-          "options": {
-            "jestConfig": "libs/authentication/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "dashboard": {
-      "projectType": "application",
-      "root": "apps/dashboard",
-      "sourceRoot": "apps/dashboard/src",
-      "prefix": "tcs",
-      "architect": {
-        "build": {
-          "builder": "ngx-build-plus:browser",
-          "options": {
-            "outputPath": "dist/dashboard",
-            "index": "apps/dashboard/src/index.html",
-            "main": "apps/dashboard/src/main.ts",
-            "polyfills": "apps/dashboard/src/polyfills.ts",
-            "tsConfig": "apps/dashboard/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "apps/dashboard/src/favicon.ico",
-              "apps/dashboard/src/assets"
-            ],
-            "styles": ["apps/dashboard/src/styles.scss"],
-            "scripts": [],
-            "extraWebpackConfig": "apps/dashboard/webpack.config.js"
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "apps/dashboard/src/environments/environment.ts",
-                  "with": "apps/dashboard/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all",
-              "extraWebpackConfig": "apps/dashboard/webpack.prod.config.js"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          }
-        },
-        "serve": {
-          "builder": "ngx-build-plus:dev-server",
-          "options": {
-            "port": 3000
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "dashboard:build:production",
-              "extraWebpackConfig": "apps/dashboard/webpack.prod.config.js"
-            },
-            "development": {
-              "browserTarget": "dashboard:build:development",
-              "extraWebpackConfig": "apps/dashboard/webpack.config.js"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "dashboard:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/dashboard/src/**/*.ts",
-              "apps/dashboard/src/**/*.html"
-            ]
-          },
-          "outputs": ["{options.outputFile}"]
-        },
-        "test": {
-          "builder": "ngx-build-plus:karma",
-          "outputs": ["coverage/apps/dashboard"],
-          "options": {
-            "jestConfig": "apps/dashboard/jest.config.js",
-            "passWithNoTests": true,
-            "extraWebpackConfig": "apps/dashboard/webpack.config.js"
-          }
-        }
-      },
-      "tags": []
-    },
-    "dashboard-e2e": {
-      "root": "apps/dashboard-e2e",
-      "sourceRoot": "apps/dashboard-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/dashboard-e2e/cypress.json",
-            "tsConfig": "apps/dashboard-e2e/tsconfig.e2e.json",
-            "devServerTarget": "dashboard:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "dashboard:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/dashboard-e2e/**/*.{js,ts}"]
-          },
-          "outputs": ["{options.outputFile}"]
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["dashboard"]
-    },
     "portal-shell": {
       "projectType": "application",
       "root": "apps/portal-shell",
@@ -383,8 +127,7 @@
               "apps/portal-shell/src/**/*.ts",
               "apps/portal-shell/src/**/*.html"
             ]
-          },
-          "outputs": ["{options.outputFile}"]
+          }
         },
         "test": {
           "builder": "ngx-build-plus:karma",
@@ -395,8 +138,7 @@
             "extraWebpackConfig": "apps/portal-shell/webpack.config.js"
           }
         }
-      },
-      "tags": []
+      }
     },
     "portal-shell-e2e": {
       "root": "apps/portal-shell-e2e",
@@ -420,12 +162,285 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/portal-shell-e2e/**/*.{js,ts}"]
-          },
-          "outputs": ["{options.outputFile}"]
+          }
         }
-      },
-      "tags": [],
-      "implicitDependencies": ["portal-shell"]
+      }
+    },
+    "dashboard": {
+      "projectType": "application",
+      "root": "apps/dashboard",
+      "sourceRoot": "apps/dashboard/src",
+      "prefix": "tcs",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/dashboard",
+            "index": "apps/dashboard/src/index.html",
+            "main": "apps/dashboard/src/main.ts",
+            "polyfills": "apps/dashboard/src/polyfills.ts",
+            "tsConfig": "apps/dashboard/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/dashboard/src/favicon.ico",
+              "apps/dashboard/src/assets"
+            ],
+            "styles": ["apps/dashboard/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/dashboard/webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/dashboard/src/environments/environment.ts",
+                  "with": "apps/dashboard/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/dashboard/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "port": 3000
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dashboard:build:production",
+              "extraWebpackConfig": "apps/dashboard/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "dashboard:build:development",
+              "extraWebpackConfig": "apps/dashboard/webpack.config.js"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dashboard:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/dashboard/src/**/*.ts",
+              "apps/dashboard/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/dashboard"],
+          "options": {
+            "jestConfig": "apps/dashboard/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/dashboard/webpack.config.js"
+          }
+        }
+      }
+    },
+    "dashboard-e2e": {
+      "root": "apps/dashboard-e2e",
+      "sourceRoot": "apps/dashboard-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/dashboard-e2e/cypress.json",
+            "tsConfig": "apps/dashboard-e2e/tsconfig.e2e.json",
+            "devServerTarget": "dashboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dashboard:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/dashboard-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "athlete": {
+      "projectType": "application",
+      "root": "apps/athlete",
+      "sourceRoot": "apps/athlete/src",
+      "prefix": "tcs",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/athlete",
+            "index": "apps/athlete/src/index.html",
+            "main": "apps/athlete/src/main.ts",
+            "polyfills": "apps/athlete/src/polyfills.ts",
+            "tsConfig": "apps/athlete/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/athlete/src/favicon.ico",
+              "apps/athlete/src/assets"
+            ],
+            "styles": ["apps/athlete/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/athlete/webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/athlete/src/environments/environment.ts",
+                  "with": "apps/athlete/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "extraWebpackConfig": "apps/athlete/webpack.config.js"
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "port": 3001
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "athlete:build:production",
+              "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "athlete:build:development",
+              "extraWebpackConfig": "apps/athlete/webpack.config.js"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "athlete:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/athlete/src/**/*.ts",
+              "apps/athlete/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/athlete"],
+          "options": {
+            "jestConfig": "apps/athlete/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/athlete/webpack.config.js"
+          }
+        }
+      }
+    },
+    "athlete-e2e": {
+      "root": "apps/athlete-e2e",
+      "sourceRoot": "apps/athlete-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/athlete-e2e/cypress.json",
+            "tsConfig": "apps/athlete-e2e/tsconfig.e2e.json",
+            "devServerTarget": "athlete:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "athlete:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/athlete-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "authentication": {
+      "projectType": "library",
+      "root": "libs/authentication",
+      "sourceRoot": "libs/authentication/src",
+      "prefix": "tcs",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/authentication/src/**/*.ts",
+              "libs/authentication/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/authentication"],
+          "options": {
+            "jestConfig": "libs/authentication/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     },
     "ui": {
       "projectType": "library",
@@ -437,7 +452,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/ui"],
           "options": {
-            "jestConfig": "libs/ui/jest.config.ts",
+            "jestConfig": "libs/ui/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -445,11 +460,9 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
-          },
-          "outputs": ["{options.outputFile}"]
+          }
         }
-      },
-      "tags": []
+      }
     }
   }
 }
