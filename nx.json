@@ -14,56 +14,15 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "accessToken": "MTE5NjJlOTItNzA2Zi00OGU3LTg4NjItZDI2M2FkNTY2NmM0fHJlYWQtd3JpdGU="
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "MTE5NjJlOTItNzA2Zi00OGU3LTg4NjItZDI2M2FkNTY2NmM0fHJlYWQtd3JpdGU=",
+        "parallel": 1
       }
-    }
-  },
-  "projects": {
-    "portal-shell": {
-      "tags": []
-    },
-    "portal-shell-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "portal-shell"
-      ]
-    },
-    "dashboard": {
-      "tags": []
-    },
-    "dashboard-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "dashboard"
-      ]
-    },
-    "authentication": {
-      "tags": []
-    },
-    "athlete": {
-      "tags": []
-    },
-    "athlete-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "athlete"
-      ]
-    },
-    "ui": {
-      "tags": []
     }
   },
   "cli": {
     "packageManager": "yarn",
-    "schematicCollections": [
-      "@nrwl/angular"
-    ]
+    "schematicCollections": ["@nrwl/angular"]
   },
   "generators": {
     "@nrwl/angular": {
@@ -84,7 +43,6 @@
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
