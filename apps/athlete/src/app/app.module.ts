@@ -9,7 +9,7 @@ import { AthleteModule } from './feature/athlete.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking'  }),
     AthleteModule
   ],
   providers: [],

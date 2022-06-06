@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector, DefaultProjectorFn, MemoizedSelector } from '@ngrx/store';
 
 import * as fromReducers from '../reducer';
 import * as fromUserReducers from '../reducer/user.reducer';
 import { User } from '../../models/user.interface';
 
-export const getAuthState: MemoizedSelector<any, any> = createFeatureSelector<fromReducers.AuthState>(fromReducers.FEATURE_NAME);
+export const getAuthState: MemoizedSelector<unknown, fromReducers.AuthState, DefaultProjectorFn<fromReducers.AuthState>> = createFeatureSelector<fromReducers.AuthState>(fromReducers.FEATURE_NAME);
 
 export const getUserState: MemoizedSelector<fromReducers.AuthState, fromUserReducers.UserState> = createSelector(getAuthState,
   (state: fromReducers.AuthState) => {
@@ -14,22 +13,22 @@ export const getUserState: MemoizedSelector<fromReducers.AuthState, fromUserRedu
       : fromUserReducers.initialState;
   });
 
-export const getUser: MemoizedSelector<any, User> = createSelector(getUserState, (userState: fromUserReducers.UserState) => {
-  return userState.user;
+export const getUser: MemoizedSelector<unknown, User> = createSelector(getUserState, (userState: fromUserReducers.UserState) => {
+  return userState.user;  
 });
-
-export const getUid: MemoizedSelector<any, string> = createSelector(getUser, (user: User) => {
+           
+export const getUid: MemoizedSelector<unknown, string> = createSelector(getUser, (user: User) => {
   return user.uid;
 });
 
-export const getUserLoading: MemoizedSelector<any, boolean> = createSelector(getUserState, (user: fromUserReducers.UserState) => {
+export const getUserLoading: MemoizedSelector<unknown, boolean> = createSelector(getUserState, (user: fromUserReducers.UserState) => {
   return user.loading;
 });
 
-export const getUserSaving: MemoizedSelector<any, boolean> = createSelector(getUserState, (user: fromUserReducers.UserState) => {
+export const getUserSaving: MemoizedSelector<unknown, boolean> = createSelector(getUserState, (user: fromUserReducers.UserState) => {
   return user.saving;
 });
 
-export const getUserError: MemoizedSelector<any, string> = createSelector(getUserState, (user: fromUserReducers.UserState) => {
+export const getUserError: MemoizedSelector<unknown, string> = createSelector(getUserState, (user: fromUserReducers.UserState) => {
   return user.error;
 });

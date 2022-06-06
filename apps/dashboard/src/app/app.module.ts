@@ -9,7 +9,7 @@ import { DashboardModule } from './feature/dashboard.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     DashboardModule
   ],
   providers: [],
