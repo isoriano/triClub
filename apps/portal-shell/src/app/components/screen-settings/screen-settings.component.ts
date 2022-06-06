@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { tap } from 'rxjs/operators';
 
@@ -14,7 +14,7 @@ import { tap } from 'rxjs/operators';
 export class ScreenSettingsComponent implements OnInit {
   @Output() switchTheme = new EventEmitter();
 
-  langSelected: UntypedFormControl;
+  langSelected: FormControl;
   get langNameSelected() {
     return this.languages.find((lang) => lang.value === this.langSelected.value)
       ?.name;
@@ -26,7 +26,7 @@ export class ScreenSettingsComponent implements OnInit {
   ];
 
   constructor(private translate: TranslateService) {
-    this.langSelected = new UntypedFormControl('en');
+    this.langSelected = new FormControl('en');
   }
 
   ngOnInit() {
