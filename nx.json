@@ -12,9 +12,15 @@
   "npmScope": "tri-club",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "MTE5NjJlOTItNzA2Zi00OGU3LTg4NjItZDI2M2FkNTY2NmM0fHJlYWQtd3JpdGU="
       }
     }
   },
@@ -24,14 +30,18 @@
     },
     "portal-shell-e2e": {
       "tags": [],
-      "implicitDependencies": ["portal-shell"]
+      "implicitDependencies": [
+        "portal-shell"
+      ]
     },
     "dashboard": {
       "tags": []
     },
     "dashboard-e2e": {
       "tags": [],
-      "implicitDependencies": ["dashboard"]
+      "implicitDependencies": [
+        "dashboard"
+      ]
     },
     "authentication": {
       "tags": []
@@ -41,7 +51,9 @@
     },
     "athlete-e2e": {
       "tags": [],
-      "implicitDependencies": ["athlete"]
+      "implicitDependencies": [
+        "athlete"
+      ]
     },
     "ui": {
       "tags": []
