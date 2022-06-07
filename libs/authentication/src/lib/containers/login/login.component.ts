@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
   isLoading$: Observable<boolean>;
   errorMessage$: Subject<string> = new Subject();
 
-  loginForm: UntypedFormGroup;
+  loginForm: FormGroup;
 
   private defaultRedirect = 'dashboard';
 
   constructor(
     private store: Store<IUser>,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private router: Router,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer

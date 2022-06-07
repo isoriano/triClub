@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AbstractControl, UntypedFormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 
 import { ThemePalette, Option } from '../../../../types';
@@ -11,7 +11,7 @@ import { ThemePalette, Option } from '../../../../types';
 })
 export class FormFieldSelectComponent {
   @Input() set formCtrl(ctrl: AbstractControl) {
-    this.formControl = ctrl ? (ctrl as UntypedFormControl) : new UntypedFormControl('');
+    this.formControl = ctrl ? (ctrl as FormControl) : new FormControl('');
   }
   @Input() options: Option[];
   @Input() required: boolean;
@@ -21,7 +21,7 @@ export class FormFieldSelectComponent {
 
   @Output() selectionChange = new EventEmitter();
 
-  formControl: UntypedFormControl;
+  formControl: FormControl;
 
   onSelectChange(change: MatSelectChange): void {
     this.selectionChange.emit(change);
