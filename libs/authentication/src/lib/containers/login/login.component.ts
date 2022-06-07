@@ -49,7 +49,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.defaultRedirect]);
       }
     });
-    this.initloginForm();
+
+    this.initLoginForm();
   }
 
   signIn() {
@@ -62,11 +63,10 @@ export class LoginComponent implements OnInit {
   }
 
   signInGoogle() {
-    // this.handleSignIn(() => this.authService.signInGoogle());
     this.store.dispatch(new userActions.GoogleLogIn());
   }
 
-  private initloginForm() {
+  private initLoginForm() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]

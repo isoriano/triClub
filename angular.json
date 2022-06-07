@@ -61,6 +61,7 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
+            "publicHost": "http://localhost:3001",
             "port": 3001
           },
           "configurations": {
@@ -217,7 +218,8 @@
         },
         "serve": {
           "builder": "ngx-build-plus:dev-server",
-          "options": {
+          "options": {            
+						"publicHost": "http://localhost:3000",
             "port": 3000
           },
           "configurations": {
