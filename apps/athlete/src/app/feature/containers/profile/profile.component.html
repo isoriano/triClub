@@ -41,9 +41,6 @@
       <p class="tsc-success" *ngIf="passwordUpdated$ | async as passwordUpdated">
         {{'profile.passwordUpdated' | translate}}
       </p>
-      <!-- <p class="tsc-error" *ngIf="authErrorMessage$ | async as authErrorMessage">
-        {{ authErrorMessage | translate }}
-      </p> -->
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>{{'profile.oldPassword' | translate}}</mat-label>
         <input matInput formControlName="oldPassword" type="password">

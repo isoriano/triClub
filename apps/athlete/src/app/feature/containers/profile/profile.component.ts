@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   userUpdating$: Observable<boolean>;
   passwordUpdated$ = new Subject<boolean>();
   passwordUpdating$ = new Subject<boolean>();
+  
   private user: User;
 
   constructor(

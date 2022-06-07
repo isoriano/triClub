@@ -15,11 +15,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
-import { AuthenticationModule, AuthGuard } from '@tri-club/authentication';
+import { AuthenticationModule, AuthGuard, userReducers } from '@tri-club/authentication';
 
 import { RegistrationComponent } from './containers/registration/registration.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { PasswordStrengthBarComponent } from './components/password-strength-bar/password-strength-bar.component';
+import { StoreModule } from '@ngrx/store';
 
 const routes: Routes = [
   {
@@ -59,7 +60,8 @@ const routes: Routes = [
     MatCheckboxModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    AuthenticationModule
+    AuthenticationModule,
+    StoreModule.forFeature(userReducers.FEATURE_NAME, userReducers.reducers),
   ]
 })
 export class AthleteModule { }
