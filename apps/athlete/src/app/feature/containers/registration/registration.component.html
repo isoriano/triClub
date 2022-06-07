@@ -1,18 +1,18 @@
-<!-- <section class="dark">
+<section class="dark">
   <h1 class="mat-h1 text-center">{{'register.title' | translate}}</h1>
   <div class="access-buttons-container">
-    <button mat-raised-button class="btn-facebook">
+    <!-- <button mat-raised-button class="btn-facebook">
       <mat-icon>facebook</mat-icon>
       {{'register.accessFacebook' | translate}}
-    </button>
+    </button> -->
     <button mat-raised-button (click)="registerGoogle()">
       <mat-icon svgIcon="googleLogo"></mat-icon>
       {{'register.accessGoogle' | translate}}
     </button>
-    <button mat-raised-button>
+    <!-- <button mat-raised-button>
       <mat-icon svgIcon="appleLogo"></mat-icon>
       {{'register.accessApple' | translate}}
-    </button>
+    </button> -->
   </div>
   <h2 class="mat-h2 text-center">{{'register.useEmailPassword' | translate}}</h2>
   <form [formGroup]="registrationForm" (submit)="register()">
@@ -45,4 +45,4 @@
     <button mat-raised-button color="accent" type="submit">{{'register.signUp' | translate}}</button>
     <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-bar>
   </form>
-</section> -->
+</section>
