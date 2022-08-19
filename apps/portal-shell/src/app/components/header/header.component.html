@@ -4,30 +4,13 @@
       <mat-icon>menu</mat-icon>
     </button>
     <a class="public-logo" href="/"></a>
-    <div *isAuthorized="true" class="d-md-block d-none">
+    <div *ngIf="auth.isAuthenticated$ | async" class="d-md-block d-none">
       <a mat-button [routerLink]="'/dashboard'"> Dashboard </a>
       <a mat-button [routerLink]="'/activities'"> Activities </a>
       <a mat-button [routerLink]="'/athlete/profile'"> Profile </a>
     </div>
     <span class="spacer"></span>
-    <ng-container *isAuthorized="false">
-      <tcs-button
-        *ngIf="!hasRoute('login'); else registerBtn"
-        class="mx-4"
-        [variant]="'raised'"
-        [label]="'header.signIn' | translate"
-        (clicked)="onGoTo('login')"
-      ></tcs-button>
-      <ng-template #registerBtn>
-        <tcs-button
-          class="mx-4"
-          [variant]="'raised'"
-          [label]="'header.register' | translate"
-          (clicked)="onGoTo('athlete/register')"
-        ></tcs-button>
-      </ng-template>
-    </ng-container>
 
-    <tcs-logout *isAuthorized="true"></tcs-logout>
+    <tcs-auth-button></tcs-auth-button>
   </mat-toolbar-row>
 </mat-toolbar>

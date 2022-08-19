@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\triClub-backend"
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"autofocus",
+			"codepaths",
+			"expressjwt",
+			"jwks",
+			"nrwl",
+			"singleline",
+			"tabindex",
+			"tsbuildinfo"
+		]
+	}
+}

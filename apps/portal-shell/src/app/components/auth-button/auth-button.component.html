@@ -1,0 +1,22 @@
+<isg-button
+  *ngIf="auth.isAuthenticated$ | async; else loggedOut"
+  [label]="'header.signOut' | translate"
+  [variant]="'stroked'"
+  (clicked)="auth.logout({ returnTo: document.location.origin })"
+></isg-button>
+<ng-template #loggedOut>
+  <isg-button
+    [label]="'header.signIn' | translate"
+    [variant]="'raised'"
+    (clicked)="
+      auth.loginWithRedirect({
+        appState: { target: '/dashboard' }
+      })
+    "
+  ></isg-button>
+  <isg-button
+    [label]="'header.register' | translate"
+    [variant]="'raised'"
+    (clicked)="auth.loginWithRedirect({ screen_hint: 'signup' })"
+  ></isg-button>
+</ng-template>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from "@auth0/auth0-angular";
 
 @Component({
   selector: 'tcs-header',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private router: Router) {}
+  constructor(public auth: AuthService, private router: Router) {}
 
   hasRoute(route: string) {
     return this.router.url.includes(route);

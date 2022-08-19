@@ -1,6 +1,6 @@
 <tcs-header></tcs-header>
 
-<main [class.public]="(isLoggedIn$ | async) === false">
+<main [class.public]="this.auth.isAuthenticated$ | async">
   <router-outlet></router-outlet>
 </main>
 

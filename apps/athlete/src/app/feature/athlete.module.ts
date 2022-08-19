@@ -14,13 +14,13 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 
-import { AuthenticationModule, AuthGuard, userReducers } from '@tri-club/authentication';
+import { UserModule } from '@tri-club/user';
 
 import { RegistrationComponent } from './containers/registration/registration.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { PasswordStrengthBarComponent } from './components/password-strength-bar/password-strength-bar.component';
-import { StoreModule } from '@ngrx/store';
 
 const routes: Routes = [
   {
@@ -45,6 +45,7 @@ const routes: Routes = [
     MatIconRegistry
   ],
   imports: [
+    AuthModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -59,9 +60,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatMomentDateModule,
-    AuthenticationModule,
-    StoreModule.forFeature(userReducers.FEATURE_NAME, userReducers.reducers),
+    MatMomentDateModule
   ]
 })
 export class AthleteModule { }

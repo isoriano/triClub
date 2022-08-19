@@ -4,7 +4,7 @@ const path = require('path');
 
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
-  // '@tri-club/authentication',
+  '@tri-club/user',
 ]);
 
 module.exports = {
@@ -28,14 +28,12 @@ module.exports = {
       library: { type: "module" },
       remotes: {},
       shared: {
-        // Keep strictVersion as false until firebase is updated to angular v12
         "@angular/core": { singleton: true, strictVersion: false }, 
         "@angular/common": { singleton: true, strictVersion: false }, 
+        "@angular/common/http": { singleton: true, strictVersion: false },
         "@angular/router": { singleton: true, strictVersion: false },
-        '@angular/fire/compat': { singleton: true, strictVersion: false },
         '@ngx-translate/core': { singleton: true, strictVersion: false },
-        '@ngrx/store': { singleton: true, strictVersion: false },
-        'firebase': { singleton: true, strictVersion: false },
+        '@auth0/auth0-angular': { singleton: true, strictVersion: false },
         'rxjs': { singleton: true, strictVersion: false },
         'rxjs/operators': { singleton: true, strictVersion: false },
         ...sharedMappings.getDescriptors(),

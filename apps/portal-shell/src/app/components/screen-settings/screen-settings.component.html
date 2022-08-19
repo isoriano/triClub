@@ -1,11 +1,11 @@
 <div class="screen-settings-container">
-  <tcs-button
+  <isg-button
     [variant]="'icon'"
     [label]="'header.switchBntAriaLabel' | translate"
     (clicked)="onSwitchTheme()"
   >
     <mat-icon slot="button-icon">format_color_fill</mat-icon>
-  </tcs-button>
+  </isg-button>
 
   <tcs-form-field-select [appearance]="'standard'" [formCtrl]="langSelected" [options]="languages">
   </tcs-form-field-select>

@@ -1,24 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthModule } from '@auth0/auth0-angular';
 
-import { AuthenticationModule, AuthGuard } from '@tri-club/authentication';
+import { UserModule } from '@tri-club/user';
 
 import { DashboardComponent } from './container/dashboard.component';
+import {  HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
+    component: DashboardComponent
   }
 ];
 
 @NgModule({
   imports: [
+    AuthModule,
     CommonModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
-    AuthenticationModule
+    UserModule
   ],
   exports: [DashboardComponent],
   declarations: [DashboardComponent],

@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -14,22 +18,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { loadRemoteModule } from '@angular-architects/module-federation';
-import { AngularFireModule } from '@angular/fire/compat';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import {
+  AuthGuard,
+  AuthModule,
+  AuthHttpInterceptor,
+} from '@auth0/auth0-angular';
 
-import { AuthenticationModule, LoginComponent } from '@tri-club/authentication';
-import { UiModule } from '@tri-club/ui';
+import { UiModule } from '@isg/ui';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import * as fromComponents from './components';
 import * as fromContainers from './containers';
+import { UserModule } from '@tri-club/user';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'auth', component: fromContainers.AuthComponent },
   {
     path: 'dashboard',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
@@ -38,12 +45,7 @@ const routes: Routes = [
       }).then((m) => m.DashboardModule),
   },
   {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
     path: 'athlete',
-    // canActivate: [AuthGuard],
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
@@ -51,7 +53,7 @@ const routes: Routes = [
         exposedModule: './Module',
       }).then((m) => m.AthleteModule),
   },
-  { path: '**', component: fromContainers.FourOFourComponent }
+  { path: '**', component: fromContainers.FourOFourComponent },
 ];
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -59,14 +61,26 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, ...fromContainers.containers, ...fromComponents.components],
+  declarations: [
+    AppComponent,
+    ...fromContainers.containers,
+    ...fromComponents.components,
+  ],
   imports: [
+    AuthModule.forRoot({
+      domain: environment.auth0Settings.domain,
+      clientId: environment.auth0Settings.clientId,
+      audience: environment.auth0Settings.audience,
+      redirectUri: environment.auth0Settings.redirectUri,
+      httpInterceptor: {
+        allowedList: [`${environment.apiUrl}*`],
+      },
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -82,16 +96,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSnackBarModule,
     MatSelectModule,
     MatFormFieldModule,
-    StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument({
-      name: 'TCS NGRX',
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-    }),
-    AuthenticationModule,
+    UserModule,
     UiModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
