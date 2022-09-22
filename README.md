@@ -9,4 +9,4 @@ This project is implemented using:
 - [Auth0](https://auth0.com/)
 - [Module Federation](https://github.com/angular-architects/module-federation-plugin/blob/main/packages/mf/tutorial/tutorial.md)
 
-The Goal behind it is to use a "real" project to learn different technologies and ideas. At the moment of this writing the project is being build using a micro-frontend architecture, bootstrap and angular material for the styling and using Auth0 for authentication, NodeJS as API and MongoDB for storing information..
+The Goal behind it is to use a "real" project to learn different technologies and ideas. At the moment of this writing the project is being build using a micro-frontend architecture, angular material for the styling and using Auth0 for authentication, NodeJS as API and MongoDB for storing information ([API Repository](https://github.com/isoriano/triClub-backend)).
