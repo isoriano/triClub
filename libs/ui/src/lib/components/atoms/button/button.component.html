@@ -77,4 +77,20 @@
   >
     <ng-content select="[slot=button-icon]"></ng-content>
   </button>
+
+  <button
+    *ngSwitchCase="'menu'"
+    mat-button
+    type="menu"
+    [id]="id"
+    [color]="color"
+    [matMenuTriggerFor]="menuContent"
+    [attr.aria-label]="ariaLabel || label"
+    [class.loading]="isLoading"
+    [disabled]="isLoading || isDisabled"
+  >
+    {{ label }}
+    <ng-content select="[slot=menu-img]"></ng-content>
+    <ng-content select="[slot=menu-icon]"></ng-content>
+  </button>
 </ng-container>

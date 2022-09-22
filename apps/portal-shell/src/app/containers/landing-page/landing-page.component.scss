@@ -1,0 +1,67 @@
+@use '../../../../../../libs/ui/src/lib/styles/mixin/responsive.mixin.scss' as
+  uiMixin;
+
+.main-wrapper {
+  flex: 1 0 auto;
+
+  .tcs-landing-header {
+    overflow: hidden;
+    padding: 4rem 0;
+    position: relative;
+    text-align: center;
+    background-image: repeating-linear-gradient(90deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 7px);
+    background-size: 2px;
+    .container {
+      margin: 0 auto;
+      h1 {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+      .actions {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        justify-content: center;
+      }
+    }
+  }
+
+  main {
+    .selling-points {
+      align-items: center;
+      padding: 2rem 0;
+      .container {
+        width: 100%;
+        .keys-row {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          .key {
+            margin-left: 0;
+            text-align: center;
+            svg {
+              width: 150px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include uiMixin.screen('desktop') {
+    main {
+      .selling-points {
+        .container {
+          width: 1300px;
+          margin: auto;
+          .keys-row {
+            flex-direction: row;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+  }
+}

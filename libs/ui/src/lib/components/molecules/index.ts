@@ -1,3 +1,1 @@
-import { formFields } from './form-field';
-
-export const molecules = [...formFields];
+export * from './form-fields';

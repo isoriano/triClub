@@ -1,42 +1,20 @@
 {
-  "header": {
-    "switchBntAriaLabel": "Theme switch button",
+  "landing": {
     "register": "Register",
-    "signIn": "Sign In",
-    "signOut": "Sign Out"
+    "signIn": "Sign In"
   },
-  "sidenav": {
-    "clubDashboard": "Club Dashboard",
-    "settings": "Settings",
-    "userSection": {
-      "title": "Athlete",
-      "dashboard": "Dashboard",
-      "races": "Races",
-      "gear": "Gear",
-      "profile": "Profile"
+  "header": {
+    "profile": "My Profile",
+    "signOut": "Sign Out",
+    "switchBntAriaLabel": "Theme switch button",
+    "dashboard": {
+      "title": "Dashboard",
+      "activities": "Activities"
+    },
+    "training": {
+      "title": "Training",
+      "schedule": "Schedule"
     }
-  },
-  "login": {
-    "title": "Sign In",
-    "useEmailPassword": "Or use your personal email",
-    "email": "E-mail",
-    "password": "Password",
-    "signIn": "Sign In!",
-    "createAccount": "Create an Account",
-    "accessFacebook": "Access with Facebook",
-    "accessGoogle": "Access with Google",
-    "accessApple": "Access with Apple"
-  },
-  "register": {
-    "title": "Join TriClub today, it's Free!",
-    "useEmailPassword": "or register with your personal email",
-    "email": "E-mail",
-    "password": "Password",
-    "fullName": " Full Name",
-    "signUp": "Sign Up!",
-    "accessFacebook": "Sign up with Facebook",
-    "accessGoogle": "Sign up with Google",
-    "accessApple": "Sign up with Apple"
   },
   "profile": {
     "title": "Profile",

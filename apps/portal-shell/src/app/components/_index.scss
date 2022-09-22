@@ -1,5 +1,7 @@
-@use "./screen-settings/screen-settings-theme.component" as screen-settings;
+@use "./theme-switch/_theme-switch-theme.component" as theme-switch;
+@use "./header/_header-theme.component" as header;
 
 @mixin theme($theme, $typography-config, $variants) {
-  @include screen-settings.color($theme);
+  @include header.color($theme);
+  @include theme-switch.color($theme);
 }

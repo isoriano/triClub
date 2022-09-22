@@ -1,6 +1,6 @@
-import { AuthEnvironment } from "@tri-club/environment";
+import { AuthEnvironment } from '@tri-club/environment';
 
 export const environment = {
   production: false,
-  ...AuthEnvironment
+  ...AuthEnvironment,
 };

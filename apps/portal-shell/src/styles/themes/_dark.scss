@@ -1,10 +1,11 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use '../../../../../libs/ui/src/lib/components' as uiComponents;
-@use '../../../../../libs/ui/src/lib/themes/palettes' as palette;
+@use '../../../../../libs/ui/src/lib/styles/themes' as uiTheme;
+@use '../../../../../libs/ui/src/lib/styles/themes/palettes' as palette;
 
 @use "../typography/config" as typography;
 @use "../../app/components" as components;
+@use "../../app/containers" as containers;
 
 $tcs-dark-primary: mat.define-palette(palette.$dark-blue-palette);
 $tcs-dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
@@ -40,8 +41,12 @@ $tcs-dark-variants: (
     typography.$tcs-typography,
     $tcs-dark-variants
   );
-
-  @include uiComponents.theme(
+  @include containers.theme(
+    $tcs-dark-theme,
+    typography.$tcs-typography,
+    $tcs-dark-variants
+  );
+  @include uiTheme.theme(
     $tcs-dark-theme,
     typography.$tcs-typography,
     $tcs-dark-variants

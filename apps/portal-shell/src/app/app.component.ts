@@ -1,12 +1,22 @@
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+
+import { HeaderComponent } from './components';
 
 @Component({
   selector: 'tcs-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    MatSnackBarModule,
+    RouterModule
+  ]
 })
 export class AppComponent implements OnInit {
   private theme = 'light';

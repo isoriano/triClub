@@ -1,22 +1,19 @@
-import { DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { ButtonComponent } from '@isg/ui';
 
 @Component({
   selector: 'tcs-auth-button',
-  template: `<isg-button
-      *ngIf="auth.isAuthenticated$ | async; else loggedOut"
-      [label]="'header.signOut' | translate"
-      [variant]="'stroked'"
-      (clicked)="auth.logout({ returnTo: document.location.origin })"
-    ></isg-button>
-    <ng-template #loggedOut>
-      <isg-button
-        [label]="'header.signIn' | translate"
-        [variant]="'raised'"
-        (clicked)="auth.loginWithRedirect()"
-      ></isg-button>
-    </ng-template>`,
+  templateUrl: './auth-button.component.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ButtonComponent,
+    TranslateModule
+  ]
 })
 export class AuthButtonComponent {
   constructor(public auth: AuthService, @Inject(DOCUMENT) public document: Document) {}

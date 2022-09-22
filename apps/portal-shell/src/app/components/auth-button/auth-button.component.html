@@ -8,15 +8,6 @@
   <isg-button
     [label]="'header.signIn' | translate"
     [variant]="'raised'"
-    (clicked)="
-      auth.loginWithRedirect({
-        appState: { target: '/dashboard' }
-      })
-    "
-  ></isg-button>
-  <isg-button
-    [label]="'header.register' | translate"
-    [variant]="'raised'"
-    (clicked)="auth.loginWithRedirect({ screen_hint: 'signup' })"
+    (clicked)="auth.loginWithRedirect()"
   ></isg-button>
 </ng-template>

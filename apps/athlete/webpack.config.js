@@ -29,7 +29,7 @@ module.exports = {
       name: 'athlete',
       filename: 'remoteEntry.js',
       exposes: {
-        './Module': './apps/athlete/src/app/feature/athlete.module.ts',
+        './routes': './apps/athlete/src/app/athlete.routes.ts',
       },
       shared: {
         '@angular/core': { singleton: true, strictVersion: false },

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'tcs-404',
-    templateUrl: '404.component.html'
+  selector: 'tcs-404',
+  templateUrl: '404.component.html',
+  standalone: true
 })
-
-export class FourOFourComponent {
-}
+export class FourOFourComponent {}

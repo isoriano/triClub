@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,14 +6,23 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
 
-import { ButtonSize, ButtonType, ButtonVariant, ThemePalette } from '../../../types';
+import {
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+  ThemePalette,
+} from '../../../types';
 
 @Component({
   selector: 'isg-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss', '_button-theme.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule, MatButtonModule, MatMenuModule],
 })
 export class ButtonComponent {
   @Input() id: string;
@@ -24,6 +34,7 @@ export class ButtonComponent {
   @Input() ariaLabel: string;
   @Input() isDisabled?: boolean;
   @Input() isLoading?: boolean;
+  @Input() menuContent: MatMenu;
 
   @Output() clicked = new EventEmitter();
 }

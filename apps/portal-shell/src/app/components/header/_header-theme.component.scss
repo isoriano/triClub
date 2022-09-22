@@ -1,0 +1,22 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '@angular/material' as mat;
+
+@mixin color($theme) {
+  $config: mat.get-color-config($theme);
+  $primary: map.get($config, 'primary');
+
+  tcs-header {
+    isg-button {
+      .mat-button-base:not(#profile-menu),
+      .mat-icon {
+        color: mat.get-color-from-palette($primary, '500-contrast')!important;
+      }
+      .mat-button-wrapper {
+        img {
+          border-color: mat.get-color-from-palette($primary, 500);
+        }
+      }
+    }
+  }
+}

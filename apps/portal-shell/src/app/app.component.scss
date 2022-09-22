@@ -1,30 +1,24 @@
+@use '../../../../libs/ui/src/lib/styles/mixin/responsive.mixin.scss' as uiMixin;
+
 :host {
   main {
     position: relative;
-    height: calc(100% - 64px);
-    width: 1400px;
     margin: auto;
+    width: 100%;
     overflow: auto;
-    padding: 2rem 1rem;
-    &.public {
-      overflow: hidden;
-      width: 100%;
-      padding: 0;
-      background-image: url("/assets/images/public-background-4.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: right;
+    padding: 0;
+    padding-bottom: 60px;
+  }
+
+  @include uiMixin.screen('desktop') {
+    main {
+      height: calc(100% - 64px);
+      width: 1300px;
+      padding-bottom: 0;
+      &.public {
+        overflow: hidden;
+        width: 100%;
+      }
     }
-  }
-  .cdk-overlay-pane {
-    margin-top: 50px;
-  }
-  footer {
-    height: 40px;
-    display: flex;
-    flex-flow: column;
-    padding: 0px 5px;
-    color: #fff;
-    font-size: 0.7rem;
   }
 }

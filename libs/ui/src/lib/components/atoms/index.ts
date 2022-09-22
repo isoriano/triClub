@@ -1,3 +1,1 @@
-import { ButtonComponent } from './button/button.component';
-
-export const atoms = [ButtonComponent];
+export { ButtonComponent } from './button/button.component';

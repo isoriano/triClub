@@ -1,3 +1,1 @@
-import { SectionComponent } from './section/section.component';
-
-export const organisms = [SectionComponent];
+export { SectionComponent } from './section/section.component';
