@@ -1,22 +1,30 @@
+@use '../../../../../../libs//ui//src/lib/styles/mixin/responsive.mixin.scss' as
+  uiMixin;
+
 .mat-toolbar {
   position: sticky;
+  z-index: 1;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: auto;
   width: 100%;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
   .mat-toolbar-row {
-    width: 1300px;
-    height: 64px;
+    #top-menu {
+      display: none;
+    }
     .public-logo {
-      height: 40px;
-      width: 130px;
+      height: 54px;
+      width: 90px;
       background-repeat: no-repeat;
-      background-size: 120px;
+      background-size: 90px;
       background-position: left;
-      background-image: url("/assets/images/logo.png");
+      background-image: url('/assets/images/logo.png');
+    }
+
+    .mat-icon-button {
+      height: 54px;
     }
   }
   .spacer {
@@ -25,5 +33,35 @@
   a,
   button {
     text-transform: uppercase;
+  }
+  .mat-icon {
+    height: 32px;
+    width: 32px;
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  @include uiMixin.screen('desktop') {
+    .mat-toolbar-row {
+      width: 1300px;
+      #side-menu {
+        display: none;
+      }
+      #top-menu {
+        display: block;
+      }
+      .public-logo {
+        height: 64px;
+        width: 130px;
+        margin-right: 32px;
+        background-repeat: no-repeat;
+        background-size: 130px;
+        background-position: left;
+        background-image: url('/assets/images/logo.png');
+      }
+      .mat-icon-button {
+        height: 64px;
+      }
+    }
   }
 }

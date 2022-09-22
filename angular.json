@@ -1,4 +1,7 @@
 {
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "projects": {
     "athlete": {
@@ -11,7 +14,7 @@
           "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/athlete",
-            "index": "apps/athlete/src/index.html",
+            "index": "",
             "main": "apps/athlete/src/main.ts",
             "polyfills": "apps/athlete/src/polyfills.ts",
             "tsConfig": "apps/athlete/tsconfig.app.json",
@@ -20,7 +23,6 @@
               "apps/athlete/src/favicon.ico",
               "apps/athlete/src/assets"
             ],
-            "styles": ["apps/athlete/src/styles.scss"],
             "scripts": [],
             "extraWebpackConfig": "apps/athlete/webpack.config.js"
           },
@@ -133,33 +135,6 @@
       "tags": [],
       "implicitDependencies": ["athlete"]
     },
-    "authentication": {
-      "projectType": "library",
-      "root": "libs/authentication",
-      "sourceRoot": "libs/authentication/src",
-      "prefix": "tcs",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/authentication/src/**/*.ts",
-              "libs/authentication/src/**/*.html"
-            ]
-          },
-          "outputs": ["{options.outputFile}"]
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/authentication"],
-          "options": {
-            "jestConfig": "libs/authentication/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
     "dashboard": {
       "projectType": "application",
       "root": "apps/dashboard",
@@ -170,16 +145,14 @@
           "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/dashboard",
-            "index": "apps/dashboard/src/index.html",
+            "index": "",
             "main": "apps/dashboard/src/main.ts",
             "polyfills": "apps/dashboard/src/polyfills.ts",
             "tsConfig": "apps/dashboard/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/dashboard/src/favicon.ico",
               "apps/dashboard/src/assets"
             ],
-            "styles": ["apps/dashboard/src/styles.scss"],
             "scripts": [],
             "extraWebpackConfig": "apps/dashboard/webpack.config.js"
           },
@@ -218,8 +191,8 @@
         },
         "serve": {
           "builder": "ngx-build-plus:dev-server",
-          "options": {            
-						"publicHost": "http://localhost:3000",
+          "options": {
+            "publicHost": "http://localhost:3000",
             "port": 3000
           },
           "configurations": {
@@ -290,6 +263,32 @@
       },
       "tags": [],
       "implicitDependencies": ["dashboard"]
+    },
+    "environment": {
+      "projectType": "library",
+      "root": "libs/environment",
+      "sourceRoot": "libs/environment/src",
+      "prefix": "tri-club",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/environment"],
+          "options": {
+            "jestConfig": "libs/environment/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/environment/**/*.ts",
+              "libs/environment/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     },
     "portal-shell": {
       "projectType": "application",
@@ -433,7 +432,10 @@
       "projectType": "library",
       "root": "libs/ui",
       "sourceRoot": "libs/ui/src",
-      "prefix": "tcs",
+      "prefix": "isg",
+      "stylePreprocessorOptions": {
+        "includePaths": ["src/lib/themes"]
+      },
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -449,6 +451,29 @@
             "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
+        }
+      },
+      "tags": []
+    },
+    "user": {
+      "projectType": "library",
+      "root": "libs/user",
+      "sourceRoot": "libs/user/src",
+      "prefix": "tcs",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/user"],
+          "options": {
+            "jestConfig": "libs/user/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/user/**/*.ts", "libs/user/**/*.html"]
+          }
         }
       },
       "tags": []

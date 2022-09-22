@@ -1,4 +1,17 @@
 :host {
+  ::ng-deep {
+    .mat-button-wrapper {
+      img {
+        height: 36px;
+        width: 36px;
+        position: relative;
+        border-radius: 50%;
+        border: 1px solid;
+        padding: 4px;
+      }
+    }
+  }
+
   &.icon-before {
     ::ng-deep {
       .mat-button-wrapper {

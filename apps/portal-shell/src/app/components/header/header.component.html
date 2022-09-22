@@ -1,33 +1,69 @@
-<mat-toolbar role="heading">
+<mat-toolbar role="heading" class="mat-elevation-z1">
   <mat-toolbar-row>
-    <button mat-icon-button class="d-md-none d-block">
-      <mat-icon>menu</mat-icon>
-    </button>
+    <isg-button
+      id="side-menu"
+      [id]="'main-menu'"
+      [variant]="'icon'"
+      [label]="'header.navigation' | translate"
+    >
+      <mat-icon slot="button-icon">menu</mat-icon>
+    </isg-button>
     <a class="public-logo" href="/"></a>
-    <div *isAuthorized="true" class="d-md-block d-none">
-      <a mat-button [routerLink]="'/dashboard'"> Dashboard </a>
-      <a mat-button [routerLink]="'/activities'"> Activities </a>
-      <a mat-button [routerLink]="'/athlete/profile'"> Profile </a>
+
+    <div id="top-menu" *ngIf="auth.isAuthenticated$ | async">
+      <mat-menu #dashboardMenu="matMenu">
+        <button mat-menu-item (click)="onGoTo('/dashboard/activities')">
+          {{ 'header.dashboard.activities' | translate }}
+        </button>
+      </mat-menu>
+      <isg-button
+        [id]="'dashboard-menu'"
+        [variant]="'menu'"
+        [label]="'header.dashboard.title' | translate"
+        [menuContent]="dashboardMenu"
+      >
+        <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
+      </isg-button>
+
+      <mat-menu #trainingMenu="matMenu">
+        <button mat-menu-item (click)="onGoTo('/training')">
+          {{ 'header.training.schedule' | translate }}
+        </button>
+      </mat-menu>
+      <isg-button
+        [id]="'training-menu'"
+        [variant]="'menu'"
+        [label]="'header.training.title' | translate"
+        [menuContent]="trainingMenu"
+      >
+        <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
+      </isg-button>
     </div>
+
     <span class="spacer"></span>
-    <ng-container *isAuthorized="false">
-      <tcs-button
-        *ngIf="!hasRoute('login'); else registerBtn"
-        class="mx-4"
-        [variant]="'raised'"
-        [label]="'header.signIn' | translate"
-        (clicked)="onGoTo('login')"
-      ></tcs-button>
-      <ng-template #registerBtn>
-        <tcs-button
-          class="mx-4"
-          [variant]="'raised'"
-          [label]="'header.register' | translate"
-          (clicked)="onGoTo('athlete/register')"
-        ></tcs-button>
-      </ng-template>
+    <ng-container *ngIf="auth.isAuthenticated$ | async">
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item (click)="onGoTo('/athlete/profile')">
+          {{ 'header.profile' | translate }}
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+          {{ 'header.signOut' | translate }}
+        </button>
+      </mat-menu>
+      <isg-button
+        [id]="'profile-menu'"
+        [variant]="'menu'"
+        [menuContent]="profileMenu"
+      >
+        <img
+          slot="menu-img"
+          src="/assets/images/avatar.png"
+          alt="Profile Image"
+        />
+        <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
+      </isg-button>
     </ng-container>
 
-    <tcs-logout *isAuthorized="true"></tcs-logout>
+    <tcs-theme-switch (switchTheme)="onSwitchTheme()"></tcs-theme-switch>
   </mat-toolbar-row>
 </mat-toolbar>

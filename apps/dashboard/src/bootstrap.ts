@@ -1,13 +1,19 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
-import { AppModule } from './app/app.module';
+import { DashboardComponent } from './app/container/dashboard.component';
+import { DASHBOARD_ROUTES } from './app/dashboard.routes';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+bootstrapApplication(DashboardComponent, {
+  providers: [
+    importProvidersFrom(
+      RouterModule.forRoot(DASHBOARD_ROUTES, { relativeLinkResolution: 'legacy' })
+    ),
+  ],
+}).catch((err) => console.error(err));

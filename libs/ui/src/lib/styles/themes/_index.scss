@@ -1,0 +1,5 @@
+@use '../../components/' as componentsTheme;
+
+@mixin theme($theme, $typography-config, $variants) {
+  @include componentsTheme.theme($theme, $typography-config, $variants);
+}

@@ -15,9 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@isg/ui": ["libs/ui/src/index.ts"],
+      "@isg/ui/themes": ["libs/ui/src/lib/themes/_index.scss"],
       "@tri-club/authentication": ["libs/authentication/src/index.ts"],
-      "@tri-club/ui": ["libs/ui/src/index.ts"],
-      "@tri-club/ui/styles": ["libs/ui/src/lib/components/_index.scss"]
+      "@tri-club/environment": ["libs/environment/src/index.ts"],
+      "@tri-club/user": ["libs/user/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

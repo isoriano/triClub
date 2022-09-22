@@ -22,7 +22,8 @@
   },
   "cli": {
     "packageManager": "yarn",
-    "schematicCollections": ["@nrwl/angular"]
+    "schematicCollections": ["@nrwl/angular"],
+    "defaultCollection": "@nrwl/angular"
   },
   "generators": {
     "@nrwl/angular": {

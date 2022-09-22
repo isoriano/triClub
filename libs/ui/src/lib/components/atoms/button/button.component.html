@@ -5,11 +5,12 @@
     [color]="color"
     [id]="id"
     [type]="type"
-    [attr.data-testid]="testId"
+    [title]="label"
+    [attr.aria-label]="ariaLabel ?? label"
     [class.loading]="isLoading"
     [disabled]="isLoading || isDisabled"
     [ngClass]="size"
-    (click)="onClick()"
+    (click)="clicked.emit()"
   >
     {{ label }}
     <ng-content select="[slot=plain-button-icon]"></ng-content>
@@ -21,12 +22,11 @@
     [id]="id"
     [type]="type"
     [title]="label"
-    [attr.aria-label]="ariaLabel"
-    [attr.data-testid]="testId"
+    [attr.aria-label]="ariaLabel ?? label"
     [class.loading]="isLoading"
     [disabled]="isLoading || isDisabled"
     [ngClass]="size"
-    (click)="onClick()"
+    (click)="clicked.emit()"
   >
     {{ label }}
     <ng-content select="[slot=raised-button-icon]"></ng-content>
@@ -38,12 +38,11 @@
     [id]="id"
     [type]="type"
     [title]="label"
-    [attr.aria-label]="ariaLabel"
-    [attr.data-testid]="testId"
+    [attr.aria-label]="ariaLabel ?? label"
     [class.loading]="isLoading"
     [disabled]="isLoading || isDisabled"
     [ngClass]="size"
-    (click)="onClick()"
+    (click)="clicked.emit()"
   >
     {{ label }}
     <ng-content select="[slot=stroked-button-icon]"></ng-content>
@@ -55,12 +54,11 @@
     [id]="id"
     [type]="type"
     [title]="label"
-    [attr.aria-label]="ariaLabel"
-    [attr.data-testid]="testId"
+    [attr.aria-label]="ariaLabel ?? label"
     [class.loading]="isLoading"
     [disabled]="isLoading || isDisabled"
     [ngClass]="size"
-    (click)="onClick()"
+    (click)="clicked.emit()"
   >
     {{ label }}
   </button>
@@ -71,13 +69,28 @@
     [id]="id"
     [type]="type"
     [title]="label"
-    [attr.aria-label]="label"
-    [attr.data-testid]="testId"
+    [attr.aria-label]="ariaLabel ?? label"
     [class.loading]="isLoading"
     [disabled]="isLoading || isDisabled"
     [ngClass]="size"
-    (click)="onClick()"
+    (click)="clicked.emit()"
   >
     <ng-content select="[slot=button-icon]"></ng-content>
+  </button>
+
+  <button
+    *ngSwitchCase="'menu'"
+    mat-button
+    type="menu"
+    [id]="id"
+    [color]="color"
+    [matMenuTriggerFor]="menuContent"
+    [attr.aria-label]="ariaLabel || label"
+    [class.loading]="isLoading"
+    [disabled]="isLoading || isDisabled"
+  >
+    {{ label }}
+    <ng-content select="[slot=menu-img]"></ng-content>
+    <ng-content select="[slot=menu-icon]"></ng-content>
   </button>
 </ng-container>

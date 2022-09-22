@@ -1,0 +1,5 @@
+@use "./landing-page/landing-page-theme.component" as landing-page;
+
+@mixin theme($theme, $typography-config, $variants) {
+  @include landing-page.color($theme);
+}
