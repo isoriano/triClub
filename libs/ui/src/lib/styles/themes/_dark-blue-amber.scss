@@ -1,0 +1,25 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@use '../palettes/palettes' as palette;
+
+$tcs-dark-primary: mat.define-palette(palette.$dark-blue-palette);
+$tcs-dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+$tcs-dark-warn: mat.define-palette(mat.$deep-orange-palette);
+
+$tcs-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $tcs-dark-primary,
+      accent: $tcs-dark-accent,
+      warn: $tcs-dark-warn,
+    ),
+  )
+);
+
+$tcs-dark-success: mat.define-palette(mat.$light-green-palette);
+$tcs-dark-info: mat.define-palette(mat.$light-blue-palette);
+$tcs-dark-variants: (
+  success: $tcs-dark-success,
+  info: $tcs-dark-info,
+);

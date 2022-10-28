@@ -1,10 +1,20 @@
 import { Routes } from '@angular/router';
 
-import { ProfileComponent } from './containers';
+import { AccountComponent, ProfileComponent, SettingsComponent } from './containers';
 
 export const SETTINGS_ROUTES: Routes = [
   {
-    path: 'profile',
-    component: ProfileComponent,
-  },
+    path: '',
+    component: SettingsComponent,
+    children: [
+      {
+        path: 'account',
+        component: AccountComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      }
+    ]
+  }
 ];

@@ -1,4 +1,7 @@
 {
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "projects": {
     "athlete": {
@@ -16,10 +19,7 @@
             "polyfills": "apps/athlete/src/polyfills.ts",
             "tsConfig": "apps/athlete/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/athlete/src/favicon.ico",
-              "apps/athlete/src/assets"
-            ],
+            "assets": ["apps/athlete/src/favicon.ico", "apps/athlete/src/assets"],
             "scripts": [],
             "extraWebpackConfig": "apps/athlete/webpack.config.js"
           },
@@ -84,10 +84,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/athlete/src/**/*.ts",
-              "apps/athlete/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/athlete/src/**/*.ts", "apps/athlete/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         },
@@ -211,10 +208,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/dashboard/src/**/*.ts",
-              "apps/dashboard/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/dashboard/src/**/*.ts", "apps/dashboard/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         },
@@ -276,10 +270,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/environment/**/*.ts",
-              "libs/environment/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/environment/**/*.ts", "libs/environment/**/*.html"]
           }
         }
       },
@@ -323,17 +314,13 @@
             "polyfills": "apps/portal-shell/src/polyfills.ts",
             "tsConfig": "apps/portal-shell/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/portal-shell/src/favicon.ico",
-              "apps/portal-shell/src/assets/images",
-              "apps/portal-shell/src/assets/i18n"
-            ],
+            "assets": ["apps/portal-shell/src/favicon.ico", "apps/portal-shell/src/assets/images", "apps/portal-shell/src/assets/i18n"],
             "styles": [
               "apps/portal-shell/src/styles.scss",
               {
-                "input": "apps/portal-shell/src/styles/themes/_dark.scss",
-                "bundleName": "dark-theme",
-                "inject": true
+                "input": "apps/settings/src/styles.scss",
+                "bundleName": "settings_styles",
+                "inject": false
               }
             ],
             "scripts": [],
@@ -398,10 +385,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/portal-shell/src/**/*.ts",
-              "apps/portal-shell/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/portal-shell/src/**/*.ts", "apps/portal-shell/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         },
@@ -463,6 +447,7 @@
             "aot": true,
             "assets": ["apps/settings/src/assets"],
             "scripts": [],
+            "styles": ["apps/settings/src/styles.scss"],
             "extraWebpackConfig": "apps/settings/webpack.config.js"
           },
           "configurations": {
@@ -525,10 +510,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/settings/src/**/*.ts",
-              "apps/settings/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/settings/src/**/*.ts", "apps/settings/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         },
@@ -578,7 +560,7 @@
       "sourceRoot": "libs/ui/src",
       "prefix": "isg",
       "stylePreprocessorOptions": {
-        "includePaths": ["src/lib/themes"]
+        "includePaths": ["src/lib/palettes", "src/lib/themes"]
       },
       "architect": {
         "test": {

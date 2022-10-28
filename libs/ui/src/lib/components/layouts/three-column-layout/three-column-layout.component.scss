@@ -1,0 +1,17 @@
+:host {
+  .three-c-layout-container {
+    display: flex;
+    .left,
+    .right,
+    .main {
+      padding: 0 16px;
+    }
+    .left,
+    .right {
+      flex: 0 0 15em;
+    }
+    .main {
+      flex: 1; /*grow*/
+    }
+  }
+}

@@ -1,3 +1,12 @@
 {
-  "singleQuote": true
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "semi": true,
+  "arrowParens": "always",
+  "printWidth": 160,
+  "useTabs": false,
+  "plugins": []
 }

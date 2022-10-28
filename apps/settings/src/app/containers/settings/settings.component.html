@@ -1,0 +1,12 @@
+<isg-3c-layout>
+  <div slot="left">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/settings/profile" routerLinkActive="active">Profile</a>
+      <a mat-list-item routerLink="/settings/account" routerLinkActive="active">Account</a>
+    </mat-nav-list>
+  </div>
+  <div slot="main">
+    <router-outlet></router-outlet>
+  </div>
+  <div slot="right">RIGHT</div>
+</isg-3c-layout>

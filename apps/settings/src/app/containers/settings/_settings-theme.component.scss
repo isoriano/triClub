@@ -1,0 +1,16 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '@angular/material' as mat;
+
+@mixin color($theme) {
+  $config: mat.get-color-config($theme);
+  $primary: map.get($config, 'primary');
+  $primary-color: mat.get-color-from-palette($primary, 500);
+
+  .mat-nav-list {
+    border-color: $primary-color;
+  }
+  .mat-list-item.active {
+    background-color: $primary-color;
+  }
+}

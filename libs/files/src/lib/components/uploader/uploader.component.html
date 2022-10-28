@@ -1,31 +1,25 @@
-<input
-  #file
-  type="file"
-  style="display: none"
-  (change)="onFilesAdded()"
-  multiple
-/>
+<input #file type="file" style="display: none" [multiple]="multiple" [accept]="acceptedTypes" (change)="onFilesAdded()" />
 
-<div class="uploader-container">
-  <div class="uploader-button-container">
-    <h1>Upload Files</h1>
-    <isg-button
-      [label]="'Add Files'"
-      [isDisabled]="uploading"
-      (clicked)="onAddFiles()"
-    ></isg-button>
+<isg-button *ngIf="justIcon; else default" [variant]="'icon'" [label]="label" [isLoading]="uploading" (clicked)="onAddFiles()">
+  <mat-icon slot="button-icon">{{ uploadIcon }}</mat-icon>
+</isg-button>
+
+<ng-template #default>
+  <div class="uploader-container">
+    <div class="uploader-button-container">
+      <h1>Upload Files</h1>
+      <isg-button [label]="label" [isLoading]="uploading" (clicked)="onAddFiles()">
+        <mat-icon slot="stroked-button-icon">upload</mat-icon>
+      </isg-button>
+    </div>
+    <div class="uploader-files-container">
+      <mat-list>
+        <mat-list-item *ngFor="let file of files">
+          <h4 mat-line>{{ file.name }}</h4>
+          <span> {{ progress[file.name].progress | async }}</span>
+          <mat-progress-bar [color]="'primary'" [mode]="'determinate'" [value]="progress[file.name].progress | async"></mat-progress-bar>
+        </mat-list-item>
+      </mat-list>
+    </div>
   </div>
-  <div class="uploader-files-container">
-    <mat-list>
-      <mat-list-item *ngFor="let file of files">
-        <h4 mat-line>{{ file.name }}</h4>
-        <span> {{ progress[file.name].progress | async }}</span>
-        <mat-progress-bar
-          [color]="'primary'"
-          [mode]="'determinate'"
-          [value]="progress[file.name].progress | async"
-        ></mat-progress-bar>
-      </mat-list-item>
-    </mat-list>
-  </div>
-</div>
+</ng-template>

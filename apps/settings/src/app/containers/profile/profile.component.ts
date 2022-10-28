@@ -1,18 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { DomSanitizer } from '@angular/platform-browser';
 import { AuthModule } from '@auth0/auth0-angular';
-
-import { Observable } from 'rxjs';
-
-import { map, tap } from 'rxjs/operators';
 
 import { UserService } from '@tri-club/user';
 
-import { File, UploaderComponent } from '@isg/files';
+import { UploaderComponent } from '@isg/files';
+import { ThreeColumnLayoutComponent } from '@isg/ui';
 
-import { Profile } from '../../models';
 import { SettingsService } from '../../services';
 
 @Component({
@@ -20,20 +14,18 @@ import { SettingsService } from '../../services';
   templateUrl: 'profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [AuthModule, CommonModule, MatSidenavModule, UploaderComponent],
+  imports: [AuthModule, CommonModule, UploaderComponent]
 })
 export class ProfileComponent implements OnInit {
-  profile$: Observable<Profile>;
 
-  constructor(private settingsService: SettingsService) {}
+  constructor(public userService: UserService, private settingsService: SettingsService) {}
 
-  ngOnInit(): void {
-    this.profile$ = this.settingsService.getProfile();
-  }
+  ngOnInit(): void {}
 
   updateAvatar(result: any): void {
-    this.settingsService.updateAvatar(result[0].id).subscribe(() => this.profile$.next());
+    this.settingsService.updateAvatar(result[0].id).subscribe(() => this.userService.refreshProfile());
   }
+
 
   // sportSelected(changedSport: { name: string, selected: boolean }) {
   //   // const sportFound = this.sports.find(sport => sport.name === changedSport.name);

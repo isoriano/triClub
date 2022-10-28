@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "@angular/material" as mat;
 
-@use '../../../../../libs/ui/src/lib/styles/themes/palettes' as palette;
+@use '../palettes/palettes' as palette;
 
 $tcs-light-primary: mat.define-palette(palette.$light-pink-palette);
 $tcs-light-accent: mat.define-palette(palette.$light-blue-palette);

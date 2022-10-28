@@ -1,7 +1,6 @@
-import { User } from '@tri-club/user';
-
 import { File } from '@isg/files';
 
+import { User } from './user.interface';
 
 export class Profile {
   avatar: File;

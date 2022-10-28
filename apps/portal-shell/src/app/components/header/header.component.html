@@ -1,11 +1,6 @@
 <mat-toolbar role="heading" class="mat-elevation-z1">
   <mat-toolbar-row>
-    <isg-button
-      id="side-menu"
-      [id]="'main-menu'"
-      [variant]="'icon'"
-      [label]="'header.navigation' | translate"
-    >
+    <isg-button id="side-menu" [id]="'main-menu'" [variant]="'icon'" [label]="'header.navigation' | translate">
       <mat-icon slot="button-icon">menu</mat-icon>
     </isg-button>
     <a class="public-logo" href="/"></a>
@@ -16,12 +11,7 @@
           {{ 'header.dashboard.activities' | translate }}
         </button>
       </mat-menu>
-      <isg-button
-        [id]="'dashboard-menu'"
-        [variant]="'menu'"
-        [label]="'header.dashboard.title' | translate"
-        [menuContent]="dashboardMenu"
-      >
+      <isg-button [id]="'dashboard-menu'" [variant]="'menu'" [label]="'header.dashboard.title' | translate" [menuContent]="dashboardMenu">
         <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
       </isg-button>
 
@@ -30,12 +20,7 @@
           {{ 'header.training.schedule' | translate }}
         </button>
       </mat-menu>
-      <isg-button
-        [id]="'training-menu'"
-        [variant]="'menu'"
-        [label]="'header.training.title' | translate"
-        [menuContent]="trainingMenu"
-      >
+      <isg-button [id]="'training-menu'" [variant]="'menu'" [label]="'header.training.title' | translate" [menuContent]="trainingMenu">
         <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
       </isg-button>
     </div>
@@ -50,16 +35,8 @@
           {{ 'header.signOut' | translate }}
         </button>
       </mat-menu>
-      <isg-button
-        [id]="'profile-menu'"
-        [variant]="'menu'"
-        [menuContent]="profileMenu"
-      >
-        <img
-          slot="menu-img"
-          src="/assets/images/avatar.png"
-          alt="Profile Image"
-        />
+      <isg-button *ngIf="userService.profile$ | async as profile" [id]="'profile-menu'" [variant]="'menu'" [menuContent]="profileMenu">
+        <img slot="menu-img"  [src]="profile.avatar.data" [alt]="profile.avatar.name" />
         <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
       </isg-button>
     </ng-container>

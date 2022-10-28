@@ -1,7 +1,39 @@
 :host {
-  img {
-    display: block;
-    height: 124px;
-    width: 124px;
+  .avatar-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    img {
+      display: block;
+      height: 124px;
+      width: 124px;
+      border-radius: 50%;
+    }
+    isg-uploader {
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+      ::ng-deep {
+        .mat-icon {
+          color: white;
+        }
+      }
+    }
+
+    &:hover {
+      isg-uploader {
+        opacity: 1;
+        pointer-events: all;
+        cursor: pointer;
+      }
+    }
   }
 }

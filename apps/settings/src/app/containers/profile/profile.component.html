@@ -1,17 +1,18 @@
-<div>
-  <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" opened>Drawer content</mat-drawer>
-    <mat-drawer-content>
-      <h1>My Profile</h1>
-      <section *ngIf="profile$ | async as profile">
-        <div>
-          <img [src]="profile.avatar.data" [alt]="profile.avatar.name" />
-          <label>{{ profile.user.name }}</label>
-
-
-        </div>
-      </section>
-      <isg-uploader (itemUploaded)="updateAvatar($event)"></isg-uploader>
-    </mat-drawer-content>
-  </mat-drawer-container>
-</div>
+<h1 class="title">My Profile</h1>
+<section *ngIf="userService.profile$ | async as profile">
+  <div class="avatar-container">
+    <div>
+      <img [src]="profile.avatar.data" [alt]="profile.avatar.name" />
+      <isg-uploader
+        [label]="'Update Avatar'"
+        [justIcon]="true"
+        [uploadIcon]="'photo_camera'"
+        [acceptedTypes]="'image/png, image/gif, image/jpeg'"
+        (itemUploaded)="updateAvatar($event)"
+      ></isg-uploader>
+    </div>
+    <div>
+      <label>{{ profile.user.name }}</label>
+    </div>
+  </div>
+</section>

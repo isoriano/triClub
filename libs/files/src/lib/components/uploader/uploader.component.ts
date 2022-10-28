@@ -1,14 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -23,19 +18,16 @@ import { UploadService } from '../../services';
   selector: 'isg-uploader',
   templateUrl: 'uploader.component.html',
   styleUrls: ['./uploader.component.scss'],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatListModule,
-    MatProgressBarModule,
-    ButtonComponent,
-  ],
+  imports: [CommonModule, HttpClientModule, MatButtonModule, MatDialogModule, MatIconModule, MatListModule, MatProgressBarModule, ButtonComponent]
 })
 export class UploaderComponent {
   @ViewChild('file') file: ElementRef;
 
+  @Input() acceptedTypes: string;
+  @Input() justIcon: boolean;
+  @Input() label: string;
+  @Input() multiple: boolean;
+  @Input() uploadIcon: string;
   @Output() itemUploaded = new EventEmitter();
 
   files: Set<File> = new Set();
