@@ -1,7 +1,4 @@
 {
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "projects": {
     "athlete": {
@@ -150,9 +147,7 @@
             "polyfills": "apps/dashboard/src/polyfills.ts",
             "tsConfig": "apps/dashboard/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/dashboard/src/assets"
-            ],
+            "assets": ["apps/dashboard/src/assets"],
             "scripts": [],
             "extraWebpackConfig": "apps/dashboard/webpack.config.js"
           },
@@ -285,6 +280,29 @@
               "libs/environment/**/*.ts",
               "libs/environment/**/*.html"
             ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "files": {
+      "projectType": "library",
+      "root": "libs/files",
+      "sourceRoot": "libs/files/src",
+      "prefix": "isg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/files"],
+          "options": {
+            "jestConfig": "libs/files/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/files/**/*.ts", "libs/files/**/*.html"]
           }
         }
       },
@@ -427,6 +445,132 @@
       },
       "tags": [],
       "implicitDependencies": ["portal-shell"]
+    },
+    "settings": {
+      "projectType": "application",
+      "root": "apps/settings",
+      "sourceRoot": "apps/settings/src",
+      "prefix": "tcs",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/settings",
+            "index": "",
+            "main": "apps/settings/src/main.ts",
+            "polyfills": "apps/settings/src/polyfills.ts",
+            "tsConfig": "apps/settings/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/settings/src/assets"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/settings/webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/settings/src/environments/environment.ts",
+                  "with": "apps/settings/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/settings/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "publicHost": "http://localhost:3002",
+            "port": 3002
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "settings:build:production",
+              "extraWebpackConfig": "apps/settings/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "settings:build:development",
+              "extraWebpackConfig": "apps/settings/webpack.config.js"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "settings:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/settings/src/**/*.ts",
+              "apps/settings/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/settings"],
+          "options": {
+            "jestConfig": "apps/settings/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/settings/webpack.config.js"
+          }
+        }
+      },
+      "tags": []
+    },
+    "settings-e2e": {
+      "root": "apps/settings-e2e",
+      "sourceRoot": "apps/settings-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/settings-e2e/cypress.json",
+            "devServerTarget": "settings:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "settings:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/settings-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["settings"]
     },
     "ui": {
       "projectType": "library",

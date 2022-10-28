@@ -13,7 +13,9 @@ if (environment.production) {
 bootstrapApplication(DashboardComponent, {
   providers: [
     importProvidersFrom(
-      RouterModule.forRoot(DASHBOARD_ROUTES, { relativeLinkResolution: 'legacy' })
+      RouterModule.forRoot(DASHBOARD_ROUTES, {
+        relativeLinkResolution: 'legacy',
+      })
     ),
   ],
 }).catch((err) => console.error(err));

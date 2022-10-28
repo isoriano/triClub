@@ -1,0 +1,31 @@
+<input
+  #file
+  type="file"
+  style="display: none"
+  (change)="onFilesAdded()"
+  multiple
+/>
+
+<div class="uploader-container">
+  <div class="uploader-button-container">
+    <h1>Upload Files</h1>
+    <isg-button
+      [label]="'Add Files'"
+      [isDisabled]="uploading"
+      (clicked)="onAddFiles()"
+    ></isg-button>
+  </div>
+  <div class="uploader-files-container">
+    <mat-list>
+      <mat-list-item *ngFor="let file of files">
+        <h4 mat-line>{{ file.name }}</h4>
+        <span> {{ progress[file.name].progress | async }}</span>
+        <mat-progress-bar
+          [color]="'primary'"
+          [mode]="'determinate'"
+          [value]="progress[file.name].progress | async"
+        ></mat-progress-bar>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

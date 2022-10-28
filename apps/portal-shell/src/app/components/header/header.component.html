@@ -12,7 +12,7 @@
 
     <div id="top-menu" *ngIf="auth.isAuthenticated$ | async">
       <mat-menu #dashboardMenu="matMenu">
-        <button mat-menu-item (click)="onGoTo('/dashboard/activities')">
+        <button mat-menu-item (click)="onGoTo('/dashboard')">
           {{ 'header.dashboard.activities' | translate }}
         </button>
       </mat-menu>
@@ -26,7 +26,7 @@
       </isg-button>
 
       <mat-menu #trainingMenu="matMenu">
-        <button mat-menu-item (click)="onGoTo('/training')">
+        <button mat-menu-item (click)="onGoTo('/athlete/profile')">
           {{ 'header.training.schedule' | translate }}
         </button>
       </mat-menu>
@@ -43,7 +43,7 @@
     <span class="spacer"></span>
     <ng-container *ngIf="auth.isAuthenticated$ | async">
       <mat-menu #profileMenu="matMenu">
-        <button mat-menu-item (click)="onGoTo('/athlete/profile')">
+        <button mat-menu-item (click)="onGoTo('/settings/profile')">
           {{ 'header.profile' | translate }}
         </button>
         <button mat-menu-item (click)="onLogout()">

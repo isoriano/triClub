@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@isg/files": ["libs/files/src/index.ts"],
       "@isg/ui": ["libs/ui/src/index.ts"],
       "@isg/ui/themes": ["libs/ui/src/lib/themes/_index.scss"],
       "@tri-club/authentication": ["libs/authentication/src/index.ts"],

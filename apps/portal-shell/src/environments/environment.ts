@@ -7,6 +7,7 @@ export const environment = {
   sites: {
     dashboard: 3000,
     athlete: 3001,
+    settings: 3002,
   }
 };
 

@@ -1,0 +1,12 @@
+:host {
+  .uploader-container {
+    display: flex;
+    flex-direction: column;
+
+    .uploader-button-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

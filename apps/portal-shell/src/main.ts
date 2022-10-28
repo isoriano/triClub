@@ -11,6 +11,10 @@ Promise.all([
     type: 'module',
     remoteEntry: `${environment.url}${environment.sites.athlete}/remoteEntry.js`,
   }),
+  loadRemoteEntry({
+    type: 'module',
+    remoteEntry: `${environment.url}${environment.sites.settings}/remoteEntry.js`,
+  }),
 ])
   .catch((err) => console.error('Error loading remote entries', err))
   .then(() => import('./bootstrap'))

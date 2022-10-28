@@ -1,19 +1,23 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  AuthModule,
-  AuthService
-} from '@auth0/auth0-angular';
+
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'tcs-dashboard',
   templateUrl: './dashboard.component.html',
   standalone: true,
-  imports: [CommonModule, AuthModule],
+  imports: [CommonModule],
 })
 export class DashboardComponent implements OnInit {
+  constructor(
+    private httpClient: HttpClient
+  ) {}
 
-  constructor(private authService: AuthService) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.httpClient
+      .get(`${environment.apiUrl}files`)
+      .subscribe((aux) => console.log(aux));
+  }
 }

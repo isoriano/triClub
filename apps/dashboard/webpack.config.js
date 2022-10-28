@@ -4,7 +4,8 @@ const path = require('path');
 
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
-  '@tri-club/user',
+  '@isg/files',
+  '@tri-club/user'
 ]);
 
 module.exports = {

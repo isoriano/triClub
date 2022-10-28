@@ -28,6 +28,7 @@
 @include mat.form-field-theme(light.$tcs-light-theme);
 @include mat.input-theme(light.$tcs-light-theme);
 @include mat.select-theme(light.$tcs-light-theme);
+@include mat.progress-bar-theme(light.$tcs-light-theme);
 @include components.theme(
   light.$tcs-light-theme,
   typography.$tcs-typography,

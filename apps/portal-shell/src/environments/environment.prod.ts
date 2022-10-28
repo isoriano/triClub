@@ -6,6 +6,7 @@ export const environment = {
   url: 'https://sambori.onrender.com/',
   sites: {
     dashboard: 'dashboard',
-    athlete: 'athlete'
+    athlete: 'athlete',
+    settings: 'settings'
   }
 };

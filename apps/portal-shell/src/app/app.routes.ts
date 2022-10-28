@@ -31,5 +31,15 @@ export const routes: Routes = [
         exposedModule: './routes',
       }).then((m) => m.ATHLETE_ROUTES),
   },
+  {
+    path: 'settings',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      loadRemoteModule({
+        type: 'module',
+        remoteEntry: `${environment.url}${environment.sites.settings}/remoteEntry.js`,
+        exposedModule: './routes',
+      }).then((m) => m.SETTINGS_ROUTES),
+  },
   { path: '**', component: fromContainers.FourOFourComponent },
 ];
