@@ -16,7 +16,10 @@
             "polyfills": "apps/athlete/src/polyfills.ts",
             "tsConfig": "apps/athlete/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/athlete/src/favicon.ico", "apps/athlete/src/assets"],
+            "assets": [
+              "apps/athlete/src/favicon.ico",
+              "apps/athlete/src/assets"
+            ],
             "scripts": [],
             "extraWebpackConfig": "apps/athlete/webpack.config.js"
           },
@@ -81,13 +84,20 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/athlete/src/**/*.ts", "apps/athlete/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/athlete/src/**/*.ts",
+              "apps/athlete/src/**/*.html"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "ngx-build-plus:karma",
-          "outputs": ["coverage/apps/athlete"],
+          "outputs": [
+            "coverage/apps/athlete"
+          ],
           "options": {
             "jestConfig": "apps/athlete/jest.config.js",
             "passWithNoTests": true,
@@ -118,13 +128,19 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/athlete-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/athlete-e2e/**/*.{js,ts}"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         }
       },
       "tags": [],
-      "implicitDependencies": ["athlete"]
+      "implicitDependencies": [
+        "athlete"
+      ]
     },
     "dashboard": {
       "projectType": "application",
@@ -141,7 +157,9 @@
             "polyfills": "apps/dashboard/src/polyfills.ts",
             "tsConfig": "apps/dashboard/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/dashboard/src/assets"],
+            "assets": [
+              "apps/dashboard/src/assets"
+            ],
             "scripts": [],
             "extraWebpackConfig": "apps/dashboard/webpack.config.js"
           },
@@ -205,13 +223,20 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/dashboard/src/**/*.ts", "apps/dashboard/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/dashboard/src/**/*.ts",
+              "apps/dashboard/src/**/*.html"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "ngx-build-plus:karma",
-          "outputs": ["coverage/apps/dashboard"],
+          "outputs": [
+            "coverage/apps/dashboard"
+          ],
           "options": {
             "jestConfig": "apps/dashboard/jest.config.js",
             "passWithNoTests": true,
@@ -242,13 +267,19 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/dashboard-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/dashboard-e2e/**/*.{js,ts}"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         }
       },
       "tags": [],
-      "implicitDependencies": ["dashboard"]
+      "implicitDependencies": [
+        "dashboard"
+      ]
     },
     "environment": {
       "projectType": "library",
@@ -258,7 +289,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/environment"],
+          "outputs": [
+            "coverage/libs/environment"
+          ],
           "options": {
             "jestConfig": "libs/environment/jest.config.ts",
             "passWithNoTests": true
@@ -267,7 +300,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/environment/**/*.ts", "libs/environment/**/*.html"]
+            "lintFilePatterns": [
+              "libs/environment/**/*.ts",
+              "libs/environment/**/*.html"
+            ]
           }
         }
       },
@@ -281,7 +317,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/files"],
+          "outputs": [
+            "coverage/libs/files"
+          ],
           "options": {
             "jestConfig": "libs/files/jest.config.ts",
             "passWithNoTests": true
@@ -290,7 +328,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/files/**/*.ts", "libs/files/**/*.html"]
+            "lintFilePatterns": [
+              "libs/files/**/*.ts",
+              "libs/files/**/*.html"
+            ]
           }
         }
       },
@@ -311,7 +352,11 @@
             "polyfills": "apps/portal-shell/src/polyfills.ts",
             "tsConfig": "apps/portal-shell/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/portal-shell/src/favicon.ico", "apps/portal-shell/src/assets/images", "apps/portal-shell/src/assets/i18n"],
+            "assets": [
+              "apps/portal-shell/src/favicon.ico",
+              "apps/portal-shell/src/assets/images",
+              "apps/portal-shell/src/assets/i18n"
+            ],
             "styles": [
               "apps/portal-shell/src/styles.scss",
               {
@@ -382,13 +427,20 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/portal-shell/src/**/*.ts", "apps/portal-shell/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/portal-shell/src/**/*.ts",
+              "apps/portal-shell/src/**/*.html"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "ngx-build-plus:karma",
-          "outputs": ["coverage/apps/portal-shell"],
+          "outputs": [
+            "coverage/apps/portal-shell"
+          ],
           "options": {
             "jestConfig": "apps/portal-shell/jest.config.js",
             "passWithNoTests": true,
@@ -419,13 +471,19 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/portal-shell-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/portal-shell-e2e/**/*.{js,ts}"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         }
       },
       "tags": [],
-      "implicitDependencies": ["portal-shell"]
+      "implicitDependencies": [
+        "portal-shell"
+      ]
     },
     "settings": {
       "projectType": "application",
@@ -442,9 +500,13 @@
             "polyfills": "apps/settings/src/polyfills.ts",
             "tsConfig": "apps/settings/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/settings/src/assets"],
+            "assets": [
+              "apps/settings/src/assets"
+            ],
             "scripts": [],
-            "styles": ["apps/settings/src/styles.scss"],
+            "styles": [
+              "apps/settings/src/styles.scss"
+            ],
             "extraWebpackConfig": "apps/settings/webpack.config.js"
           },
           "configurations": {
@@ -507,13 +569,20 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/settings/src/**/*.ts", "apps/settings/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/settings/src/**/*.ts",
+              "apps/settings/src/**/*.html"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "ngx-build-plus:karma",
-          "outputs": ["coverage/apps/settings"],
+          "outputs": [
+            "coverage/apps/settings"
+          ],
           "options": {
             "jestConfig": "apps/settings/jest.config.js",
             "passWithNoTests": true,
@@ -542,14 +611,20 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/settings-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/settings-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["settings"]
+      "implicitDependencies": [
+        "settings"
+      ]
     },
     "ui": {
       "projectType": "library",
@@ -557,12 +632,17 @@
       "sourceRoot": "libs/ui/src",
       "prefix": "isg",
       "stylePreprocessorOptions": {
-        "includePaths": ["src/lib/palettes", "src/lib/themes"]
+        "includePaths": [
+          "src/lib/palettes",
+          "src/lib/themes"
+        ]
       },
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui"],
+          "outputs": [
+            "coverage/libs/ui"
+          ],
           "options": {
             "jestConfig": "libs/ui/jest.config.ts",
             "passWithNoTests": true
@@ -571,9 +651,14 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ui/src/**/*.ts",
+              "libs/ui/src/**/*.html"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "storybook": {
           "builder": "@storybook/angular:start-storybook",
@@ -591,7 +676,9 @@
         },
         "build-storybook": {
           "builder": "@storybook/angular:build-storybook",
-          "outputs": ["{options.outputDir}"],
+          "outputs": [
+            "{options.outputDir}"
+          ],
           "options": {
             "outputDir": "dist/storybook/ui",
             "configDir": "libs/ui/.storybook",
@@ -615,7 +702,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/user"],
+          "outputs": [
+            "coverage/libs/user"
+          ],
           "options": {
             "jestConfig": "libs/user/jest.config.ts",
             "passWithNoTests": true
@@ -624,7 +713,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/user/**/*.ts", "libs/user/**/*.html"]
+            "lintFilePatterns": [
+              "libs/user/**/*.ts",
+              "libs/user/**/*.html"
+            ]
           }
         }
       },

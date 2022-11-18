@@ -37,7 +37,7 @@ bootstrapApplication(AppComponent, {
       }),
       BrowserAnimationsModule,
       HttpClientModule,
-      RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+      RouterModule.forRoot(routes, {}),
       TranslateModule.forRoot({
         defaultLanguage: 'en',
         loader: {

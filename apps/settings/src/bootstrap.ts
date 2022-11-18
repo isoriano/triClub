@@ -13,9 +13,7 @@ if (environment.production) {
 bootstrapApplication(ProfileComponent, {
   providers: [
     importProvidersFrom(
-      RouterModule.forRoot(SETTINGS_ROUTES, {
-        relativeLinkResolution: 'legacy',
-      })
+      RouterModule.forRoot(SETTINGS_ROUTES, {})
     ),
   ],
 }).catch((err) => console.error(err));
