@@ -1,0 +1,38 @@
+@use '@angular/material' as mat;
+
+// TODO: Study how to get from @isg/ui/themes
+@use '../src/lib/styles/themes' as uiTheme;
+
+// Plus imports for other components in your app.
+@use '../src/lib/styles/themes/light-pink-blue' as light;
+@use '../src/lib/styles/themes/dark-blue-amber' as dark;
+@use './typography' as typography;
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+// @include mat.all-component-themes($tcs-light-theme);
+@include mat.core-theme(light.$tcs-light-theme);
+@include mat.button-theme(light.$tcs-light-theme);
+@include mat.menu-theme(light.$tcs-light-theme);
+@include mat.toolbar-theme(light.$tcs-light-theme);
+@include mat.snack-bar-theme(light.$tcs-light-theme);
+@include mat.form-field-theme(light.$tcs-light-theme);
+@include mat.input-theme(light.$tcs-light-theme);
+@include mat.select-theme(light.$tcs-light-theme);
+@include mat.progress-bar-theme(light.$tcs-light-theme);
+@include uiTheme.theme(light.$tcs-light-theme, typography.$tcs-typography, light.$tcs-light-variants);
+
+
+.dark-theme {
+  @include mat.core-theme(dark.$tcs-dark-theme);
+  @include mat.button-theme(dark.$tcs-dark-theme);
+  @include mat.menu-theme(dark.$tcs-dark-theme);
+  @include mat.toolbar-theme(dark.$tcs-dark-theme);
+  @include mat.snack-bar-theme(dark.$tcs-dark-theme);
+  @include mat.form-field-theme(dark.$tcs-dark-theme);
+  @include mat.input-theme(dark.$tcs-dark-theme);
+  @include mat.select-theme(dark.$tcs-dark-theme);
+  @include mat.progress-bar-theme(dark.$tcs-dark-theme);
+  @include uiTheme.theme(dark.$tcs-dark-theme, typography.$tcs-typography, dark.$tcs-dark-variants);
+}

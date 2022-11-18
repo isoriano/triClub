@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,7 +11,7 @@ import { ThemePalette } from '../../../../types/theme-palette.type';
   templateUrl: './form-field-input.component.html',
   styleUrls: ['./form-field-input.component.scss'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule]
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
 })
 export class FormFieldInputComponent {
   @Input() set formCtrl(ctrl: AbstractControl) {

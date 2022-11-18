@@ -45,7 +45,7 @@
     (click)="clicked.emit()"
   >
     {{ label }}
-    <ng-content select="[slot=stroked-button-icon]"></ng-content>
+    <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
   </button>
   <button
     *ngSwitchCase="'flat'"
@@ -94,3 +94,6 @@
     <ng-content select="[slot=menu-icon]"></ng-content>
   </button>
 </ng-container>
+<ng-template #iconTemplate>
+  <ng-content select="[slot=button-icon]"></ng-content>
+</ng-template>
