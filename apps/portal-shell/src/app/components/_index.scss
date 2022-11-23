@@ -1,7 +1,7 @@
 @use "./theme-switch/_theme-switch-theme.component" as theme-switch;
 @use "./header/_header-theme.component" as header;
 
-@mixin theme($theme, $typography-config, $variants) {
+@mixin theme($theme, $variants) {
   @include header.color($theme);
   @include theme-switch.color($theme);
 }

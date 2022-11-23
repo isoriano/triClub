@@ -4,7 +4,7 @@ import { AbstractControl, FormControl, ReactiveFormsModule } from '@angular/form
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { ThemePalette } from '../../../../types/theme-palette.type';
+import { BasicThemePalette } from '../../../../types/theme-palette.type';
 
 @Component({
   selector: 'isg-form-field-input',
@@ -23,8 +23,8 @@ export class FormFieldInputComponent {
   @Input() required: boolean;
   @Input() type = 'text';
   @Input() maxLength: number;
-  @Input() appearance: 'standard' | 'outline' = 'outline';
-  @Input() color: ThemePalette;
+  @Input() appearance: 'fill' | 'outline' = 'outline';
+  @Input() color: BasicThemePalette;
 
   formControl: FormControl;
 }

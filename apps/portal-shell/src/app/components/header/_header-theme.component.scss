@@ -8,15 +8,15 @@
 
   tcs-header {
     isg-button {
-      .mat-button-base:not(#profile-menu),
+      .mat-mdc-button-base:not(#profile-menu),
       .mat-icon {
         color: mat.get-color-from-palette($primary, '500-contrast')!important;
       }
-      .mat-button-wrapper {
-        img {
-          border-color: mat.get-color-from-palette($primary, 500);
-        }
-      }
+      // .mat-button-wrapper {
+      //   img {
+      //     border-color: mat.get-color-from-palette($primary, 500);
+      //   }
+      // }
     }
   }
 }

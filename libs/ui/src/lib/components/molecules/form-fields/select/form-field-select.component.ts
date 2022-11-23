@@ -8,7 +8,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 
-import { ThemePalette, Option } from '../../../../types';
+import { BasicThemePalette, Option } from '../../../../types';
 
 @Component({
   selector: 'isg-form-field-select',
@@ -25,8 +25,8 @@ export class FormFieldSelectComponent {
   @Input() useIconsInd: boolean;
   @Input() required: boolean;
   @Input() id?: string;
-  @Input() appearance: 'standard' | 'outline' = 'outline';
-  @Input() color: ThemePalette;
+  @Input() appearance: 'fill' | 'outline' = 'outline';
+  @Input() color: BasicThemePalette;
 
   @Output() selectionChange = new EventEmitter();
 

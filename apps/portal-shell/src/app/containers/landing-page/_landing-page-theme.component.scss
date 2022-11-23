@@ -8,7 +8,7 @@
 
   tcs-landing-page {
     .btn-signup {
-      .mat-button-base {
+      .mat-mdc-button-base {
         background-color: mat.get-color-from-palette($primary, 50);
       }
     }

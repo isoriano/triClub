@@ -6,7 +6,6 @@
 // Plus imports for other components in your app.
 @use '../src/lib/styles/themes/light-pink-blue' as light;
 @use '../src/lib/styles/themes/dark-blue-amber' as dark;
-@use './typography' as typography;
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -21,7 +20,7 @@
 @include mat.input-theme(light.$tcs-light-theme);
 @include mat.select-theme(light.$tcs-light-theme);
 @include mat.progress-bar-theme(light.$tcs-light-theme);
-@include uiTheme.theme(light.$tcs-light-theme, typography.$tcs-typography, light.$tcs-light-variants);
+@include uiTheme.theme(light.$tcs-light-theme, light.$tcs-light-variants);
 
 
 .dark-theme {
@@ -34,5 +33,5 @@
   @include mat.input-theme(dark.$tcs-dark-theme);
   @include mat.select-theme(dark.$tcs-dark-theme);
   @include mat.progress-bar-theme(dark.$tcs-dark-theme);
-  @include uiTheme.theme(dark.$tcs-dark-theme, typography.$tcs-typography, dark.$tcs-dark-variants);
+  @include uiTheme.theme(dark.$tcs-dark-theme, dark.$tcs-dark-variants);
 }

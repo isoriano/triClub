@@ -1,5 +1,5 @@
 @use "./settings/settings-theme.component" as settings;
 
-@mixin theme($theme, $typography-config, $variants) {
+@mixin theme($theme, $variants) {
   @include settings.color($theme);
 }

@@ -1,16 +1,15 @@
 // Plus imports for other components in your app.
 @use '../../../libs/ui/src/lib/styles/themes/light-pink-blue' as light;
 @use '../../../libs/ui/src/lib/styles/themes/dark-blue-amber' as dark;
-@use './styles/typography/config' as typography;
 @use './app/containers' as containers;
 
-@include containers.theme(light.$tcs-light-theme, typography.$tcs-typography, light.$tcs-light-variants);
+@include containers.theme(light.$tcs-light-theme, light.$tcs-light-variants);
 
 .dark-theme {
-  @include containers.theme(dark.$tcs-dark-theme, typography.$tcs-typography, dark.$tcs-dark-variants);
+  @include containers.theme(dark.$tcs-dark-theme, dark.$tcs-dark-variants);
 }
 
 
 h1.title {
-  margin-top: 0;
+  margin-top: 0px;
 }

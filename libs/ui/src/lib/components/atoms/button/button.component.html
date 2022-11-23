@@ -12,8 +12,10 @@
     [ngClass]="size"
     (click)="clicked.emit()"
   >
-    {{ label }}
-    <ng-content select="[slot=plain-button-icon]"></ng-content>
+    <div class="inline-label-icon">
+      {{ label }}
+      <ng-content select="[slot=plain-button-icon]"></ng-content>
+    </div>
   </button>
   <button
     *ngSwitchCase="'raised'"
@@ -28,8 +30,10 @@
     [ngClass]="size"
     (click)="clicked.emit()"
   >
-    {{ label }}
-    <ng-content select="[slot=raised-button-icon]"></ng-content>
+    <div class="inline-label-icon">
+      {{ label }}
+      <ng-content select="[slot=raised-button-icon]"></ng-content>
+    </div>
   </button>
   <button
     *ngSwitchCase="'stroked'"
@@ -44,8 +48,10 @@
     [ngClass]="size"
     (click)="clicked.emit()"
   >
-    {{ label }}
-    <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+    <div class="inline-label-icon">
+      {{ label }}
+      <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+    </div>
   </button>
   <button
     *ngSwitchCase="'flat'"
@@ -89,9 +95,11 @@
     [class.loading]="isLoading"
     [disabled]="isLoading || isDisabled"
   >
-    {{ label }}
-    <ng-content select="[slot=menu-img]"></ng-content>
-    <ng-content select="[slot=menu-icon]"></ng-content>
+    <div class="inline-label-icon">
+      {{ label }}
+      <ng-content select="[slot=menu-img]"></ng-content>
+      <ng-content select="[slot=menu-icon]"></ng-content>
+    </div>
   </button>
 </ng-container>
 <ng-template #iconTemplate>

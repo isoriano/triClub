@@ -1,6 +1,6 @@
 :host {
   ::ng-deep {
-    .mat-button-wrapper {
+    .mdc-button__label {
       img {
         height: 36px;
         width: 36px;
@@ -14,7 +14,7 @@
 
   &.icon-before {
     ::ng-deep {
-      .mat-button-wrapper {
+      .mdc-button__label {
         flex-direction: row-reverse;
         svg,
         mat-icon {
@@ -35,6 +35,11 @@
       &.inline {
         width: auto;
       }
+    }
+    .inline-label-icon {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
     }
   }
 
