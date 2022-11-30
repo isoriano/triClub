@@ -1,1 +1,6 @@
-import '!style-loader!css-loader!sass-loader!./styles.scss';
+export const parameters = {
+  darkMode: {
+    darkClass: 'dark-theme',
+    lightClass: 'lights-on'
+  }
+};

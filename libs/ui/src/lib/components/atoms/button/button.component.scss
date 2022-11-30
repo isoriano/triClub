@@ -2,12 +2,12 @@
   ::ng-deep {
     .mdc-button__label {
       img {
-        height: 36px;
-        width: 36px;
+        height: 32px;
+        width: 32px;
         position: relative;
         border-radius: 50%;
         border: 1px solid;
-        padding: 4px;
+        padding: 1px;
       }
     }
   }
@@ -40,6 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
+      gap: 8px;
     }
   }
 
@@ -61,7 +62,6 @@
   margin-top: -10px;
   margin-left: -10px;
   border-radius: 50%;
-  border: 2px solid var(--white);
-  border-top-color: var(--black);
+  border: 2px solid #ccc;
   animation: spinner 0.8s linear infinite;
 }

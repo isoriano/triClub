@@ -16,8 +16,8 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.httpClient
-      .get(`${environment.apiUrl}files`)
-      .subscribe((aux) => console.log(aux));
+    // this.httpClient
+    //   .get(`${environment.apiUrl}files`)
+    //   .subscribe((aux) => console.log(aux));
   }
 }

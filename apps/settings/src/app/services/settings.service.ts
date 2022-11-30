@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class SettingsService {
   constructor(private httpClient: HttpClient) {}
 
-  updateAvatar(avatarId: string): Observable<any> {
-    return this.httpClient.put(`${environment.apiUrl}user/avatar`, { avatarId });
+  updateAvatar(userId: string, avatarId: string): Observable<any> {
+    return this.httpClient.put(`${environment.apiUrl}user/${userId}/avatar`, { avatarId });
   }
 }

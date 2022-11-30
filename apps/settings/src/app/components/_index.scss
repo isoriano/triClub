@@ -1,0 +1,5 @@
+@use './profile-row/profile-row-theme.component' as profileRow;
+
+@mixin theme($theme, $variants) {
+  @include profileRow.color($theme);
+}

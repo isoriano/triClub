@@ -1,7 +1,8 @@
-import { AuthEnvironment } from '@tri-club/environment';
+import { AuthEnvironment, SiteEnvironment } from '@tri-club/environment';
 
 export const environment = {
   ...AuthEnvironment,
+  ...SiteEnvironment,
   production: false,
   url: 'http://localhost:',
   sites: {

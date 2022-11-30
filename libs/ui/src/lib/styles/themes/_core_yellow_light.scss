@@ -1,0 +1,28 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@use '../palettes/palettes' as palette;
+
+$tcs-light-primary: mat.define-palette(palette.$light-yellow-palette);
+$tcs-light-accent: mat.define-palette(palette.$light-blue-palette);
+$tcs-light-warn: mat.define-palette(mat.$red-palette);
+
+$tcs-light-success: mat.define-palette(mat.$green-palette);
+$tcs-light-info: mat.define-palette(mat.$blue-palette);
+
+$tcs-light-variants: (
+  success: $tcs-light-success,
+  info: $tcs-light-info,
+);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$tcs-light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $tcs-light-primary,
+      accent: $tcs-light-accent,
+      warn: $tcs-light-warn,
+    )
+  )
+);

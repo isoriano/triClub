@@ -1,0 +1,23 @@
+<div class="profile-row">
+  <label>{{ label }}</label>
+  <div class="value">
+    <ng-container *ngIf="!isEditing; else editing">
+      <ng-content select="[slot=text]"></ng-content>
+      <isg-button class="action edit-action" [variant]="'icon'" [label]="'Edit'" (clicked)="isEditing = true">
+        <mat-icon slot="button-icon">edit</mat-icon>
+      </isg-button>
+    </ng-container>
+    <ng-template #editing>
+      <ng-content select="[slot=editCtrl]"></ng-content>
+      <div class="actions">
+        <isg-button class="action save-cancel-action" [variant]="'icon'" [label]="'Save'" (clicked)="save.emit()">
+          <mat-icon slot="button-icon">save</mat-icon>
+        </isg-button>
+        <isg-button class="action save-cancel-action" [variant]="'icon'" [label]="'Cancel'" (clicked)="isEditing = false">
+          <mat-icon slot="button-icon">close</mat-icon>
+        </isg-button>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<mat-divider></mat-divider>

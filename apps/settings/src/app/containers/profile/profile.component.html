@@ -1,8 +1,10 @@
 <h1 class="title">My Profile</h1>
-<section *ngIf="userService.profile$ | async as profile">
+<mat-divider></mat-divider>
+<section *ngIf="profile$ | async as profile">
   <div class="avatar-container">
-    <div>
-      <img [src]="profile.avatar.data" [alt]="profile.avatar.name" />
+    <label>Current Photo</label>
+    <div class="img-container">
+      <img [src]="profile.avatar?.data ?? default_avatar" [alt]="'Avatar Image'" />
       <isg-uploader
         [label]="'Update Avatar'"
         [justIcon]="true"
@@ -11,8 +13,24 @@
         (itemUploaded)="updateAvatar($event)"
       ></isg-uploader>
     </div>
-    <div>
-      <label>{{ profile.user.name }}</label>
-    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <tcs-profile-row [label]="'Name'" (save)="onSave()">
+    <span slot="text">{{ profile.user.name }}</span>
+    <isg-form-field-input slot="editCtrl" [formCtrl]="profileForm.get('name')"></isg-form-field-input>
+  </tcs-profile-row>
+  <tcs-profile-row [label]="'email'" (save)="onSave()">
+    <span slot="text">{{ profile.user.email }}</span>
+    <isg-form-field-input slot="editCtrl" [type]="'email'" [formCtrl]="profileForm.get('email')"></isg-form-field-input>
+  </tcs-profile-row>
+  <tcs-profile-row [label]="'Date of Birth'" (save)="onSave()">
+    <span slot="text">{{ profile.user.dob | date: 'EEEE, MMMM d, y' }}</span>
+    <isg-form-field-date slot="editCtrl" [formCtrl]="profileForm.get('dob')"></isg-form-field-date>
+  </tcs-profile-row>
+
+  <div class="delete-account-container">
+    <h2>Delete your account</h2>
+    <span>Elimina tu cuenta de forma permanete</span>
+    <isg-button [color]="'warn'" [label]="'Delete Account'" (clicked)="onDeleteAccount()"></isg-button>
   </div>
 </section>

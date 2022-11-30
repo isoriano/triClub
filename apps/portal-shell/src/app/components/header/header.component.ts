@@ -11,6 +11,7 @@ import { UserService } from '@tri-club/user';
 
 import { ButtonComponent } from '@isg/ui';
 
+import { environment } from '../../../environments/environment';
 import { ThemeSwitchComponent } from '../theme-switch/theme-switch.component';
 
 @Component({
@@ -18,26 +19,16 @@ import { ThemeSwitchComponent } from '../theme-switch/theme-switch.component';
   templateUrl: 'header.component.html',
   styleUrls: ['./header.component.scss', './_header-theme.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    ButtonComponent,
-    MatIconModule,
-    MatMenuModule,
-    MatToolbarModule,
-    RouterModule,
-    ThemeSwitchComponent,
-    TranslateModule,
-  ],
+  imports: [CommonModule, ButtonComponent, MatIconModule, MatMenuModule, MatToolbarModule, RouterModule, ThemeSwitchComponent, TranslateModule]
 })
 export class HeaderComponent {
   @Output() switchTheme = new EventEmitter();
 
-  constructor(
-    public auth: AuthService,
-    public userService: UserService,
-    @Inject(DOCUMENT) private document: Document,
-    private router: Router
-  ) {}
+  default_avatar = environment.defaultAvatar;
+
+  constructor(public auth: AuthService, public userService: UserService, @Inject(DOCUMENT) private document: Document, private router: Router) {
+    
+  }
 
   onGoTo(link: string): void {
     this.router.navigate([link]);

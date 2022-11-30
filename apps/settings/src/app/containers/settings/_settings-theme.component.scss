@@ -7,10 +7,10 @@
   $primary: map.get($config, 'primary');
   $primary-color: mat.get-color-from-palette($primary, 500);
 
-  .mat-nav-list {
+  .mat-mdc-nav-list {
     border-color: $primary-color;
   }
-  .mat-list-item.active {
+  .mat-mdc-list-item.active {
     background-color: $primary-color;
   }
 }

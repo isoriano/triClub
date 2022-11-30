@@ -3,8 +3,8 @@
 
 @use '../palettes/palettes' as palette;
 
-$tcs-light-primary: mat.define-palette(palette.$light-pink-palette);
-$tcs-light-accent: mat.define-palette(palette.$light-blue-palette);
+$tcs-light-primary: mat.define-palette(palette.$light-blue-palette);
+$tcs-light-accent: mat.define-palette(palette.$light-pink-palette);
 $tcs-light-warn: mat.define-palette(mat.$red-palette);
 
 $tcs-light-success: mat.define-palette(mat.$green-palette);

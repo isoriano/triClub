@@ -14,6 +14,10 @@
     "training": {
       "title": "Entrenamiento",
       "schedule": "Calendario"
+    },
+    "administration": {
+      "title": "Administración",
+      "usersManagement": "Gestión Usuarios"
     }
   },
   "profile": {

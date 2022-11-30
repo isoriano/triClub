@@ -5,18 +5,19 @@
 @mixin color($theme) {
   $config: mat.get-color-config($theme);
   $primary: map.get($config, 'primary');
+  $background: map.get($config, 'background');
 
   tcs-header {
-    isg-button {
-      .mat-mdc-button-base:not(#profile-menu),
-      .mat-icon {
-        color: mat.get-color-from-palette($primary, '500-contrast')!important;
+    .mat-toolbar {
+      background: mat.get-color-from-palette($background, 'background');
+    }
+    #top-menu {
+      isg-button {
+        .mat-mdc-button-base:not(#profile-menu),
+        .mat-icon {
+          color: mat.get-color-from-palette($primary, '500-contrast') !important;
+        }
       }
-      // .mat-button-wrapper {
-      //   img {
-      //     border-color: mat.get-color-from-palette($primary, 500);
-      //   }
-      // }
     }
   }
 }

@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '@angular/material' as mat;
+
+@mixin color($theme) {
+  $config: mat.get-color-config($theme);
+  $background: map.get($config, 'background');
+  .profile-row {
+    &:hover {
+      background-color: mat.get-color-from-palette($background, 'disabled-button');
+    }
+  }
+}

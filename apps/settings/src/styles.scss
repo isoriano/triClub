@@ -1,14 +1,18 @@
-// Plus imports for other components in your app.
-@use '../../../libs/ui/src/lib/styles/themes/light-pink-blue' as light;
-@use '../../../libs/ui/src/lib/styles/themes/dark-blue-amber' as dark;
+@use '../../../libs/ui/src/lib/styles/themes/core_yellow_light' as light;
+@use '../../../libs/ui/src/lib/styles/themes/core_dark' as dark;
 @use './app/containers' as containers;
+@use './app/components' as components;
 
-@include containers.theme(light.$tcs-light-theme, light.$tcs-light-variants);
+@import '../../../assets/style.scss';
 
+.light-theme {
+  @include containers.theme(light.$tcs-light-theme, light.$tcs-light-variants);
+  @include components.theme(light.$tcs-light-theme, light.$tcs-light-variants);
+}
 .dark-theme {
   @include containers.theme(dark.$tcs-dark-theme, dark.$tcs-dark-variants);
+  @include components.theme(dark.$tcs-dark-theme, dark.$tcs-dark-variants);
 }
-
 
 h1.title {
   margin-top: 0px;

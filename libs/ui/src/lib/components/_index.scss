@@ -1,7 +1,7 @@
-@use "./atoms/button/_button-theme.component" as button-variants;
+@use "./atoms/button/_button-theme.component" as button;
 @use "./organisms/section/_section-theme.component" as section;
 
 @mixin theme($theme, $variants) {
-  @include button-variants.color($theme, $variants);
+  @include button.color($theme, $variants);
   @include section.color($theme, ('primary', 'accent', 'warn'), $variants);
 }

@@ -1,6 +1,7 @@
-import { AuthProdEnvironment } from '@tri-club/environment';
+import { AuthProdEnvironment, SiteEnvironment } from '@tri-club/environment';
 
 export const environment = {
   production: true,
-  ...AuthProdEnvironment
+  ...AuthProdEnvironment,
+  ...SiteEnvironment
 };

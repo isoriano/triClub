@@ -8,9 +8,6 @@ import { ButtonComponent } from '@isg/ui';
 @Component({
   selector: 'tcs-theme-switch',
   templateUrl: 'theme-switch.component.html',
-  styleUrls: [
-    './_theme-switch-theme.component.scss',
-  ],
   standalone: true,
   imports: [CommonModule, ButtonComponent, MatIconModule, TranslateModule],
 })

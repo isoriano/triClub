@@ -23,6 +23,15 @@
       <isg-button [id]="'training-menu'" [variant]="'menu'" [label]="'header.training.title' | translate" [menuContent]="trainingMenu">
         <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
       </isg-button>
+
+      <mat-menu #trainingMenu="matMenu">
+        <button mat-menu-item (click)="onGoTo('/admin/users')">
+          {{ 'header.administration.usersManagement' | translate }}
+        </button>
+      </mat-menu>
+      <isg-button *ngIf="auth.isAuthenticated$ | async" [id]="'training-menu'" [variant]="'menu'" [label]="'header.administration.title' | translate" [menuContent]="trainingMenu">
+        <mat-icon slot="menu-icon">keyboard_arrow_down </mat-icon>
+      </isg-button>
     </div>
 
     <span class="spacer"></span>
@@ -36,7 +45,7 @@
         </button>
       </mat-menu>
       <isg-button *ngIf="userService.profile$ | async as profile" [id]="'profile-menu'" [variant]="'menu'" [menuContent]="profileMenu">
-        <img slot="menu-img"  [src]="profile.avatar.data" [alt]="profile.avatar.name" />
+        <img slot="menu-img" [src]="profile.avatar?.data ?? default_avatar" [alt]="'Avatar Image'" />
         <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
       </isg-button>
     </ng-container>

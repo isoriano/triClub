@@ -34,6 +34,7 @@ export class AuthComponent implements OnInit {
             uid: auth0User.sub,
             name: auth0User.name,
             email: auth0User.email,
+            dob: undefined
           })
           .subscribe(() => {
             this.router.navigate(['/athlete/register']);

@@ -12,9 +12,16 @@ import { Profile, User } from '../models';
 export class UserService {
   private profileEvent$ = new BehaviorSubject(null);
 
-  profile$ = this.profileEvent$.pipe(switchMap(() => this.getProfile()), shareReplay());
+  profile$ = this.profileEvent$.pipe(
+    switchMap(() => this.getProfile()),
+    shareReplay()
+  );
 
   constructor(private httpClient: HttpClient) {}
+
+  refreshProfile(): void {
+    this.profileEvent$.next(null);
+  }
 
   get(uid: string): Observable<User> {
     return this.httpClient.get<User>(`${AuthEnvironment.apiUrl}users/${uid}`);
@@ -24,11 +31,15 @@ export class UserService {
     return this.httpClient.post<User>(`${AuthEnvironment.apiUrl}users`, user);
   }
 
+  updateUser(user: User): Observable<User> {
+    return this.httpClient.put<User>(`${AuthEnvironment.apiUrl}user/${user.uid}`, user);
+  }
+
   getProfile(): Observable<Profile> {
     return this.httpClient.get<Profile>(`${AuthEnvironment.apiUrl}user/profile`);
   }
 
-  refreshProfile(): void {
-    this.profileEvent$.next(null);
+  deleteUserAccount(uid: string): Observable<unknown> {
+    return this.httpClient.delete(`${AuthEnvironment.auth0Settings.audience}/users/${uid}`);
   }
 }

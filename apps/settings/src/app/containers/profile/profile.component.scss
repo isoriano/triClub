@@ -3,37 +3,51 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    img {
-      display: block;
-      height: 124px;
-      width: 124px;
-      border-radius: 50%;
+    padding: 16px 0;
+    label {
+      width: 140px;
+      min-width: 140px;
+      padding-right: 16px;
+      text-align: right;
     }
-    isg-uploader {
-      position: absolute;
-      top: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      width: 124px;
-      height: 124px;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.3);
-      pointer-events: none;
-      ::ng-deep {
-        .mat-icon {
-          color: white;
+    .img-container {
+      flex: 1 1 auto;
+      img {
+        display: block;
+        height: 124px;
+        width: 124px;
+        border-radius: 50%;
+      }
+      isg-uploader {
+        position: absolute;
+        top: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        width: 124px;
+        height: 124px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+        ::ng-deep {
+          .mat-icon {
+            color: white;
+          }
+        }
+      }
+      &:hover {
+        isg-uploader {
+          opacity: 1;
+          pointer-events: all;
+          cursor: pointer;
         }
       }
     }
-
-    &:hover {
-      isg-uploader {
-        opacity: 1;
-        pointer-events: all;
-        cursor: pointer;
-      }
-    }
+  }
+  .delete-account-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 }
