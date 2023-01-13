@@ -16,4 +16,4 @@ At the moment of this writing the project is being build using:
 - Auth0 for authentication
 - NodeJS as API and MongoDB for storing information ([API Repository](https://github.com/isoriano/triClub-backend))
 
-Site and API deployed on [Render free hosting](https://dashboard.render.com/).
+Site and API deployed on [Render free hosting](https://dashboard.render.com/) (Disabled for now).
