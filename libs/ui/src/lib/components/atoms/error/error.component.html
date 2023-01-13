@@ -1,0 +1,8 @@
+<span *ngIf="error.key.includes('custom__'); else systemValidators">
+  {{ error.value }}
+</span>
+<ng-template #systemValidators>
+  <ng-container [ngSwitch]="error.key">
+    <span *ngSwitchCase="'required'">Required</span>
+  </ng-container>
+</ng-template>

@@ -1,0 +1,5 @@
+@use "./notification/notification-theme.component" as notification;
+
+@mixin theme($theme, $mat-variants, $variants) {
+  @include notification.color($theme, $mat-variants, $variants);
+}

@@ -1,20 +1,24 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthModule } from '@auth0/auth0-angular';
+import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { filter, shareReplay, tap } from 'rxjs/operators';
 
-import { Profile, User, UserService } from '@tri-club/user';
+import { User, Store as UserStore } from '@tri-club/user';
 
 import { UploaderComponent } from '@isg/files';
-import { ButtonComponent, FormFieldDateComponent, FormFieldInputComponent } from '@isg/ui';
+import { NotificationService, Settings } from '@isg/notification';
+import { ButtonComponent, FormFieldDateComponent, FormFieldInputComponent, NotificationComponent } from '@isg/ui';
 
 import { environment } from '../../../environments/environment';
+import { ChangePasswordComponent } from '../../components/change-password/change-password.component';
 import { ProfileRowComponent } from '../../components/profile-row/profile-row.component';
-import { SettingsService } from '../../services';
+import { ChangePassword } from '../../models';
 
 @Component({
   selector: 'tcs-user-profile',
@@ -24,18 +28,26 @@ import { SettingsService } from '../../services';
   imports: [
     AuthModule,
     ButtonComponent,
+    ChangePasswordComponent,
     CommonModule,
     DatePipe,
     FormFieldDateComponent,
     FormFieldInputComponent,
     MatDividerModule,
+    MatSnackBarModule,
     ProfileRowComponent,
     UploaderComponent
   ]
 })
 export class ProfileComponent implements OnInit {
-  profile$: Observable<Profile>;
+  isUpdating$ = this.store.select(UserStore.selectors.isUpdating).pipe(shareReplay(), tap(up => console.warn(up)));
+  user$: Observable<User> = this.store.select(UserStore.selectors.selectUser).pipe(
+    filter((user) => !!user),
+    tap((user) => this.mapForm(user))
+  );
+  // isUpdatingPassword$ = this.store.select(UserStore.selectors.isUpdatingPassword);
 
+  ctrlOnEdit: string;
   default_avatar = environment.defaultAvatar;
   profileForm: FormGroup<{
     uid: FormControl<string>;
@@ -44,34 +56,60 @@ export class ProfileComponent implements OnInit {
     dob: FormControl<Date>;
   }>;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private settingsService: SettingsService) {
-    this.profile$ = this.userService.profile$.pipe(tap((profile) => this.mapForm(profile.user)));
-  }
+  private backupUser: User;
+  private notification = inject(NotificationService);
+
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   private get user(): User {
     return this.profileForm.value as User;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store
+      .select(UserStore.selectors.isUpdated)
+      .pipe(filter((isUpdated) => !!isUpdated))
+      .subscribe(() => (this.ctrlOnEdit = undefined));
+
+    this.store
+      .select(UserStore.selectors.selectUserError)
+      .pipe(filter((error) => !!error))
+      .subscribe((error) => this.notification.open(new Settings('Error', error, 'warn')));
+  }
 
   updateAvatar(result: any): void {
-    this.settingsService.updateAvatar(this.user.uid, result[0].id).subscribe(() => this.userService.refreshProfile());
+    this.store.dispatch(UserStore.actions.updateAvatar({ avatarId: result[0].id }));
+  }
+
+  onEditing(ctrl: string): void {
+    this.ctrlOnEdit = ctrl;
+  }
+
+  onCancel(): void {
+    this.ctrlOnEdit = undefined;
+    this.profileForm.patchValue(this.backupUser);
   }
 
   onSave(): void {
     this.profileForm.markAllAsTouched();
-    if (!this.profileForm.valid) {
+    if (!this.profileForm.get(this.ctrlOnEdit).valid) {
       return;
     }
 
-    this.userService.updateUser(this.user).subscribe();
+    const changeRequest: Partial<User> = {};
+    changeRequest[this.ctrlOnEdit] = this.user[this.ctrlOnEdit];
+    this.store.dispatch(UserStore.actions.updateUser({ change: changeRequest }));
   }
 
   onDeleteAccount(): void {
-    this.userService.deleteUserAccount(this.user.uid).subscribe();
+    // TODO: Call dispatch action
+    // this.userService.deleteUserAccount(this.user.uid).subscribe();
   }
 
+  onUpdatePassword(change: ChangePassword): void {}
+
   private mapForm(profileUser: User): void {
+    this.backupUser = profileUser;
     this.profileForm = this.fb.group({
       uid: [profileUser.uid],
       name: [profileUser.name, Validators.required],
@@ -79,60 +117,4 @@ export class ProfileComponent implements OnInit {
       dob: [profileUser.dob, Validators.required]
     });
   }
-
-  // sportSelected(changedSport: { name: string, selected: boolean }) {
-  //   // const sportFound = this.sports.find(sport => sport.name === changedSport.name);
-
-  //   // sportFound.selected = !sportFound.selected;
-  // }
-
-  // dateChange(value: any) {
-  //   this.profileForm.get('dateOfBirth')?.setValue(value.toDate());
-  // }
-
-  // reset() {
-  //   // this.initProfileForm(this.user);
-  // }
-
-  // updatePassword() {
-  //   this.updatePasswordForm.markAllAsTouched();
-  //   if (this.updatePasswordForm.valid) {
-  //     this.passwordUpdating$.next(true);
-  //     // this.authService.resetPassword(this.updatePasswordForm.value).then(r => {
-  //     //   this.passwordUpdating$.next(false);
-  //     //   this.passwordUpdated$.next(r);
-  //     // });
-  //   }
-  // }
-
-  // save() {
-  //   // this.profileForm.markAllAsTouched();
-  //   // this.profileForm.get('sports')?.setValue(JSON.stringify(this.sports));
-  //   // if (this.profileForm.valid) {
-  //   //   // this.store.dispatch(new userActions.SetUser({ uid: this.user.uid, ...this.profileForm.value }));
-  //   // } else {
-  //   //   this.errorMessage$.next('validator.pleaseEnterCorrectInformation');
-  //   // }
-  // }
-
-  // private initProfileForm(user: User | undefined) {
-  //   if (user === undefined) {
-  //     return;
-  //   }
-
-  //   this.user = user;
-  //   this.sports = JSON.parse(user.sports);
-  //   this.profileForm = this.fb.group({
-  //     displayName: [user.displayName, [Validators.required]],
-  //     dateOfBirth: [user.dateOfBirth ? user.dateOfBirth.toDate() : '', [Validators.required]],
-  //     sports: ['']
-  //   });
-  // }
-
-  // private initUpdatePasswordForm() {
-  //   this.updatePasswordForm = this.fb.group({
-  //     oldPassword: ['', [Validators.required]],
-  //     newPassword: ['', [Validators.required]]
-  //   })
-  // }
 }

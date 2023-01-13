@@ -5,13 +5,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { BasicThemePalette } from '../../../../types/theme-palette.type';
+import { ErrorComponent } from '../../../atoms';
 
 @Component({
   selector: 'isg-form-field-input',
   templateUrl: './form-field-input.component.html',
   styleUrls: ['./form-field-input.component.scss'],
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
+  imports: [CommonModule, ErrorComponent, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
 })
 export class FormFieldInputComponent {
   @Input() set formCtrl(ctrl: AbstractControl) {
@@ -23,7 +24,7 @@ export class FormFieldInputComponent {
   @Input() required: boolean;
   @Input() type = 'text';
   @Input() maxLength: number;
-  @Input() appearance: 'fill' | 'outline' = 'outline';
+  @Input() appearance: 'fill' | 'outline' = 'fill';
   @Input() color: BasicThemePalette;
 
   formControl: FormControl;

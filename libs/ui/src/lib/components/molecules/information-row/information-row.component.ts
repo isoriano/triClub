@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -6,7 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
   selector: 'isg-information-row',
   templateUrl: 'information-row.component.html',
   standalone: true,
-  imports: [CommonModule, MatDividerModule]
+  imports: [MatDividerModule]
 })
 export class InformationRowComponent {
   @Input() label: string;

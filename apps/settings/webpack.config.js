@@ -4,8 +4,9 @@ const path = require('path');
 
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
-  '@tri-club/user',
   '@isg/files',
+  '@isg/notification',
+  '@tri-club/user'
 ]);
 
 module.exports = {
@@ -37,6 +38,8 @@ module.exports = {
         '@angular/common': { singleton: true, strictVersion: false },
         '@angular/router': { singleton: true, strictVersion: false },
         '@angular/common/http': { singleton: true, strictVersion: false },
+        '@ngrx/store': { singleton: true, strictVersion: false },
+        '@ngrx/effects': { singleton: true, strictVersion: false },
         '@ngx-translate/core': { singleton: true, strictVersion: false },
         '@auth0/auth0-angular': { singleton: true, strictVersion: false },
         ...sharedMappings.getDescriptors(),

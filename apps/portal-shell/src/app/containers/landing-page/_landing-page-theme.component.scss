@@ -9,14 +9,14 @@
   tcs-landing-page {
     .btn-signup {
       .mat-mdc-button-base {
-        background-color: mat.get-color-from-palette($primary, 50);
+        background-color: mat.get-color-from-palette($primary, 700);
       }
     }
     .tcs-landing-header {
-      background-color: mat.get-color-from-palette($primary, 400, 1);
+      background-color: mat.get-color-from-palette($primary, 500, 1);
     }
     .key {
-      fill: mat.get-color-from-palette($primary, 400, 1);
+      fill: mat.get-color-from-palette($primary, 500, 1);
     }
   }
 }

@@ -5,7 +5,7 @@
 
 $tcs-light-primary: mat.define-palette(palette.$light-yellow-palette);
 $tcs-light-accent: mat.define-palette(palette.$light-blue-palette);
-$tcs-light-warn: mat.define-palette(mat.$red-palette);
+$tcs-light-warn: mat.define-palette(palette.$dark-red-palette);
 
 $tcs-light-success: mat.define-palette(mat.$green-palette);
 $tcs-light-info: mat.define-palette(mat.$blue-palette);

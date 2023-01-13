@@ -16,12 +16,9 @@
   />
   <span matPrefix><ng-content select="[slot=prefix-icon]"></ng-content></span>
   <span matSuffix><ng-content select="[slot=suffix-icon]"></ng-content></span>
-  <!-- TODO: Improve error handleling -->
-  <mat-error *ngIf="!formControl.hasError('required')">
-    {{ formControl.getError('errorMessage') }}
-  </mat-error>
-  <mat-error *ngIf="formControl.hasError('required')">
-    <strong>required</strong>
+
+  <mat-error *ngFor="let error of formControl.errors | keyvalue">
+    <isg-error [error]="error"></isg-error>
   </mat-error>
   <mat-hint align="start">
     <ng-content select="[slot=hint-start]"></ng-content>

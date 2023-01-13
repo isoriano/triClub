@@ -1,0 +1,14 @@
+<div class="notification-container">
+  <div class="notification-content" [ngClass]="color + ' ' + pHoritzontal + ' ' + pVertical">
+    <div class="text">
+      <span class="title">{{ title }}</span>
+      <mat-divider></mat-divider>
+      <p [innerHTML]="content"></p>
+    </div>
+    <div class="actions">
+      <isg-button [variant]="'icon'" [label]="'Clear'" (clicked)="clear.emit()">
+        <mat-icon slot="button-icon">close</mat-icon>
+      </isg-button>
+    </div>
+  </div>
+</div>

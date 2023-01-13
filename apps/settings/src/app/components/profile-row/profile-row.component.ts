@@ -14,7 +14,9 @@ import { ButtonComponent } from '@isg/ui';
 })
 export class ProfileRowComponent {
   @Input() label: string;
+  @Input() isEditing: boolean;
+  @Input() isUpdating: boolean;
+  @Output() edit = new EventEmitter();
+  @Output() cancel = new EventEmitter();
   @Output() save = new EventEmitter();
-
-  isEditing: boolean;
 }

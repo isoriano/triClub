@@ -1,26 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthModule, AuthService, User } from '@auth0/auth0-angular';
+import { Store } from '@ngrx/store';
 
 import { first } from 'rxjs/operators';
 
-import { UserService } from '@tri-club/user';
+import { Store as UserStore } from '@tri-club/user';
 
 @Component({
   selector: 'tcs-auth',
   template: '',
   standalone: true,
-  imports: [
-    AuthModule,
-    RouterModule
-  ]
+  imports: [AuthModule, RouterModule]
 })
 export class AuthComponent implements OnInit {
-  constructor(
-    private auth: AuthService,
-    private userService: UserService,
-    private router: Router
-  ) {}
+  constructor(private auth: AuthService, private router: Router, private store: Store) {}
 
   ngOnInit(): void {
     this.auth.user$.pipe(first()).subscribe((auth0User: User) => {
@@ -29,17 +23,19 @@ export class AuthComponent implements OnInit {
       }
 
       if (auth0User.isNew) {
-        this.userService
-          .createUser({
-            uid: auth0User.sub,
-            name: auth0User.name,
-            email: auth0User.email,
-            dob: undefined
+        this.store.dispatch(
+          UserStore.actions.createUser({
+            user: {
+              uid: auth0User.sub,
+              name: auth0User.name,
+              email: auth0User.email,
+              dob: undefined
+            }
           })
-          .subscribe(() => {
-            this.router.navigate(['/athlete/register']);
-          });
+        );
+        this.router.navigate(['/settings/profile']);
       } else {
+        this.store.dispatch(UserStore.actions.initUser());
         this.router.navigate(['/dashboard']);
       }
     });

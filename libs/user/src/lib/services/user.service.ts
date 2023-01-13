@@ -1,45 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, Observable } from 'rxjs';
-import { shareReplay, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { AuthEnvironment } from '@tri-club/environment';
 
-import { Profile, User } from '../models';
+import { File } from '@isg/files';
+
+import { Profile, User, UserHttpResponse } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private profileEvent$ = new BehaviorSubject(null);
-
-  profile$ = this.profileEvent$.pipe(
-    switchMap(() => this.getProfile()),
-    shareReplay()
-  );
 
   constructor(private httpClient: HttpClient) {}
 
-  refreshProfile(): void {
-    this.profileEvent$.next(null);
+  createUser(user: User): Observable<UserHttpResponse> {
+    return this.httpClient.post<UserHttpResponse>(`${AuthEnvironment.apiUrl}users`, user);
   }
 
-  get(uid: string): Observable<User> {
-    return this.httpClient.get<User>(`${AuthEnvironment.apiUrl}users/${uid}`);
+  getCurrent(): Observable<UserHttpResponse> {
+    return this.httpClient.get<UserHttpResponse>(`${AuthEnvironment.apiUrl}user`);
   }
 
-  createUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(`${AuthEnvironment.apiUrl}users`, user);
+  updateAvatar(avatarId: string): Observable<File> {
+    return this.httpClient.put<File>(`${AuthEnvironment.apiUrl}user/avatar`, { avatarId });
   }
 
-  updateUser(user: User): Observable<User> {
-    return this.httpClient.put<User>(`${AuthEnvironment.apiUrl}user/${user.uid}`, user);
+  updateCurrent(change: Partial<User>): Observable<UserHttpResponse> {
+    return this.httpClient.put<UserHttpResponse>(`${AuthEnvironment.apiUrl}user`, change);
   }
 
   getProfile(): Observable<Profile> {
     return this.httpClient.get<Profile>(`${AuthEnvironment.apiUrl}user/profile`);
   }
 
-  deleteUserAccount(uid: string): Observable<unknown> {
-    return this.httpClient.delete(`${AuthEnvironment.auth0Settings.audience}/users/${uid}`);
+  deleteCurrentUserAccount(): Observable<unknown> {
+    return this.httpClient.delete(`${AuthEnvironment.auth0Settings.audience}/user`);
   }
 }

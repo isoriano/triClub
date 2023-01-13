@@ -13,11 +13,10 @@
 
   @include uiMixin.screen('desktop') {
     main {
-      height: calc(100% - 64px);
       width: 1300px;
-      padding-bottom: 0;
+      padding-bottom: 64px;
+      overflow: hidden;
       &.public {
-        overflow: hidden;
         width: 100%;
       }
     }

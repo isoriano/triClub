@@ -1,10 +1,10 @@
 <h1 class="title">My Profile</h1>
 <mat-divider></mat-divider>
-<section *ngIf="profile$ | async as profile">
+<section *ngIf="user$ | async as user">
   <div class="avatar-container">
     <label>Current Photo</label>
     <div class="img-container">
-      <img [src]="profile.avatar?.data ?? default_avatar" [alt]="'Avatar Image'" />
+      <img [src]="user.avatar?.data ?? default_avatar" [alt]="'Avatar Image'" />
       <isg-uploader
         [label]="'Update Avatar'"
         [justIcon]="true"
@@ -15,22 +15,45 @@
     </div>
   </div>
   <mat-divider></mat-divider>
-  <tcs-profile-row [label]="'Name'" (save)="onSave()">
-    <span slot="text">{{ profile.user.name }}</span>
+  <tcs-profile-row
+    [label]="'Name'"
+    [isUpdating]="isUpdating$ | async"
+    [isEditing]="ctrlOnEdit === 'name'"
+    (edit)="onEditing('name')"
+    (save)="onSave()"
+    (cancel)="onCancel()"
+  >
+    <span slot="text">{{ user.name }}</span>
     <isg-form-field-input slot="editCtrl" [formCtrl]="profileForm.get('name')"></isg-form-field-input>
   </tcs-profile-row>
-  <tcs-profile-row [label]="'email'" (save)="onSave()">
-    <span slot="text">{{ profile.user.email }}</span>
+  <tcs-profile-row
+    [label]="'email'"
+    [isUpdating]="isUpdating$ | async"
+    [isEditing]="ctrlOnEdit === 'email'"
+    (edit)="onEditing('email')"
+    (save)="onSave()"
+    (cancel)="onCancel()"
+  >
+    <span slot="text">{{ user.email }}</span>
     <isg-form-field-input slot="editCtrl" [type]="'email'" [formCtrl]="profileForm.get('email')"></isg-form-field-input>
   </tcs-profile-row>
-  <tcs-profile-row [label]="'Date of Birth'" (save)="onSave()">
-    <span slot="text">{{ profile.user.dob | date: 'EEEE, MMMM d, y' }}</span>
+  <tcs-profile-row
+    [label]="'Date of Birth'"
+    [isUpdating]="isUpdating$ | async"
+    [isEditing]="ctrlOnEdit === 'dob'"
+    (edit)="onEditing('dob')"
+    (save)="onSave()"
+    (cancel)="onCancel()"
+  >
+    <span slot="text">{{ user.dob | date: 'EEEE, MMMM d, y' }}</span>
     <isg-form-field-date slot="editCtrl" [formCtrl]="profileForm.get('dob')"></isg-form-field-date>
   </tcs-profile-row>
+  <!-- [isUpdating]="isUpdatingPassword$ | async"  -->
+  <tcs-change-password (update)="onUpdatePassword($event)"></tcs-change-password>
 
   <div class="delete-account-container">
     <h2>Delete your account</h2>
-    <span>Elimina tu cuenta de forma permanete</span>
+    <span>Elimina tu cuenta de forma permanente</span>
     <isg-button [color]="'warn'" [label]="'Delete Account'" (clicked)="onDeleteAccount()"></isg-button>
   </div>
 </section>

@@ -11,20 +11,13 @@ import { ButtonComponent } from '@isg/ui';
 @Component({
   selector: 'tcs-landing-page',
   templateUrl: 'landing-page.component.html',
-  styleUrls: [
-    './landing-page.component.scss',
-    './_landing-page-theme.component.scss',
-  ],
+  styleUrls: ['./landing-page.component.scss', './_landing-page-theme.component.scss'],
   standalone: true,
-  imports: [CommonModule, ButtonComponent, RouterModule, TranslateModule],
+  imports: [CommonModule, ButtonComponent, RouterModule, TranslateModule]
 })
 export class LandingPageComponent {
-  constructor(
-    public auth: AuthService,
-    router: Router
-  ) {
-    this.auth.isAuthenticated$
-      .pipe(filter((isAutenticated) => !!isAutenticated))
-      .subscribe(() => router.navigate(['dashboard']));
+
+  constructor(public auth: AuthService, router: Router) {
+    this.auth.isAuthenticated$.pipe(filter((isAutenticated) => !!isAutenticated)).subscribe(() => router.navigate(['dashboard']));
   }
 }

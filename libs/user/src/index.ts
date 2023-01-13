@@ -1,2 +1,2 @@
 export * from './lib/models';
-export * from './lib/services';
+export * as Store from './lib/store';
