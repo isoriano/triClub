@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { ButtonComponent, FormFieldInputComponent } from '@isg/ui';
+import { ChangePassword } from '@tri-club/user';
 
-import { ChangePassword } from '../../models';
+import { ButtonComponent, FormFieldInputComponent } from '@isg/ui';
 
 @Component({
   selector: 'tcs-change-password',
@@ -14,13 +14,11 @@ import { ChangePassword } from '../../models';
   imports: [ButtonComponent, CommonModule, FormFieldInputComponent]
 })
 export class ChangePasswordComponent implements OnInit {
-  @Input() isUpdating: boolean;
   @Output() update = new EventEmitter<ChangePassword>();
 
   passwordForm: FormGroup<{
-    oldPassword: FormControl<string>;
-    confirmPassword: FormControl<string>;
     newPassword: FormControl<string>;
+    confirmPassword: FormControl<string>;
   }>;
 
   private fb = inject(FormBuilder);
@@ -28,12 +26,11 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {
     this.passwordForm = this.fb.group(
       {
-        oldPassword: ['', Validators.required],
-        confirmPassword: ['', Validators.required],
-        newPassword: ['', Validators.required]
+        newPassword: ['', Validators.required],
+        confirmPassword: ['', Validators.required]
       },
       {
-        validator: this.confirmedValidator('oldPassword', 'confirmPassword')
+        validator: this.confirmedValidator('newPassword', 'confirmPassword')
       }
     );
   }

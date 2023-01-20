@@ -2,14 +2,14 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthModule } from '@auth0/auth0-angular';
 import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 import { filter, shareReplay, tap } from 'rxjs/operators';
 
-import { User, Store as UserStore } from '@tri-club/user';
+import { User, Store as UserStore, UserService, ChangePassword } from '@tri-club/user';
 
 import { UploaderComponent } from '@isg/files';
 import { NotificationService, Settings } from '@isg/notification';
@@ -18,7 +18,7 @@ import { ButtonComponent, FormFieldDateComponent, FormFieldInputComponent, Notif
 import { environment } from '../../../environments/environment';
 import { ChangePasswordComponent } from '../../components/change-password/change-password.component';
 import { ProfileRowComponent } from '../../components/profile-row/profile-row.component';
-import { ChangePassword } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tcs-user-profile',
@@ -40,11 +40,6 @@ import { ChangePassword } from '../../models';
   ]
 })
 export class ProfileComponent implements OnInit {
-  isUpdating$ = this.store.select(UserStore.selectors.isUpdating).pipe(shareReplay(), tap(up => console.warn(up)));
-  user$: Observable<User> = this.store.select(UserStore.selectors.selectUser).pipe(
-    filter((user) => !!user),
-    tap((user) => this.mapForm(user))
-  );
   // isUpdatingPassword$ = this.store.select(UserStore.selectors.isUpdatingPassword);
 
   ctrlOnEdit: string;
@@ -57,9 +52,20 @@ export class ProfileComponent implements OnInit {
   }>;
 
   private backupUser: User;
+  private fb = inject(FormBuilder);
   private notification = inject(NotificationService);
+  private store = inject(Store);
+  private router$ = inject(Router);
+  private userService$ = inject(UserService);
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  isUpdating$ = this.store.select(UserStore.selectors.isUpdating).pipe(
+    shareReplay(),
+    tap((up) => console.warn(up))
+  );
+  user$: Observable<User> = this.store.select(UserStore.selectors.selectUser).pipe(
+    filter((user) => !!user),
+    tap((user) => this.mapForm(user))
+  );
 
   private get user(): User {
     return this.profileForm.value as User;
@@ -106,7 +112,9 @@ export class ProfileComponent implements OnInit {
     // this.userService.deleteUserAccount(this.user.uid).subscribe();
   }
 
-  onUpdatePassword(change: ChangePassword): void {}
+  onUpdatePassword(): void {
+    this.userService$.requestPasswordChange().subscribe((link) => (window.location.href = link.ticket));
+  }
 
   private mapForm(profileUser: User): void {
     this.backupUser = profileUser;

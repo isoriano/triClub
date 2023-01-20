@@ -54,8 +54,8 @@ export class AppComponent implements OnInit {
   private openDisclaimer(): void {
     const disclaimerBar = this._snackBar.open('This website is not maintained. Used only for study purposes.', 'Github', {
       duration: undefined,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
       panelClass: 'tcs-disclaimer-bar'
     });
     disclaimerBar.onAction().subscribe(() => {

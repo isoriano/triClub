@@ -48,8 +48,10 @@
     <span slot="text">{{ user.dob | date: 'EEEE, MMMM d, y' }}</span>
     <isg-form-field-date slot="editCtrl" [formCtrl]="profileForm.get('dob')"></isg-form-field-date>
   </tcs-profile-row>
-  <!-- [isUpdating]="isUpdatingPassword$ | async"  -->
-  <tcs-change-password (update)="onUpdatePassword($event)"></tcs-change-password>
+  <div class="container">
+    <h2>Update Password</h2>
+    <isg-button [label]="'Request Change Password'" (clicked)="onUpdatePassword()"></isg-button>
+  </div>
 
   <div class="delete-account-container">
     <h2>Delete your account</h2>

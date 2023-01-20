@@ -7,7 +7,7 @@ import { AuthEnvironment } from '@tri-club/environment';
 
 import { File } from '@isg/files';
 
-import { Profile, User, UserHttpResponse } from '../models';
+import { ChangePassword, Profile, User, UserHttpResponse } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -28,6 +28,10 @@ export class UserService {
 
   updateCurrent(change: Partial<User>): Observable<UserHttpResponse> {
     return this.httpClient.put<UserHttpResponse>(`${AuthEnvironment.apiUrl}user`, change);
+  }
+
+  requestPasswordChange(): Observable<any> {
+    return this.httpClient.get<UserHttpResponse>(`${AuthEnvironment.apiUrl}user/change-password`);
   }
 
   getProfile(): Observable<Profile> {
