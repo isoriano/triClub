@@ -482,6 +482,30 @@
       "tags": [],
       "implicitDependencies": ["portal-shell"]
     },
+    "security": {
+      "projectType": "library",
+      "root": "libs/security",
+      "sourceRoot": "libs/security/src",
+      "prefix": "isg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/security"],
+          "options": {
+            "jestConfig": "libs/security/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/security/**/*.ts", "libs/security/**/*.html"]
+          }
+        }
+      },
+      "tags": []
+    },
     "settings": {
       "projectType": "application",
       "root": "apps/settings",

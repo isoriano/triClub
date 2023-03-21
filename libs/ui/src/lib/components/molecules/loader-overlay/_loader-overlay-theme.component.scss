@@ -1,0 +1,32 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($theme, $mat-variants, $variants) {
+  $config: mat.get-color-config($theme);
+  $foreground: map.get($theme, foreground);
+
+  .blocker {
+    background-color: mat.get-color-from-palette($foreground, disabled);
+  }
+
+  @each $variant in $mat-variants {
+    $palette: map.get($config, $variant);
+    .mat-mdc-progress-spinner {
+      &.mat-#{$variant} {
+        .mdc-circular-progress__indeterminate-circle-graphic {
+          stroke: mat.get-color-from-palette($palette, 400);
+        }
+      }
+    }
+  }
+
+  @each $variant, $variant-palette in $variants {
+    .mat-mdc-progress-spinner {
+      &.mat-#{$variant} {
+        .mdc-circular-progress__indeterminate-circle-graphic {
+          stroke: mat.get-color-from-palette($variant-palette, 400);
+        }
+      }
+    }
+  }
+}

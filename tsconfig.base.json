@@ -21,6 +21,7 @@
       "@isg/ui/themes": ["libs/ui/src/lib/themes/_index.scss"],
       "@tri-club/authentication": ["libs/authentication/src/index.ts"],
       "@tri-club/environment": ["libs/environment/src/index.ts"],
+      "@tri-club/security": ["libs/security/src/index.ts"],
       "@tri-club/user": ["libs/user/src/index.ts"]
     }
   },

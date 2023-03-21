@@ -1,4 +1,5 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
+
 import { InformationRowComponent } from './information-row.component';
 
 export default {

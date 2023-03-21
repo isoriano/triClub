@@ -21,6 +21,7 @@
 @include mat.input-theme(light.$tcs-light-theme);
 @include mat.select-theme(light.$tcs-light-theme);
 @include mat.progress-bar-theme(light.$tcs-light-theme);
+@include mat.progress-spinner-theme(light.$tcs-light-theme);
 
 @include uiTheme.theme(light.$tcs-light-theme, light.$tcs-light-variants);
 
@@ -35,6 +36,7 @@
   @include mat.input-theme(dark.$tcs-dark-theme);
   @include mat.select-theme(dark.$tcs-dark-theme);
   @include mat.progress-bar-theme(dark.$tcs-dark-theme);
+  @include mat.progress-spinner-theme(dark.$tcs-dark-theme);
 
   @include uiTheme.theme(dark.$tcs-dark-theme, dark.$tcs-dark-variants);
 }

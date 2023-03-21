@@ -1,0 +1,10 @@
+<div class="loading-container">
+  <ng-content></ng-content>
+  <strong>{{loading}}</strong>
+  <div *ngIf="loading" class="blocker">
+    <mat-progress-spinner
+        [color]="color"
+        [mode]="'indeterminate'">
+    </mat-progress-spinner>
+  </div>
+</div>
