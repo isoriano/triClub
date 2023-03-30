@@ -7,15 +7,7 @@ import { NotificationService } from '../services';
 
 @Component({
   selector: 'isg-notification-container',
-  template: `<isg-notification
-    *ngIf="notification$ | async as notification"
-    [title]="notification.title"
-    [content]="notification.content"
-    [color]="notification.color"
-    [pHoritzontal]="notification.position.horitzontal"
-    [pVertical]="notification.position.vertical"
-    (clear)="onClear()"
-  ></isg-notification>`,
+  templateUrl: './notification.component.html',
   standalone: true,
   imports: [AsyncPipe, NgIf, NotificationComponent]
 })

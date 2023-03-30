@@ -1,5 +1,11 @@
-<div>
-  <span class="label">{{ label }}</span>
-  <span class="information">{{ information }}</span>
+<div class="content-item" [class.border-bottom]="hasBorderInd" [ngClass]="color">
+  <dl>
+    <dt>
+      <span>{{ label }}</span>
+    </dt>
+    <dd>
+      <mat-icon [color]="color">subdirectory_arrow_right</mat-icon>
+      <span>{{ information }}</span>
+    </dd>
+  </dl>
 </div>
-<mat-divider></mat-divider>

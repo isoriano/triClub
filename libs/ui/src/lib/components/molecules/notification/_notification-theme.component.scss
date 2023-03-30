@@ -4,12 +4,7 @@
 @mixin color($theme, $mat-variants, $variants) {
   $config: mat.get-color-config($theme);
 
-  // .notification-container {
   $foreground: map.get($theme, foreground);
-  //   $background: map.get($theme, background);
-  //   border-color: mat.get-color-from-palette($foreground, disabled);
-  //   background-color: mat.get-color-from-palette($background, card);
-  // }
 
   @each $variant in $mat-variants {
     $palette: map.get($config, $variant);
@@ -18,12 +13,37 @@
         border-color: mat.get-color-from-palette($palette, 500);
         background-color: mat.get-color-from-palette($palette, 400);
 
+        .text {
+          color: mat.get-color-from-palette($palette, '500-contrast');
+        }
         .actions {
           border-left-color: mat.get-color-from-palette($foreground, divider);
         }
         isg-button {
           .mat-icon {
             color: mat.get-color-from-palette($palette, '500-contrast');
+          }
+        }
+      }
+    }
+  }
+
+  @each $variant, $variant-palette in $variants {
+    .notification-container {
+      .#{$variant} {
+        border-color: mat.get-color-from-palette($variant-palette, 500);
+        background-color: mat.get-color-from-palette($variant-palette, 400);
+
+        .text {
+          color: mat.get-color-from-palette($variant-palette, '500-contrast');
+        }
+        .actions {
+          border-left-color: mat.get-color-from-palette($foreground, divider);
+        }
+
+        isg-button {
+          .mat-icon {
+            color: mat.get-color-from-palette($variant-palette, '500-contrast');
           }
         }
       }

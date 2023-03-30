@@ -1,0 +1,22 @@
+:host {
+  .content-item {
+    margin: 16px 0;
+
+    dl {
+      margin: 8px;
+      dd {
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        gap: 8px;
+        margin: 0;
+        margin-left: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        span {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

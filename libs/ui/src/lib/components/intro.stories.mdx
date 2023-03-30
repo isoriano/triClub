@@ -1,0 +1,67 @@
+import { moduleMetadata } from '@storybook/angular';
+import { action } from '@storybook/addon-actions';
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+<Meta title="Intro/Welcome" />
+
+Welcome!
+
+We are using the Atomic Design methodology combined with Material Design to build style guides and UI components to develop MySRS applications.
+
+# Atomic Design in Angular
+
+Due to its component-based architecture, Atomic Design in Angular is a great match. Some of the Angular best-practices that encourage reuse, maintainability and componentization fit naturally into the Atomic Design methodology.
+
+Below you can find a parallel between Atomic Design concepts and Angular. The quoted definitions are taken from [Atomic Design by Brad Frost](http://atomicdesign.bradfrost.com/chapter-2/).
+
+## Atoms
+
+> Atoms include basic HTML elements like form labels, inputs, buttons, and others that can’t be broken down any further without ceasing to be functional.
+
+In Angular combined with Material, we make use of basic HTML elements, like the ones listed in the quote above, in component templates.
+
+## Molecules
+
+> Molecules are relatively simple groups of UI elements functioning together as a unit
+
+Angular best-practices encourage the creation of small components that can be reused across the application (or even shared with different applications). Looking at the Angular Material component library, there are many premade components, which can be considered "molecules" in Atomic Design.
+
+## Organisms
+
+> Organisms are relatively complex UI components composed of groups of molecules and/or atoms and/or other organisms.
+
+In an Angular application, we often have reusable complex components combining smaller components named by many as Container components.
+Page headers and footers, navigation menus, product preview boxes, to name a few. Those containers are made up of smaller components ("Molecules") and are re-used across the application (or even several applications).
+
+## Templates
+
+> Templates are page-level objects that place components into a layout and articulate the design’s underlying content structure.
+
+The definition above, with some minor edits, could as-well be something describing Angular's template system. To create the pages, you place your components ("organisms", "molecules", "atoms") to create the structure of a page.
+
+## Pages
+
+> Pages are specific instances of templates that show what a UI looks like with real representative content in place.
+
+This is essentially the rendered output of Angular component templates in the browser - the final product of an Angular project so to say. Payments history, messages page, checkout page, products page, my applications, etc.
+
+# Storybook for Angular
+
+[Storybook](https://storybook.js.org/) is an open source tool for developing UI components in isolation for React, Vue, and Angular. It makes building stunning UIs organized and efficient.
+
+Storybook is all about writing stories. A story usually contains a single state of one component, almost like a visual test case.
+
+We are heavily relying on [Storybook for Angular](https://storybook.js.org/docs/guides/guide-angular/) to build the Design System integrated with documentation.
+
+In a nutshell:
+
+- [MDX](https://github.com/storybookjs/storybook/blob/next/addons/docs/angular/README.md#mdx) syntax is used to write stories
+  - [Doc Blocks](https://storybook.js.org/docs/angular/writing-docs/doc-blocks) is an important resource on writing and understanding the story syntax
+- [Compodoc](https://compodoc.app/) is used to automatic generate components documentation
+- UI Components are placed in folders following the Atomic Design nomenclature:
+  - Atoms `/ui/src/lib/components/atoms/*`
+  - Molecules `/ui/src/lib/components/molecules/*`
+  - Organisms `/ui/src/lib/components/organisms/*`
+  - Templates `/ui/src/lib/templates/*`
+  - Pages `/ui/src/lib/pages/*`
+  - To generate a new component you can use this command: `npx nx g c components/[atoms|molecules|organisms]/${name} --project=ui --skipImport=true --changeDetection=OnPush`

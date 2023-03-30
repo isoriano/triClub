@@ -4,7 +4,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { FormFieldSelectComponent } from './form-field-select.component';
 
 export default {
-  title: 'FormFieldSelectComponent',
+  title: 'Molecules/Form Field/Select',
   component: FormFieldSelectComponent,
   decorators: [
     moduleMetadata({

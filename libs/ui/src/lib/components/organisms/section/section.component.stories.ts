@@ -1,8 +1,9 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
+
 import { SectionComponent } from './section.component';
 
 export default {
-  title: 'SectionComponent',
+  title: 'Organisms/Section',
   component: SectionComponent,
   decorators: [
     moduleMetadata({

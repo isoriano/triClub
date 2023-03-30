@@ -4,7 +4,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { FormFieldInputComponent } from './form-field-input.component';
 
 export default {
-  title: 'FormFieldInputComponent',
+  title: 'Molecules/Form Field/Input',
   component: FormFieldInputComponent,
   decorators: [
     moduleMetadata({

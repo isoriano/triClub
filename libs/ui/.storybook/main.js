@@ -6,8 +6,11 @@ module.exports = {
 
   core: { ...rootMain.core, builder: 'webpack5' },
 
-  stories: [...rootMain.stories, '../**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [...rootMain.stories, '../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
   addons: [...rootMain.addons],
+  features: {
+    previewMdx2: true,
+  },
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js
     if (rootMain.webpackFinal) {

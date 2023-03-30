@@ -1,8 +1,9 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
+
 import { ThreeColumnLayoutComponent } from './three-column-layout.component';
 
 export default {
-  title: 'ThreeColumnLayoutComponent',
+  title: 'Layouts/Three Column',
   component: ThreeColumnLayoutComponent,
   decorators: [
     moduleMetadata({

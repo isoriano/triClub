@@ -4,7 +4,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { FormFieldDateComponent } from './form-field-date.component';
 
 export default {
-  title: 'FormFieldDateComponent',
+  title: 'Molecules/Form Field/Date',
   component: FormFieldDateComponent,
   decorators: [
     moduleMetadata({

@@ -4,7 +4,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { LoaderOverlayComponent } from './loader-overlay.component';
 
 export default {
-  title: 'LoaderOverlayComponent',
+  title: 'Molecules/Loader Overlay',
   component: LoaderOverlayComponent,
   decorators: [
     moduleMetadata({
@@ -34,5 +34,5 @@ export const Primary: Story = (args) => ({
 
 Primary.args = {
   color: 'primary',
-  loading: false
+  loading: true
 };

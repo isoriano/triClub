@@ -1,0 +1,65 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($theme, $mat-variants, $variants) {
+  $config: mat.get-color-config($theme);
+  $primary: map.get($config, 'primary');
+  $foreground: map.get($theme, foreground);
+
+  .content-item.none {
+    &.border-bottom {
+      border-bottom: 1px solid mat.get-color-from-palette($foreground, disabled);
+    }
+
+    dl {
+      dt {
+        color: mat.get-color-from-palette($primary, '500-contrast') !important;
+      }
+      dd {
+        .mat-icon {
+          color: mat.get-color-from-palette($foreground, disabled) !important;
+        }
+      }
+    }
+  }
+
+  @each $variant in $mat-variants {
+    $palette: map.get($config, $variant);
+
+    .content-item.#{$variant} {
+      &.border-bottom {
+        border-bottom: 1px solid mat.get-color-from-palette($palette, 200);
+      }
+
+      dl {
+        dt {
+          color: mat.get-color-from-palette($palette, 400) !important;
+        }
+        dd {
+          .mat-icon {
+            color: mat.get-color-from-palette($palette, 200) !important;
+          }
+        }
+      }
+    }
+  }
+
+  @each $variant, $variant-palette in $variants {
+    .content-item.#{$variant} {
+      &.border-bottom {
+        border-bottom: 1px solid mat.get-color-from-palette($variant-palette, 200);
+      }
+
+      dl {
+        dt {
+          color: mat.get-color-from-palette($variant-palette, 400) !important;
+        }
+        dd {
+          .mat-icon {
+            color: mat.get-color-from-palette($variant-palette, 200) !important;
+          }
+        }
+      }
+    }
+  }
+}
