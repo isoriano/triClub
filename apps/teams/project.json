@@ -1,0 +1,97 @@
+{
+  "name": "teams",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/teams/src",
+  "prefix": "tcs",
+  "targets": {
+    "build": {
+      "executor": "ngx-build-plus:browser",
+      "options": {
+        "outputPath": "dist/teams",
+        "index": "",
+        "main": "apps/teams/src/main.ts",
+        "polyfills": "apps/teams/src/polyfills.ts",
+        "tsConfig": "apps/teams/tsconfig.app.json",
+        "aot": true,
+        "assets": ["apps/teams/src/favicon.ico", "apps/teams/src/assets"],
+        "scripts": [],
+        "extraWebpackConfig": "apps/teams/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/teams/src/environments/environment.ts",
+              "with": "apps/teams/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "extraWebpackConfig": "apps/teams/webpack.prod.config.js"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true,
+          "extraWebpackConfig": "apps/teams/webpack.config.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "ngx-build-plus:dev-server",
+      "options": {
+        "publicHost": "http://localhost:3001",
+        "port": 3001
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "teams:build:production",
+          "extraWebpackConfig": "apps/teams/webpack.prod.config.js"
+        },
+        "development": {
+          "browserTarget": "teams:build:development",
+          "extraWebpackConfig": "apps/teams/webpack.config.js"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "teams:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/teams/src/**/*.ts", "apps/teams/src/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "ngx-build-plus:karma",
+      "outputs": ["coverage/apps/teams"],
+      "options": {
+        "jestConfig": "apps/teams/jest.config.js",
+        "passWithNoTests": true,
+        "extraWebpackConfig": "apps/teams/webpack.config.js"
+      }
+    }
+  },
+  "tags": []
+}

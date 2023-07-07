@@ -1,0 +1,24 @@
+{
+  "name": "user",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/user/src",
+  "prefix": "tcs",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/user"],
+      "options": {
+        "jestConfig": "libs/user/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/user/**/*.ts", "libs/user/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

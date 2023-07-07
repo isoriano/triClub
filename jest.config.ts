@@ -1,4 +1,4 @@
-const { getJestProjects } = require('@nrwl/jest');
+const { getJestProjects } = require('@nx/jest');
 
 export default {
   projects: [
@@ -7,6 +7,6 @@ export default {
     '<rootDir>/apps/dashboard',
     '<rootDir>/libs/authentication',
     '<rootDir>/apps/teams',
-    '<rootDir>/libs/ui',
-  ],
+    '<rootDir>/libs/ui'
+  ]
 };

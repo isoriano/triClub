@@ -1,0 +1,110 @@
+{
+  "name": "portal-shell",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/portal-shell/src",
+  "prefix": "tcs",
+  "targets": {
+    "build": {
+      "executor": "ngx-build-plus:browser",
+      "options": {
+        "outputPath": "dist",
+        "index": "apps/portal-shell/src/index.html",
+        "main": "apps/portal-shell/src/main.ts",
+        "polyfills": "apps/portal-shell/src/polyfills.ts",
+        "tsConfig": "apps/portal-shell/tsconfig.app.json",
+        "aot": true,
+        "assets": [
+          "apps/portal-shell/src/favicon.ico",
+          {
+            "glob": "**/*",
+            "input": "./assets/",
+            "output": "./assets"
+          }
+        ],
+        "styles": [
+          "apps/portal-shell/src/styles.scss",
+          {
+            "input": "apps/settings/src/styles.scss",
+            "bundleName": "settings_styles",
+            "inject": false
+          }
+        ],
+        "scripts": [],
+        "extraWebpackConfig": "apps/portal-shell/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/portal-shell/src/environments/environment.ts",
+              "with": "apps/portal-shell/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "extraWebpackConfig": "apps/portal-shell/webpack.prod.config.js"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "ngx-build-plus:dev-server",
+      "options": {
+        "port": 5000
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "portal-shell:build:production",
+          "extraWebpackConfig": "apps/portal-shell/webpack.prod.config.js"
+        },
+        "development": {
+          "browserTarget": "portal-shell:build:development",
+          "extraWebpackConfig": "apps/portal-shell/webpack.config.js"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "portal-shell:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/portal-shell/src/**/*.ts", "apps/portal-shell/src/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "ngx-build-plus:karma",
+      "outputs": ["coverage/apps/portal-shell"],
+      "options": {
+        "jestConfig": "apps/portal-shell/jest.config.js",
+        "passWithNoTests": true,
+        "extraWebpackConfig": "apps/portal-shell/webpack.config.js"
+      }
+    }
+  },
+  "tags": []
+}

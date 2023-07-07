@@ -1,0 +1,24 @@
+{
+  "name": "environment",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/environment/src",
+  "prefix": "tri-club",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/environment"],
+      "options": {
+        "jestConfig": "libs/environment/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/environment/**/*.ts", "libs/environment/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

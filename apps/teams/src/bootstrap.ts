@@ -1,8 +1,7 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { appConfig } from './app/app.config';
 
-import { TEAMS_ROUTES } from './app/teams.routes';
+import { bootstrapApplication } from '@angular/platform-browser';
+
 import { ProfileComponent } from './app/containers/profile/profile.component';
 import { environment } from './environments/environment';
 
@@ -10,6 +9,4 @@ if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(ProfileComponent, {
-  providers: [importProvidersFrom(RouterModule.forRoot(TEAMS_ROUTES))],
-}).catch((err) => console.error(err));
+bootstrapApplication(ProfileComponent, appConfig).catch((err) => console.error(err));

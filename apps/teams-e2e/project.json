@@ -1,0 +1,30 @@
+{
+  "name": "teams-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/teams-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/teams-e2e/cypress.json",
+        "tsConfig": "apps/teams-e2e/tsconfig.e2e.json",
+        "devServerTarget": "teams:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "teams:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/teams-e2e/**/*.{js,ts}"]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["teams"]
+}

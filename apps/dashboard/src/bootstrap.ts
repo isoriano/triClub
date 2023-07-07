@@ -1,19 +1,14 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { appConfig } from './app/app.config';
+
 import { bootstrapApplication } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './app/container/dashboard.component';
-import { DASHBOARD_ROUTES } from './app/dashboard.routes';
+
 import { environment } from './environments/environment';
+import { enableProdMode } from '@angular/core';
 
 if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(DashboardComponent, {
-  providers: [
-    importProvidersFrom(
-      RouterModule.forRoot(DASHBOARD_ROUTES, {})
-    ),
-  ],
-}).catch((err) => console.error(err));
+bootstrapApplication(DashboardComponent, appConfig).catch((err) => console.error(err));

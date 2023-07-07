@@ -1,0 +1,24 @@
+{
+  "name": "files",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/files/src",
+  "prefix": "isg",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["coverage/libs/files"],
+      "options": {
+        "jestConfig": "libs/files/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/files/**/*.ts", "libs/files/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
