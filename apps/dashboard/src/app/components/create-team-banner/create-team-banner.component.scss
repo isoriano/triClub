@@ -1,0 +1,13 @@
+.features-container {
+  width: 100%;
+  .keys-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    .key {
+      margin-left: 0;
+      text-align: center;
+    }
+  }
+}

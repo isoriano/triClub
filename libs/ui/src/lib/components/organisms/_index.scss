@@ -1,0 +1,7 @@
+@use './banner/_banner-theme.component' as banner;
+@use './section/_section-theme.component' as section;
+
+@mixin theme($theme, $mat-variants, $variants) {
+  @include banner.color($theme, $mat-variants, $variants);
+  @include section.color($theme, $mat-variants, $variants);
+}

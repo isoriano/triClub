@@ -1,24 +1,24 @@
 {
   "version": 1,
   "projects": {
-    "athlete": {
+    "teams": {
       "projectType": "application",
-      "root": "apps/athlete",
-      "sourceRoot": "apps/athlete/src",
+      "root": "apps/teams",
+      "sourceRoot": "apps/teams/src",
       "prefix": "tcs",
       "architect": {
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/athlete",
+            "outputPath": "dist/teams",
             "index": "",
-            "main": "apps/athlete/src/main.ts",
-            "polyfills": "apps/athlete/src/polyfills.ts",
-            "tsConfig": "apps/athlete/tsconfig.app.json",
+            "main": "apps/teams/src/main.ts",
+            "polyfills": "apps/teams/src/polyfills.ts",
+            "tsConfig": "apps/teams/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/athlete/src/favicon.ico", "apps/athlete/src/assets"],
+            "assets": ["apps/teams/src/favicon.ico", "apps/teams/src/assets"],
             "scripts": [],
-            "extraWebpackConfig": "apps/athlete/webpack.config.js"
+            "extraWebpackConfig": "apps/teams/webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -36,12 +36,12 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/athlete/src/environments/environment.ts",
-                  "with": "apps/athlete/src/environments/environment.prod.ts"
+                  "replace": "apps/teams/src/environments/environment.ts",
+                  "with": "apps/teams/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all",
-              "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
+              "extraWebpackConfig": "apps/teams/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -50,7 +50,7 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "extraWebpackConfig": "apps/athlete/webpack.config.js"
+              "extraWebpackConfig": "apps/teams/webpack.config.js"
             }
           }
         },
@@ -62,12 +62,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "athlete:build:production",
-              "extraWebpackConfig": "apps/athlete/webpack.prod.config.js"
+              "browserTarget": "teams:build:production",
+              "extraWebpackConfig": "apps/teams/webpack.prod.config.js"
             },
             "development": {
-              "browserTarget": "athlete:build:development",
-              "extraWebpackConfig": "apps/athlete/webpack.config.js"
+              "browserTarget": "teams:build:development",
+              "extraWebpackConfig": "apps/teams/webpack.config.js"
             }
           },
           "defaultConfiguration": "development"
@@ -75,56 +75,56 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "athlete:build"
+            "browserTarget": "teams:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/athlete/src/**/*.ts", "apps/athlete/src/**/*.html"]
+            "lintFilePatterns": ["apps/teams/src/**/*.ts", "apps/teams/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "ngx-build-plus:karma",
-          "outputs": ["coverage/apps/athlete"],
+          "outputs": ["coverage/apps/teams"],
           "options": {
-            "jestConfig": "apps/athlete/jest.config.js",
+            "jestConfig": "apps/teams/jest.config.js",
             "passWithNoTests": true,
-            "extraWebpackConfig": "apps/athlete/webpack.config.js"
+            "extraWebpackConfig": "apps/teams/webpack.config.js"
           }
         }
       },
       "tags": []
     },
-    "athlete-e2e": {
-      "root": "apps/athlete-e2e",
-      "sourceRoot": "apps/athlete-e2e/src",
+    "teams-e2e": {
+      "root": "apps/teams-e2e",
+      "sourceRoot": "apps/teams-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/athlete-e2e/cypress.json",
-            "tsConfig": "apps/athlete-e2e/tsconfig.e2e.json",
-            "devServerTarget": "athlete:serve"
+            "cypressConfig": "apps/teams-e2e/cypress.json",
+            "tsConfig": "apps/teams-e2e/tsconfig.e2e.json",
+            "devServerTarget": "teams:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "athlete:serve:production"
+              "devServerTarget": "teams:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/athlete-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["apps/teams-e2e/**/*.{js,ts}"]
           },
           "outputs": ["{options.outputFile}"]
         }
       },
       "tags": [],
-      "implicitDependencies": ["athlete"]
+      "implicitDependencies": ["teams"]
     },
     "dashboard": {
       "projectType": "application",

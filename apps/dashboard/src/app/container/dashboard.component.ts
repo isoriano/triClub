@@ -1,23 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { environment } from '../../environments/environment';
+import { CreateTeamBannerComponent } from '../components/create-team-banner/create-team-banner.component';
 
 @Component({
   selector: 'tcs-dashboard',
   templateUrl: './dashboard.component.html',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CreateTeamBannerComponent]
 })
-export class DashboardComponent implements OnInit {
-  constructor(
-    private httpClient: HttpClient
-  ) {}
+export class DashboardComponent {
+  private router = inject(Router);
 
-  ngOnInit(): void {
-    // this.httpClient
-    //   .get(`${environment.apiUrl}files`)
-    //   .subscribe((aux) => console.log(aux));
+  onCreateTeam(): void {
+    this.router.navigate(['teams/create']);
   }
 }

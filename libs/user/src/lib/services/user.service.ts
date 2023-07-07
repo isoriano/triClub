@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -7,12 +7,11 @@ import { AuthEnvironment } from '@tri-club/environment';
 
 import { File } from '@isg/files';
 
-import { ChangePassword, Profile, User, UserHttpResponse } from '../models';
+import { Profile, User, UserHttpResponse } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-
-  constructor(private httpClient: HttpClient) {}
+  private httpClient = inject(HttpClient);
 
   createUser(user: User): Observable<UserHttpResponse> {
     return this.httpClient.post<UserHttpResponse>(`${AuthEnvironment.apiUrl}users`, user);

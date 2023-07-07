@@ -1,5 +1,5 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, inject } from '@angular/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
@@ -20,23 +20,21 @@ import { HeaderComponent } from './components';
   imports: [CommonModule, HeaderComponent, MatSnackBarModule, NotificationContainerComponent, RouterModule]
 })
 export class AppComponent implements OnInit {
+  auth = inject(AuthService);
+
+  private document = inject(DOCUMENT);
+  private snackbar = inject(MatSnackBar);
+  private renderer = inject(Renderer2);
+  private store = inject(Store);
   private theme = 'light';
 
-  constructor(
-    public auth: AuthService,
-    @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2,
-    private store: Store,
-    private _snackBar: MatSnackBar
-  ) {
+  ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe((logged) => {
       if (logged) {
         this.store.dispatch(UserStore.actions.initUser());
       }
     });
-  }
 
-  ngOnInit(): void {
     this.setTheme();
     this.openDisclaimer();
   }
@@ -52,7 +50,7 @@ export class AppComponent implements OnInit {
   }
 
   private openDisclaimer(): void {
-    const disclaimerBar = this._snackBar.open('This website is not maintained. Used only for study purposes.', 'Github', {
+    const disclaimerBar = this.snackbar.open('This website is not maintained. Used only for study purposes.', 'Github', {
       duration: undefined,
       horizontalPosition: 'right',
       verticalPosition: 'bottom',

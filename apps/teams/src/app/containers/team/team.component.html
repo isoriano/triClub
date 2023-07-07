@@ -1,0 +1,10 @@
+<div *ngIf="teamId; else newTeam" class="team-profile"></div>
+<ng-template #newTeam>
+  <form (submit)="onCreateTeam()">
+    <isg-form-field-input [formCtrl]="teamNameCtrl">
+      <span slot="label">Team Name</span>
+    </isg-form-field-input>
+
+    <isg-button [type]="'submit'" [label]="'Create'"></isg-button>
+  </form>
+</ng-template>

@@ -7,7 +7,7 @@ export const environment = {
   url: 'http://localhost:',
   sites: {
     dashboard: 3000,
-    athlete: 3001,
+    teams: 3001,
     settings: 3002,
   }
 };

@@ -23,13 +23,13 @@ export const routes: Routes = [
       }).then((m) => m.DASHBOARD_ROUTES),
   },
   {
-    path: 'athlete',
+    path: 'teams',
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
-        remoteEntry: `${environment.url}${environment.sites.athlete}/remoteEntry.js`,
+        remoteEntry: `${environment.url}${environment.sites.teams}/remoteEntry.js`,
         exposedModule: './routes',
-      }).then((m) => m.ATHLETE_ROUTES),
+      }).then((m) => m.TEAMS_ROUTES),
   },
   {
     path: 'settings',

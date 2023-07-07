@@ -10,7 +10,7 @@ sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
 
 module.exports = {
   output: {
-    uniqueName: 'athlete',
+    uniqueName: 'teams',
     publicPath: 'auto'
   },
   optimization: {
@@ -27,10 +27,10 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       library: { type: 'module' },
-      name: 'athlete',
+      name: 'teams',
       filename: 'remoteEntry.js',
       exposes: {
-        './routes': './apps/athlete/src/app/athlete.routes.ts',
+        './routes': './apps/teams/src/app/teams.routes.ts',
       },
       shared: {
         '@angular/core': { singleton: true, strictVersion: false },

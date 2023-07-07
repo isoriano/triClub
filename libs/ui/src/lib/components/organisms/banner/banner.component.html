@@ -1,0 +1,9 @@
+<div class="banner-container" [ngClass]="color" [class.flashing]="isFlashing">
+  <h1>{{title}}</h1>
+  <div class="banner-content">
+    <ng-content select="[slot=banner-content]"></ng-content>
+  </div>
+  <div class="banner-actions">
+    <ng-content select="[slot=banner-actions]"></ng-content>
+  </div>
+</div>

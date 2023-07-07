@@ -1,10 +1,5 @@
-import {
-  HttpClient,
-  HttpEventType,
-  HttpRequest,
-  HttpResponse,
-} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 
 import { Observable, Subject } from 'rxjs';
@@ -12,11 +7,10 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class UploadService {
   private authToken: string;
+  private httpClient = inject(HttpClient);
 
-  constructor(private httpClient: HttpClient, authService: AuthService) {
-    authService
-      .getAccessTokenSilently()
-      .subscribe((token) => (this.authToken = token));
+  constructor(authService: AuthService) {
+    authService.getAccessTokenSilently().subscribe((token) => (this.authToken = token));
   }
 
   public upload(files: Set<File>): {
@@ -29,14 +23,9 @@ export class UploadService {
       formData.append('file', file, file.name);
 
       const progress = new Subject<number>();
-      const req = new HttpRequest(
-        'POST',
-        'http://localhost:1337/api/upload',
-        formData,
-        {
-          reportProgress: true,
-        }
-      );
+      const req = new HttpRequest('POST', 'http://localhost:1337/api/upload', formData, {
+        reportProgress: true
+      });
 
       this.httpClient.request(req).subscribe((event) => {
         if (event.type === HttpEventType.UploadProgress) {

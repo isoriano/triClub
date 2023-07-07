@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($theme, $mat-variants, $variants) {
+  $config: mat.get-color-config($theme);
+
+  @each $variant in $mat-variants {
+    $palette: map.get($config, $variant);
+    .banner-container.#{$variant} {
+      border: 2px solid mat.get-color-from-palette($palette, 400);
+      background-color: mat.get-color-from-palette($palette, 100);
+    }
+  }
+
+  @each $variant, $variant-palette in $variants {
+    .banner-container.#{$variant} {
+      border: 2px solid mat.get-color-from-palette($variant-palette, 400);
+      background-color: mat.get-color-from-palette($variant-palette, 100);
+    }
+  }
+}

@@ -9,7 +9,7 @@ Promise.all([
   }),
   loadRemoteEntry({
     type: 'module',
-    remoteEntry: `${environment.url}${environment.sites.athlete}/remoteEntry.js`,
+    remoteEntry: `${environment.url}${environment.sites.teams}/remoteEntry.js`,
   }),
   loadRemoteEntry({
     type: 'module',

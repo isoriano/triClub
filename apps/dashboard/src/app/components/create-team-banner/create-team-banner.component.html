@@ -1,0 +1,21 @@
+<isg-banner [title]="'Create your own team'">
+  <div slot="banner-content" class="features-container">
+    <div class="keys-row">
+      <div class="key">
+        <mat-icon>diversity_3</mat-icon>
+        <h3>Add your friends</h3>
+      </div>
+      <div class="key">
+        <mat-icon>polymer</mat-icon>
+        <h3>Set a fancy logo</h3>
+      </div>
+      <div class="key">
+        <mat-icon>running_with_errors</mat-icon>
+        <h3>Mark the Challenge</h3>
+      </div>
+    </div>
+  </div>
+  <div slot="banner-actions">
+    <isg-button [variant]="'raised'" [color]="'accent'" [label]="'Create Team'" (clicked)="onCreateTeam()"></isg-button>
+  </div>
+</isg-banner>

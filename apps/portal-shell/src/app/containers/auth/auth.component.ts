@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthModule, AuthService, User } from '@auth0/auth0-angular';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,9 @@ import { Store as UserStore } from '@tri-club/user';
   imports: [AuthModule, RouterModule]
 })
 export class AuthComponent implements OnInit {
-  constructor(private auth: AuthService, private router: Router, private store: Store) {}
+  private auth = inject(AuthService);
+  private router = inject(Router);
+  private store = inject(Store);
 
   ngOnInit(): void {
     this.auth.user$.pipe(first()).subscribe((auth0User: User) => {

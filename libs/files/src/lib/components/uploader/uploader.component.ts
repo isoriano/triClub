@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,7 +34,7 @@ export class UploaderComponent {
   progress: { [key: string]: { progress: Observable<number>; file: any } };
   uploading: boolean;
 
-  constructor(private uploadService: UploadService) {}
+  private uploadService = inject(UploadService);
 
   onAddFiles(): void {
     this.file.nativeElement.click();

@@ -1,5 +1,5 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Output, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,16 +24,15 @@ import { ThemeSwitchComponent } from '../theme-switch/theme-switch.component';
 })
 export class HeaderComponent {
   @Output() switchTheme = new EventEmitter();
+  @Output() createTeam = new EventEmitter();
 
-  user$ = this.store.select(UserStore.selectors.selectUser);
+  user$ = inject(Store).select(UserStore.selectors.selectUser);
+
+  auth = inject(AuthService);
   default_avatar = environment.defaultAvatar;
 
-  constructor(
-    public auth: AuthService,
-    @Inject(DOCUMENT) private document: Document,
-    private router: Router,
-    private store: Store
-  ) {}
+  private document: Document = inject(DOCUMENT);
+  private router = inject(Router);
 
   onGoTo(link: string): void {
     this.router.navigate([link]);
@@ -45,5 +44,9 @@ export class HeaderComponent {
 
   onSwitchTheme(): void {
     this.switchTheme.emit();
+  }
+
+  onCreateTeam(): void {
+    this.createTeam.emit();
   }
 }

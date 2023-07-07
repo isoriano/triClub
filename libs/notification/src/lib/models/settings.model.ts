@@ -1,5 +1,4 @@
-import { ThemePalette } from '@isg/ui';
-import { pHoritzontal, pVertical } from 'libs/ui/src/lib/types';
+import { ThemePalette, pHoritzontal, pVertical } from '@isg/ui';
 
 export class Settings {
   color: ThemePalette;

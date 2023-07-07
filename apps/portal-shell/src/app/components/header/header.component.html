@@ -6,17 +6,10 @@
     <a class="public-logo" href="/"></a>
 
     <div id="top-menu" *ngIf="auth.isAuthenticated$ | async">
-      <mat-menu #dashboardMenu="matMenu">
-        <button mat-menu-item (click)="onGoTo('/dashboard')">
-          {{ 'header.dashboard.activities' | translate }}
-        </button>
-      </mat-menu>
-      <isg-button [id]="'dashboard-menu'" [variant]="'menu'" [label]="'header.dashboard.title' | translate" [menuContent]="dashboardMenu">
-        <mat-icon slot="menu-icon"> keyboard_arrow_down </mat-icon>
-      </isg-button>
+      <isg-button [id]="'dashboard-menu'" [variant]="'stroked'" [label]="'header.dashboard.title' | translate" (clicked)="onGoTo('/dashboard')"></isg-button>
 
-      <mat-menu #trainingMenu="matMenu">
-        <button mat-menu-item (click)="onGoTo('/athlete/profile')">
+      <!-- <mat-menu #trainingMenu="matMenu">
+        <button mat-menu-item (click)="onGoTo('/teams/profile')">
           {{ 'header.training.schedule' | translate }}
         </button>
       </mat-menu>
@@ -37,11 +30,13 @@
         [menuContent]="adminMenu"
       >
         <mat-icon slot="menu-icon">keyboard_arrow_down </mat-icon>
-      </isg-button>
+      </isg-button> -->
     </div>
 
     <span class="spacer"></span>
     <ng-container *ngIf="auth.isAuthenticated$ | async">
+      <isg-button [id]="'create-team'" [variant]="'raised'" [label]="'Create Team'" [color]="'accent'" (clicked)="onGoTo('/teams/create')"> </isg-button>
+
       <mat-menu #profileMenu="matMenu">
         <button mat-menu-item (click)="onGoTo('/settings/profile')">
           {{ 'header.profile' | translate }}

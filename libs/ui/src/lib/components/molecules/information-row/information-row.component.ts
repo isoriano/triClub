@@ -2,7 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import { ThemePalette } from '../../../types';
+import { OptionalThemePalette } from '../../../types';
 
 @Component({
   selector: 'isg-information-row',
@@ -12,7 +12,7 @@ import { ThemePalette } from '../../../types';
   imports: [MatIconModule, NgClass]
 })
 export class InformationRowComponent {
-  @Input() color: ThemePalette;
+  @Input() color: OptionalThemePalette;
   @Input() hasBorderInd = true;
   @Input() information: string;
   @Input() label: string;
