@@ -27,7 +27,7 @@
           {
             "input": "apps/settings/src/styles.scss",
             "bundleName": "settings_styles",
-            "inject": false
+            "inject": true
           }
         ],
         "scripts": [],

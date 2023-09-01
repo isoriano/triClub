@@ -2,7 +2,6 @@
   "affected": {
     "defaultBase": "master"
   },
-  "npmScope": "tri-club",
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx-cloud",

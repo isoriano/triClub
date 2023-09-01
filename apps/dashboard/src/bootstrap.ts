@@ -1,11 +1,9 @@
-import { appConfig } from './app/app.config';
-
+import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 
-import { DashboardComponent } from './app/container/dashboard.component';
-
+import { appConfig } from './app/app.config';
 import { environment } from './environments/environment';
-import { enableProdMode } from '@angular/core';
+import { DashboardComponent } from './app/container/dashboard.component';
 
 if (environment.production) {
   enableProdMode();

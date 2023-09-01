@@ -1,18 +1,16 @@
-@use '../../../libs/ui/src/lib/styles/themes/core_yellow_light' as light;
-@use '../../../libs/ui/src/lib/styles/themes/core_dark' as dark;
-@use './app/components' as components;
-@use './app/containers' as containers;
+@use '../../../assets/style.scss' as mainStyles;
 
-@import '../../../assets/style.scss';
+@use './app/containers' as containers;
+@use './app/components' as components;
 
 .light-theme {
-  @include components.theme(light.$tcs-light-theme, light.$tcs-light-variants);
-  @include containers.theme(light.$tcs-light-theme, light.$tcs-light-variants);
+  @include containers.theme(mainStyles.$light-theme, mainStyles.$light-variants);
+  @include components.theme(mainStyles.$light-theme, mainStyles.$light-variants);
 }
 
 .dark-theme {
-  @include components.theme(dark.$tcs-dark-theme, dark.$tcs-dark-variants);
-  @include containers.theme(dark.$tcs-dark-theme, dark.$tcs-dark-variants);
+  @include containers.theme(mainStyles.$dark-theme, mainStyles.$dark-variants);
+  @include components.theme(mainStyles.$dark-theme, mainStyles.$dark-variants);
 
   .public-logo {
     background-image: url('/assets/images/logo-light.png') !important;

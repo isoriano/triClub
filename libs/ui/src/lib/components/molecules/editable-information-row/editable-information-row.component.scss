@@ -1,0 +1,42 @@
+:host {
+  .profile-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 8px;
+    margin-top: 0;
+    -webkit-transition: background-color 1s linear;
+    transition: background-color 1s linear;
+    will-change: background-color;
+    label {
+      width: 140px;
+      min-width: 140px;
+      padding-right: 16px;
+      text-align: right;
+    }
+    .value {
+      display: flex;
+      flex: 1 1 auto;
+      font-weight: 500;
+      align-items: center;
+      justify-content: space-between;
+      .mat-mdc-form-field {
+        flex-grow: 1;
+      }
+      .actions {
+        display: flex;
+        flex-direction: row;
+        margin-top: -24px;
+      }
+    }
+    &:hover {
+      .edit-action {
+        opacity: 1;
+      }
+    }
+    .edit-action {
+      opacity: 0;
+      padding-left: 16px;
+    }
+  }
+}

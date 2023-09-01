@@ -1,8 +1,9 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AuthModule } from '@auth0/auth0-angular';
 import { Store } from '@ngrx/store';
 
@@ -13,12 +14,11 @@ import { User, Store as UserStore, UserService, ChangePassword } from '@tri-club
 
 import { UploaderComponent } from '@isg/files';
 import { NotificationService, Settings } from '@isg/notification';
-import { ButtonComponent, FormFieldDateComponent, FormFieldInputComponent, NotificationComponent } from '@isg/ui';
+import { ButtonComponent, EditableInformationRowComponent, FormFieldDateComponent, FormFieldInputComponent, NotificationComponent } from '@isg/ui';
 
 import { environment } from '../../../environments/environment';
 import { ChangePasswordComponent } from '../../components/change-password/change-password.component';
 import { ProfileRowComponent } from '../../components/profile-row/profile-row.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'tcs-user-profile',
@@ -31,8 +31,10 @@ import { Router } from '@angular/router';
     ChangePasswordComponent,
     CommonModule,
     DatePipe,
+    EditableInformationRowComponent,
     FormFieldDateComponent,
     FormFieldInputComponent,
+    ReactiveFormsModule,
     MatDividerModule,
     MatSnackBarModule,
     ProfileRowComponent,
@@ -49,10 +51,14 @@ export class ProfileComponent implements OnInit {
     name: FormControl<string>;
     email: FormControl<string>;
     dob: FormControl<Date>;
-  }>;
+  }> = new FormGroup({
+    uid: new FormControl({ value: '', disabled: true }),
+    name: new FormControl({ value: '', disabled: true }, Validators.required),
+    email: new FormControl({ value: '', disabled: true }, Validators.required),
+    dob: new FormControl({ value: null, disabled: true }, Validators.required)
+  });
 
   private backupUser: User;
-  private fb = inject(FormBuilder);
   private notification = inject(NotificationService);
   private store = inject(Store);
   private router$ = inject(Router);
@@ -62,20 +68,20 @@ export class ProfileComponent implements OnInit {
     shareReplay(),
     tap((up) => console.warn(up))
   );
+
   user$: Observable<User> = this.store.select(UserStore.selectors.selectUser).pipe(
     filter((user) => !!user),
     tap((user) => this.mapForm(user))
   );
 
-  private get user(): User {
-    return this.profileForm.value as User;
-  }
-
   ngOnInit(): void {
     this.store
       .select(UserStore.selectors.isUpdated)
       .pipe(filter((isUpdated) => !!isUpdated))
-      .subscribe(() => (this.ctrlOnEdit = undefined));
+      .subscribe(() => {
+        this.profileForm.get(this.ctrlOnEdit).disable();
+        this.ctrlOnEdit = undefined;
+      });
 
     this.store
       .select(UserStore.selectors.selectUserError)
@@ -87,23 +93,14 @@ export class ProfileComponent implements OnInit {
     this.store.dispatch(UserStore.actions.updateAvatar({ avatarId: result[0].id }));
   }
 
-  onEditing(ctrl: string): void {
-    this.ctrlOnEdit = ctrl;
-  }
-
-  onCancel(): void {
-    this.ctrlOnEdit = undefined;
-    this.profileForm.patchValue(this.backupUser);
-  }
-
-  onSave(): void {
-    this.profileForm.markAllAsTouched();
+  onSave(ctrlName: string): void {
+    this.ctrlOnEdit = ctrlName;
     if (!this.profileForm.get(this.ctrlOnEdit).valid) {
       return;
     }
 
     const changeRequest: Partial<User> = {};
-    changeRequest[this.ctrlOnEdit] = this.user[this.ctrlOnEdit];
+    changeRequest[this.ctrlOnEdit] = this.profileForm.get(this.ctrlOnEdit).value;
     this.store.dispatch(UserStore.actions.updateUser({ change: changeRequest }));
   }
 
@@ -118,11 +115,6 @@ export class ProfileComponent implements OnInit {
 
   private mapForm(profileUser: User): void {
     this.backupUser = profileUser;
-    this.profileForm = this.fb.group({
-      uid: [profileUser.uid],
-      name: [profileUser.name, Validators.required],
-      email: [profileUser.email, Validators.required],
-      dob: [profileUser.dob, Validators.required]
-    });
+    this.profileForm.patchValue(profileUser);
   }
 }

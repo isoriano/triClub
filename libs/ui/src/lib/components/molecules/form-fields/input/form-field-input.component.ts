@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BasicThemePalette } from '../../../../types/theme-palette.type';
 import { ErrorComponent } from '../../../atoms';
 
+// TODO: Convert into an ControlValueAccessor
 @Component({
   selector: 'isg-form-field-input',
   templateUrl: './form-field-input.component.html',

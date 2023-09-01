@@ -1,14 +1,8 @@
-import { appConfig } from './app/app.config';
-
+import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 
-import { provideEffects } from '@ngrx/effects';
-import { provideStore } from '@ngrx/store';
-
-import { Store } from '@tri-club/user';
-
+import { appConfig } from './app/app.config';
 import { ProfileComponent } from './app/containers/profile/profile.component';
-
 import { environment } from './environments/environment';
 
 if (environment.production) {

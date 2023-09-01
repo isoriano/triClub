@@ -3,7 +3,7 @@
 @use "./organisms" as organisms;
 
 @mixin theme($theme, $variants) {
-  @include button.color($theme, $variants);
+  @include button.color($theme, ('primary', 'accent', 'warn'), $variants);
   @include molecules.theme($theme, ('primary', 'accent', 'warn'), $variants);
   @include organisms.theme($theme, ('primary', 'accent', 'warn'), $variants);
 }

@@ -15,41 +15,18 @@
     </div>
   </div>
   <mat-divider></mat-divider>
-  <!-- Try to use here the ControlValueAccessor approach -->
-  <!-- https://www.youtube.com/watch?v=OrmIfW8Ak3w -->
-  <tcs-profile-row
-    [label]="'Name'"
-    [isUpdating]="isUpdating$ | async"
-    [isEditing]="ctrlOnEdit === 'name'"
-    (edit)="onEditing('name')"
-    (save)="onSave()"
-    (cancel)="onCancel()"
-  >
-    <span slot="text">{{ user.name }}</span>
-    <isg-form-field-input slot="editCtrl" [formCtrl]="profileForm.get('name')"></isg-form-field-input>
-  </tcs-profile-row>
-  <tcs-profile-row
-    [label]="'email'"
-    [isUpdating]="isUpdating$ | async"
-    [isEditing]="ctrlOnEdit === 'email'"
-    (edit)="onEditing('email')"
-    (save)="onSave()"
-    (cancel)="onCancel()"
-  >
-    <span slot="text">{{ user.email }}</span>
-    <isg-form-field-input slot="editCtrl" [type]="'email'" [formCtrl]="profileForm.get('email')"></isg-form-field-input>
-  </tcs-profile-row>
-  <tcs-profile-row
-    [label]="'Date of Birth'"
-    [isUpdating]="isUpdating$ | async"
-    [isEditing]="ctrlOnEdit === 'dob'"
-    (edit)="onEditing('dob')"
-    (save)="onSave()"
-    (cancel)="onCancel()"
-  >
-    <span slot="text">{{ user.dob | date: 'EEEE, MMMM d, y' }}</span>
-    <isg-form-field-date slot="editCtrl" [formCtrl]="profileForm.get('dob')"></isg-form-field-date>
-  </tcs-profile-row>
+  <form [formGroup]="profileForm">
+    <isg-editable-information-row formControlName="name" (save)="onSave('name')">
+      <span slot="label">Name</span>
+    </isg-editable-information-row>
+    <isg-editable-information-row formControlName="email" [type]="'email'" (save)="onSave('email')">
+      <span slot="label">Email</span>
+    </isg-editable-information-row>
+    <isg-editable-information-row formControlName="dob" [type]="'date'" (save)="onSave('dob')">
+      <span slot="label">Date of Birth</span>
+    </isg-editable-information-row>
+  </form>
+
   <div class="container">
     <h2>Update Password</h2>
     <isg-button [label]="'Request Change Password'" (clicked)="onUpdatePassword()"></isg-button>
@@ -57,7 +34,7 @@
 
   <div class="delete-account-container">
     <h2>Delete your account</h2>
-    <span>Elimina tu cuenta de forma permanente</span>
+    <span>Delete your account permanently</span>
     <isg-button [color]="'warn'" [label]="'Delete Account'" (clicked)="onDeleteAccount()"></isg-button>
   </div>
 </section>

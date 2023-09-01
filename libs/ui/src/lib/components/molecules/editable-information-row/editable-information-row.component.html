@@ -1,0 +1,48 @@
+<div class="profile-row">
+  <label><ng-content select="[slot=label]"></ng-content></label>
+  <div class="value">
+    <ng-container *ngIf="isDisabled; else editing">
+      <span *ngIf="type === 'date'; else default">{{ value | date: 'EEEE, MMMM d, y' }}</span>
+      <ng-template #default>
+        <span>{{ value }}</span>
+      </ng-template>
+      <isg-button class="action edit-action" [variant]="'icon'" [label]="'Edit'" (clicked)="onEdit()">
+        <mat-icon slot="button-icon">edit</mat-icon>
+      </isg-button>
+    </ng-container>
+    <ng-template #editing>
+      <mat-form-field *ngIf="type === 'date'; else default">
+        <input matInput [value]="value" [matDatepicker]="datepicker" [disabled]="isSaving" (change)="setValue($event)" />
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker> </mat-datepicker>
+      </mat-form-field>
+
+      <ng-template #default>
+        <mat-form-field>
+          <input matInput [type]="type" [required]="true" [value]="value" [disabled]="isSaving" (change)="setValue($event)" />
+          <span matPrefix><ng-content select="[slot=prefix-icon]"></ng-content></span>
+          <span matSuffix><ng-content select="[slot=suffix-icon]"></ng-content></span>
+
+          <mat-error *ngFor="let error of ngControl.errors | keyvalue">
+            <isg-error [error]="error"></isg-error>
+          </mat-error>
+          <mat-hint align="start">
+            <ng-content select="[slot=hint-start]"></ng-content>
+          </mat-hint>
+          <mat-hint align="end">
+            <ng-content select="[slot=hint-end]"></ng-content>
+          </mat-hint>
+        </mat-form-field>
+      </ng-template>
+
+      <div class="actions">
+        <isg-button class="action save-cancel-action" [variant]="'icon'" [label]="'Save'" [isLoading]="isSaving" (clicked)="onSave()">
+          <mat-icon slot="button-icon">save</mat-icon>
+        </isg-button>
+        <isg-button class="action save-cancel-action" [variant]="'icon'" [label]="'Cancel'" [isDisabled]="isSaving" (clicked)="onCancel()">
+          <mat-icon slot="button-icon">close</mat-icon>
+        </isg-button>
+      </div>
+    </ng-template>
+  </div>
+</div>

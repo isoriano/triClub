@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 
 import { FormFieldSelectComponent } from './form-field-select.component';
 
@@ -13,7 +13,7 @@ export default {
   ]
 } as Meta<FormFieldSelectComponent>;
 
-const Template: Story<FormFieldSelectComponent> = (args: FormFieldSelectComponent) => ({
+const Template: StoryFn<FormFieldSelectComponent> = (args: FormFieldSelectComponent) => ({
   props: args
 });
 
