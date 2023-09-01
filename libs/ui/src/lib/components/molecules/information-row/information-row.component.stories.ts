@@ -1,4 +1,4 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 
 import { InformationRowComponent } from './information-row.component';
 
@@ -22,7 +22,7 @@ export default {
   }
 } as Meta<InformationRowComponent>;
 
-export const Primary: Story<InformationRowComponent> = (args: InformationRowComponent) => ({
+export const Primary: StoryFn<InformationRowComponent> = (args: InformationRowComponent) => ({
   props: args,
   template: `
     <isg-information-row

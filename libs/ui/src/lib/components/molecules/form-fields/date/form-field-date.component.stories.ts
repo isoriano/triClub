@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 
 import { FormFieldDateComponent } from './form-field-date.component';
 
@@ -15,7 +15,7 @@ export default {
   ]
 } as Meta<FormFieldDateComponent>;
 
-const Template: Story<FormFieldDateComponent> = (args: FormFieldDateComponent) => ({
+const Template: StoryFn<FormFieldDateComponent> = (args: FormFieldDateComponent) => ({
   props: args
 });
 

@@ -1,16 +1,22 @@
 import { ApplicationConfig } from '@angular/core';
-import { enableProdMode, importProvidersFrom, isDevMode } from '@angular/core';
+import { importProvidersFrom, isDevMode } from '@angular/core';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
-import { environment } from '..environmentsenvironment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { routes } from './app.routes';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { Store } from '@tri-club/user';
 import { provideEffects } from '@ngrx/effects';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { Store } from '@tri-club/user';
+
+import { routes } from './app.routes';
+import { environment } from '../environments/environment';
+
+export const HttpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new TranslateHttpLoader(http);
+
 export const appConfig: ApplicationConfig = {
   providers: [
     {

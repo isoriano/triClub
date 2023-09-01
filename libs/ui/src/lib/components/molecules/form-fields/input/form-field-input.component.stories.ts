@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, StoryFn, Meta } from '@storybook/angular';
 
 import { FormFieldInputComponent } from './form-field-input.component';
 
@@ -8,15 +8,24 @@ export default {
   component: FormFieldInputComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        BrowserAnimationsModule
-      ]
+      imports: [BrowserAnimationsModule]
     })
   ]
 } as Meta<FormFieldInputComponent>;
 
-const Template: Story<FormFieldInputComponent> = (args: FormFieldInputComponent) => ({
-  props: args
+const Template: StoryFn<FormFieldInputComponent> = (args: FormFieldInputComponent) => ({
+  props: args,
+  template: `
+    <isg-form-field-input
+      [formCtrl]="formCtrl"
+      [placeholder]="placeholder"
+      [required]="required"
+      [type]="type"
+    >
+      <span slot="label">Date of Birth</span>
+      <span slot="hint-start">Hint Start</span>
+    </isg-form-field-input>
+  `
 });
 
 export const Primary = Template.bind({});

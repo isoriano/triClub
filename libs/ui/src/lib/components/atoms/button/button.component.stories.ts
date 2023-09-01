@@ -13,7 +13,7 @@ export default {
   ],
   argTypes: {
     color: {
-      options: ['primary', 'warn', 'accent', 'success'],
+      options: ['primary', 'warn', 'accent', 'success', 'info'],
       control: { type: 'radio' }
     },
     variant: {

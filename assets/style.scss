@@ -6,7 +6,7 @@
 @use './libs/ui/src/lib/styles/themes' as uiTheme;
 
 // Plus imports for other components in your app.
-@use './libs/ui/src/lib/styles/themes/core_yellow_light' as light;
+@use './libs/ui/src/lib/styles/themes/core_blue_light' as light;
 @use './libs/ui/src/lib/styles/themes/core_dark' as dark;
 // @use './styles/typography/config' as typography;
 
@@ -14,11 +14,6 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-// @include mat.all-component-themes($tcs-light-theme);
 
 $light-theme: light.$tcs-light-theme;
 $light-variants: light.$tcs-light-variants;
@@ -34,13 +29,11 @@ $dark-variants: dark.$tcs-dark-variants;
   $light-theme: map.set($light-theme, 'color', $color);
 
   @include mat.all-component-themes($light-theme);
-
   @include uiTheme.theme($light-theme, $light-variants);
 }
 
 .dark-theme {
-  @include mat.all-component-themes($dark-theme);
-
+  @include mat.all-component-colors($dark-theme);
   @include uiTheme.theme($dark-theme, $dark-variants);
 }
 

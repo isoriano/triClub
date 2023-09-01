@@ -1,8 +1,10 @@
+@use './editable-information-row/editable-information-row-theme.component' as editableInformationRow;
 @use './information-row/information-row-theme.component' as informationRow;
 @use './loader-overlay/loader-overlay-theme.component' as loaderOverlay;
 @use './notification/notification-theme.component' as notification;
 
 @mixin theme($theme, $mat-variants, $variants) {
+  @include editableInformationRow.color($theme, $mat-variants, $variants);
   @include informationRow.color($theme, $mat-variants, $variants);
   @include notification.color($theme, $mat-variants, $variants);
   @include loaderOverlay.color($theme, $mat-variants, $variants);

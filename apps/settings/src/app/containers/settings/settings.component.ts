@@ -8,7 +8,7 @@ import { ThreeColumnLayoutComponent } from '@isg/ui';
 @Component({
   selector: 'tcs-settings-root',
   templateUrl: './settings.component.html',
-  styleUrls: ['settings.component.scss', '_settings-theme.component.scss'],
+  styleUrls: ['../../../styles.scss', './settings.component.scss', './_settings-theme.component.scss'],
   standalone: true,
   imports: [CommonModule, MatListModule, RouterModule, ThreeColumnLayoutComponent],
   encapsulation: ViewEncapsulation.None

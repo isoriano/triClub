@@ -3,8 +3,8 @@
 
 @use '../palettes/palettes' as palette;
 
-$tcs-dark-primary: mat.define-palette(palette.$dark-pink-palette);
-$tcs-dark-accent: mat.define-palette(palette.$dark-blue-palette, A200, A100, A400);
+$tcs-dark-primary: mat.define-palette(palette.$dark-blue-palette);
+$tcs-dark-accent: mat.define-palette(palette.$dark-pink-palette, A200, A100, A400);
 $tcs-dark-warn: mat.define-palette(mat.$deep-orange-palette);
 
 $tcs-dark-theme: mat.define-dark-theme(
