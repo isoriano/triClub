@@ -4,7 +4,7 @@
 
 This project is implemented using:
 
-- [Angular 14](https://angular.io)
+- [Angular 16](https://angular.io)
 - [Nx](https://nx.dev).
 - [Auth0](https://auth0.com/)
 - [Module Federation](https://github.com/angular-architects/module-federation-plugin/blob/main/packages/mf/tutorial/tutorial.md)
